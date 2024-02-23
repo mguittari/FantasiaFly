@@ -13,7 +13,7 @@ create table user(
 
 INSERT INTO user (firstname, lastname, birth_date, email, hashpassword, phone_number, address, postal_code, city, country)
 VALUES
-( 'Jean', 'Dupont', '1980-03-12', 'jean.dupont@example.com', 'M0tDeP@ss', '0612345678', '12 Rue de la République', '75001', 'Paris', 'France'),
+('Jean', 'Dupont', '1980-03-12', 'jean.dupont@example.com', 'M0tDeP@ss', '0612345678', '12 Rue de la République', '75001', 'Paris', 'France'),
 ('Marie', 'Martin', '1985-08-22', 'marie.martin@email.com', 'S3cur!téP@ss', '0987654321', '456 Avenue des Roses', '69002', 'Lyon', 'France'),
 ('Pierre', 'Lefevre', '1993-02-10', 'pierre.lefevre@email.com', 'Ch@ng3M0tDeP@ss', '0654321098', '789 Boulevard du Soleil', '31000', 'Toulouse', 'France'),
 ('Sophie', 'Robert', '1980-11-28', 'sophie.robert@email.com', 'P@ssw0rd123', '0231547698', '101 Rue de beavisage', '44000', 'Nantes', 'France'),
