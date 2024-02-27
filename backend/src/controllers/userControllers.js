@@ -1,4 +1,7 @@
 // Import access to database tables
+const argon2 = require("argon2");
+const fs = require("fs");
+const jwt = require("jsonwebtoken");
 const tables = require("../tables");
 
 // The B of BREAD - Browse (Read All) operation
@@ -33,24 +36,110 @@ const read = async (req, res, next) => {
     next(err);
   }
 };
+const readById = async (req, res) => {
+  try {
+    const id = req.payload;
+    const [user] = await tables.user.getUserById(id);
+    if (user.length) {
+      res.status(200).json({ message: "isLogged", user: user[0] });
+    } else {
+      res.status(401).send("verfier vos données");
+    }
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+const readByEmail = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+      res.status(401).json({ message: "remplir vos champs !" });
+    } else {
+      const [user] = await tables.user.getUserByEmail(email);
+      if (user.length) {
+        // check password
+        const isVerify = await argon2.verify(user[0].hashPassword, password);
+
+        if (typeof isVerify === "boolean" && isVerify) {
+          const token = jwt.sign(
+            { payload: user[0].id },
+            process.env.SECRET_KEY_JWT,
+            {
+              expiresIn: "0.5h",
+            }
+          );
+
+          res.status(200).send(token);
+        } else {
+          res.status(401).send("verifier vos données");
+        }
+      } else {
+        res.status(401).send("addresse mail n'existe pas");
+      }
+    }
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+const logout = async (req, res) => {
+  try {
+    const id = req.payload;
+    const token = jwt.sign({ payload: id }, process.env.SECRET_KEY_JWT, {
+      expiresIn: "0h",
+    });
+    res.status(200).send(token);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
 
 // The E of BREAD - Edit (Update) operation
 // This operation is not yet implemented
 
 // The A of BREAD - Add (Create) operation
-const add = async (req, res, next) => {
-  // Extract the user data from the request body
-  const user = req.body;
-
+const create = async (req, res) => {
   try {
-    // Insert the user into the database
-    const insertId = await tables.user.create(user);
+    const {
+      firstname,
+      lastname,
+      // eslint-disable-next-line camelcase
+      birth_date,
+      email,
+      hashPassword,
+      // eslint-disable-next-line camelcase
+      phone_number,
+      address,
+      // eslint-disable-next-line camelcase
+      postal_code,
+      city,
+      country,
+    } = req.body;
+    const img = req.file.path;
 
-    // Respond with HTTP 201 (Created) and the ID of the newly inserted user
-    res.status(201).json(`New user created with id : ${insertId}`);
-  } catch (err) {
-    // Pass any errors to the error-handling middleware
-    next(err);
+    const [result] = await tables.user.add(
+      firstname,
+      lastname,
+      birth_date,
+      email,
+      img,
+      hashPassword,
+      phone_number,
+      address,
+      postal_code,
+      city,
+      country
+    );
+    if (result.affectedRows) {
+      res.status(201).send("created");
+    } else {
+      fs.unlinkSync(req.file.path);
+      res.status(401).send("erreur lors de l'enregistrement");
+    }
+  } catch (error) {
+    fs.unlinkSync(req.file.path);
+
+    res.status(500).send(error);
   }
 };
 
@@ -105,9 +194,12 @@ const deleteUser = async (req, res) => {
 // Ready to export the controller functions
 module.exports = {
   browse,
+  create,
   read,
+  readById,
+  readByEmail,
   edit,
   editPassword,
-  add,
   deleteUser,
+  logout,
 };

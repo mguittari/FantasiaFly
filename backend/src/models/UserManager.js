@@ -12,12 +12,13 @@ class userManager extends AbstractManager {
   async create(user) {
     // Execute the SQL INSERT query to add a new user to the "user" table
     const [result] = await this.database.query(
-      `insert into ${this.table} (firstname, lastname, birth_date, email, hashPassword, phone_number, address, postal_code, city, country) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      `insert into ${this.table} (firstname, lastname, birth_date, email, img, hashPassword, phone_number, address, postal_code, city, country) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
         user.firstname,
         user.lastname,
         user.birth_date,
         user.email,
+        user.img,
         user.hashPassword,
         user.phone_number,
         user.address,
@@ -50,6 +51,19 @@ class userManager extends AbstractManager {
 
     // Return the array of users
     return rows;
+  }
+
+  getUserById(id) {
+    return this.database.query(
+      `select firstname, lastname,img, email from ${this.table} where id=?`,
+      [id]
+    );
+  }
+
+  getUserByEmail(email) {
+    return this.database.query(`select * from ${this.table} where email=?`, [
+      email,
+    ]);
   }
 
   // The U of CRUD - Update operation
