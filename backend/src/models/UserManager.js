@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 const AbstractManager = require("./AbstractManager");
 
 class userManager extends AbstractManager {
@@ -9,22 +10,34 @@ class userManager extends AbstractManager {
 
   // The C of CRUD - Create operation
 
-  async create(user) {
+  async create(
+    firstname,
+    lastname,
+    birth_date,
+    email,
+    img_url,
+    hashPassword,
+    phone_number,
+    address,
+    postal_code,
+    city,
+    country
+  ) {
     // Execute the SQL INSERT query to add a new user to the "user" table
     const [result] = await this.database.query(
       `insert into ${this.table} (firstname, lastname, birth_date, email, img_url, hashPassword, phone_number, address, postal_code, city, country) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
-        user.firstname,
-        user.lastname,
-        user.birth_date,
-        user.email,
-        user.img_url,
-        user.hashPassword,
-        user.phone_number,
-        user.address,
-        user.postal_code,
-        user.city,
-        user.country,
+        firstname,
+        lastname,
+        birth_date,
+        email,
+        img_url,
+        hashPassword,
+        phone_number,
+        address,
+        postal_code,
+        city,
+        country,
       ]
     );
     // Return the ID of the newly inserted user
