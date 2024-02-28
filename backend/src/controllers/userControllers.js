@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 // Import access to database tables
 const argon2 = require("argon2");
 const fs = require("fs");
@@ -103,26 +104,24 @@ const create = async (req, res) => {
     const {
       firstname,
       lastname,
-      // eslint-disable-next-line camelcase
       birth_date,
       email,
       hashPassword,
-      // eslint-disable-next-line camelcase
       phone_number,
       address,
-      // eslint-disable-next-line camelcase
       postal_code,
       city,
       country,
     } = req.body;
-    const img = req.file.path;
 
-    const [result] = await tables.user.add(
+    const img_url = req.file.path;
+
+    const result = await tables.user.create(
       firstname,
       lastname,
       birth_date,
       email,
-      img,
+      img_url,
       hashPassword,
       phone_number,
       address,

@@ -12,10 +12,10 @@ const hashPassword = async (req, res, next) => {
     const { password } = req.body;
 
     if (password) {
-      // eslint-disable-next-line no-shadow
-      const hashPassword = await argon2.hash(password, hashOptions);
+      const hashedPassword = await argon2.hash(password, hashOptions);
+      delete req.body.password;
 
-      req.body.hashPassword = hashPassword;
+      req.body.hashedPassword = hashedPassword;
 
       next();
     } else {

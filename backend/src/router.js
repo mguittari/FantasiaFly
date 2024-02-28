@@ -1,7 +1,7 @@
 const express = require("express");
 
 const router = express.Router();
-const upload = require("./services/upLoad");
+
 /* ************************************************************************* */
 // Define Your API Routes Here
 /* ************************************************************************* */
@@ -10,6 +10,7 @@ const upload = require("./services/upLoad");
 const userControllers = require("./controllers/userControllers");
 const hashPassword = require("./services/hashPassword");
 const verifyToken = require("./services/verifyToken");
+const upload = require("./services/upload");
 
 // Route to get a list of users
 router.get("/users", userControllers.browse);
