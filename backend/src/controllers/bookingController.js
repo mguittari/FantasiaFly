@@ -12,6 +12,30 @@ const browse = async (req, res, next) => {
     next(err);
   }
 };
+
+const getAllInfo = async (req, res) => {
+  try {
+    const bookings = await tables.booking.queryGetAllInfo();
+    res.json(bookings);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
+const getFactureById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const result = await tables.booking.queryGetFactureById(id);
+
+    if (result[0] != null) {
+      res.json(result);
+    } else {
+      res.status(401).send("Bill does not exist");
+    }
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
 const read = async (req, res, next) => {
   try {
     // Fetch a specific booking from the database based on the provided ID
@@ -44,4 +68,4 @@ const create = async (req, res) => {
   }
 };
 
-module.exports = { browse, read, create };
+module.exports = { browse, read, create, getAllInfo, getFactureById };

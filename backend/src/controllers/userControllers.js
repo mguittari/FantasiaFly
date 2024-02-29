@@ -83,13 +83,26 @@ const readByEmail = async (req, res) => {
     res.status(500).send(error);
   }
 };
+const getAllBookingsByUser = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const [bookings] = await await tables.user.getAllBookingsByUser(id);
+    if (bookings != null) {
+      res.json(bookings);
+    } else {
+      res.status(401).send("client n'existe pas avec cette reservation");
+    }
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
 const logout = async (req, res) => {
   try {
     const id = req.payload;
     const token = jwt.sign({ payload: id }, process.env.SECRET_KEY_JWT, {
       expiresIn: "0h",
     });
-    res.status(200).send(token);
+    res.status(200).send({ message: "vous avez été déconnecté", token });
   } catch (error) {
     res.status(500).send(error);
   }
@@ -214,6 +227,7 @@ module.exports = {
   read,
   readById,
   readByEmail,
+  getAllBookingsByUser,
   edit,
   editAvatar,
   editPassword,

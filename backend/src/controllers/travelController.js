@@ -69,7 +69,7 @@ const updateByAdmin = async (req, res) => {
     res.status(500).send(error);
   }
 };
-const deleteByAmin = async (req, res) => {
+const deleteByAdmin = async (req, res) => {
   try {
     const { id } = req.params;
     const [result] = await tables.travel.delete(id);
@@ -84,4 +84,4 @@ const deleteByAmin = async (req, res) => {
     res.status(500).send(error);
   }
 };
-module.exports = { browse, read, createByAdmin, updateByAdmin, deleteByAmin };
+module.exports = { browse, read, createByAdmin, updateByAdmin, deleteByAdmin };

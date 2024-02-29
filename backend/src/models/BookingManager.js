@@ -35,5 +35,32 @@ class BookingManager extends AbstractManager {
     );
     return result;
   }
+
+  async queryGetAllInfo() {
+    const [result] = await this.database.query(
+      `SELECT u.id, u.firstname, u.lastname, u.email, u.phone_number, t.destination_name, tp.type_transport, DATE_FORMAT(pr.date_departure, '%d-%m-%y') AS formatted_date_departure, DATE_FORMAT(pr.date_return, '%d-%m-%y') AS formatted_date_return, DATE_FORMAT(b.booking_date, '%d-%m-%y') AS formatted_booking_date, p.unit_price, p.quantity, p.unit_price * p.quantity AS total_price
+FROM booking as b
+JOIN travel AS t ON t.id = b.id_travel
+JOIN travel_period AS tp ON t.id = tp.id_travel
+JOIN period AS pr ON tp.id_period = pr.id
+JOIN user AS u ON u.id = b.id_user
+JOIN payment AS p ON b.id_payment = p.id; `
+    );
+    return result;
+  }
+
+  async queryGetFactureById(id) {
+    const [result] = await this.database.query(
+      `SELECT u.id as id_user, u.firstname, u.lastname, u.email, u.phone_number, t.destination_name, tp.type_transport, DATE_FORMAT(pr.date_departure, '%d-%m-%y') AS formatted_date_departure, DATE_FORMAT(pr.date_return, '%d-%m-%y') AS formatted_date_return, DATE_FORMAT(b.booking_date, '%d-%m-%y') AS formatted_booking_date, p.unit_price, p.quantity, p.unit_price * p.quantity AS total_price
+FROM booking as b
+JOIN travel AS t ON t.id = b.id_travel
+JOIN travel_period AS tp ON t.id = tp.id_travel
+JOIN period AS pr ON tp.id_period = pr.id
+JOIN user AS u ON u.id = b.id_user
+JOIN payment AS p ON b.id_payment = p.id
+WHERE u.id = ${id}`
+    );
+    return result;
+  }
 }
 module.exports = BookingManager;

@@ -49,7 +49,7 @@ class userManager extends AbstractManager {
   async read(id) {
     // Execute the SQL SELECT query to retrieve a specific user by its ID
     const [rows] = await this.database.query(
-      `select * from ${this.table} where id = ?`,
+      `select *, DATE_FORMAT(birth_date, '%d-%m-%Y') AS birth_date from ${this.table} where id = ?`,
       [id]
     );
 
@@ -59,15 +59,23 @@ class userManager extends AbstractManager {
 
   async readAll() {
     // Execute the SQL SELECT query to retrieve all users from the "user" table
-    const [rows] = await this.database.query(`select * from ${this.table}`);
+    const [rows] = await this.database.query(
+      `select *, DATE_FORMAT(birth_date, '%d-%m-%Y') AS birth_date from ${this.table}`
+    );
 
     // Return the array of users
     return rows;
   }
 
+  getUserBookingsById(id) {
+    return this.database.query(
+      `select u.id, u.firstname, u.lastname, u.city, b.booking_date, b.cancellation_insurance from user as u inner join booking as b on u.id = b.id where u.id= ${id}`
+    );
+  }
+
   getUserById(id) {
     return this.database.query(
-      `select firstname, lastname,img, email from ${this.table} where id=?`,
+      `select firstname, lastname, img_url, email from ${this.table} where id=?`,
       [id]
     );
   }
@@ -76,6 +84,22 @@ class userManager extends AbstractManager {
     return this.database.query(`select * from ${this.table} where email=?`, [
       email,
     ]);
+  }
+
+  getAllBookingsByUser(id) {
+    return this.database.query(
+      `select u.id, u.firstname, u.lastname, u.email,
+            JSON_ARRAYAGG(
+                JSON_OBJECT(
+            'destination', t.destination_name,
+            'n°réservation', b.id,
+            'date de la réservation', b.booking_date,
+            'insurance_annulation', p.cancellation_insurance,
+            'quantity', p.quantity,
+            'total_price', p.quantity * p.unit_price
+                            ))
+                    as bookings from user as u join booking as b on u.id = b.id_user join payment as p on p.id = b.id_payment join travel as t on t.id = b.id_travel where u.id = ${id}`
+    );
   }
 
   // The U of CRUD - Update operation

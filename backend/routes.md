@@ -1,33 +1,33 @@
-| route                   | Verbe  | Front | Back | Description                                                                   | status |
-| ----------------------- | ------ | ----- | ---- | ----------------------------------------------------------------------------- | ------ |
-| /                       | /      | oui   | non  | consulter la page d'accueil                                                   |        |
-| /inscription            | /      | oui   | non  | accéder à la page d'inscription                                               |        |
-| /profile                | /      | oui   | non  | accéder à mes informations                                                    |        |
-| /newsletter             | /      | oui   | non  | s'inscrire à la newsletter                                                    |        |
-| /travel                 | /      | oui   | non  | afficher la page des voyages proposés                                         |        |
-| /travel/nom_destination | /      | oui   | non  | afficher la page d'un voyage en particulier, avec toutes les infos et un quiz |        |
-| /booking                | /      | oui   | non  | consulter mes réservations                                                    |        |
-| /paiement               | /      | oui   | non  | afficher plusieurs méthodes de paiement                                       |        |
-| /contact                | /      | oui   | non  | contacter le service client via un formulaire                                 |        |
-| /cgu                    | /      | oui   | non  | affichage des conditions générales d'utilisation                              |        |
-| /users                  | post   | non   | oui  | enregistrer un user                                                           |        |
-| /users                  | patch  | non   | oui  | mettre à jour les informations de user sans le mot de passe                   |        |
-| /users/update-password  | patch  | non   | oui  | mettre à jour le mot de passe                                                 |        |
-| /login                  | post   | non   | oui  | verifier si user existe et recup de token                                     |        |
-| /logout                 | post ? | non   | oui  | deconnecter le user en modifiant la date d'exp de token                       |        |
-| /me                     | get    | non   | oui  | get les informations de user avec un token                                    |        |
-| /users                  | delete | non   | oui  | suppression du compte                                                         |        |
-| /travels                | get    | non   | oui  | consulter la liste des voyages disponibles                                    |        |
-| /travels/:id            | get    | non   | oui  | consulter le détail d'un voyage                                               |        |
-| /bookings               | get    | non   | oui  | afficher l'historique et la réservation en cours                              |        |
-| /bookings               | post   | non   | oui  | effectuer une réservation en payant et envoyer mail confirm                   |        |
-| /bookings/:id           | delete | non   | oui  | annuler une réservation                                                       |        |
-| /bookings/:id           | put    | non   | oui  | modifier une réservation                                                      |        |
-| /travels                | post   | non   | oui  | ajouter un voyage (admin)                                                     |        |
-| /travels/:id            | put    | non   | oui  | modifier un voyage (admin)                                                    |        |
-| /travels/:id            | delete | non   | oui  | supprimer un voyage (admin)                                                   |        |
-| /users                  | get    | non   | oui  | voir la liste des utilisateurs enregistrés (admin)                            |        |
-| /users/:id              | get    | non   | oui  | voir en détail le profil d'un utilisateur enregistré (admin)                  |        |
+| route                        | Verbe  | Front | Back | Description                                                                   | status |
+| ---------------------------- | ------ | ----- | ---- | ----------------------------------------------------------------------------- | ------ |
+| /                            | /      | oui   | non  | consulter la page d'accueil                                                   |        |
+| /inscription                 | /      | oui   | non  | accéder à la page d'inscription                                               |        |
+| /profile                     | /      | oui   | non  | accéder à mes informations                                                    |        |
+| /newsletter                  | /      | oui   | non  | s'inscrire à la newsletter                                                    |        |
+| /travel                      | /      | oui   | non  | afficher la page des voyages proposés                                         |        |
+| /travel/nom_destination      | /      | oui   | non  | afficher la page d'un voyage en particulier, avec toutes les infos et un quiz |        |
+| /booking                     | /      | oui   | non  | consulter mes réservations                                                    |        |
+| /paiement                    | /      | oui   | non  | afficher plusieurs méthodes de paiement                                       |        |
+| /contact                     | /      | oui   | non  | contacter le service client via un formulaire                                 |        |
+| /cgu                         | /      | oui   | non  | affichage des conditions générales d'utilisation                              |        |
+| /users +                     | post   | non   | oui  | enregistrer un user                                                           |        |
+| /users +                     | patch  | non   | oui  | mettre à jour les informations de user sans le mot de passe                   |        |
+| /users +                     | get    | non   | oui  | voir la liste des utilisateurs enregistrés (admin)                            |        |
+| /users/:id +                 | get    | non   | oui  | voir en détail le profil d'un utilisateur enregistré (admin)                  |        |
+| /users/:id/update-password + | patch  | non   | oui  | mettre à jour le mot de passe                                                 |        |
+| /users +                     | delete | non   | oui  | suppression du compte                                                         |        |
+| /login +                     | post   | non   | oui  | verifier si user existe et recup de token                                     |        |
+| /logout +                    | post   | non   | oui  | deconnecter le user en modifiant la date d'exp de token                       |        |
+| /me +                        | get    | non   | oui  | get les informations de user avec un token                                    |        |
+| /travels +                   | get    | non   | oui  | consulter la liste des voyages disponibles                                    |        |
+| /travels/:id +               | get    | non   | oui  | consulter le détail d'un voyage                                               |        |
+| /bookings                    | get    | non   | oui  | afficher l'historique et la réservation en cours                              |        |
+| /bookings                    | post   | non   | oui  | effectuer une réservation en payant et envoyer mail confirm                   |        |
+| /bookings/:id                | delete | non   | oui  | annuler une réservation                                                       |        |
+| /bookings/:id                | put    | non   | oui  | modifier une réservation                                                      |        |
+| /travels                     | post   | non   | oui  | ajouter un voyage (admin)                                                     |        |
+| /travels/:id                 | put    | non   | oui  | modifier un voyage (admin)                                                    |        |
+| /travels/:id                 | delete | non   | oui  | supprimer un voyage (admin)                                                   |        |
 
 #USE CASES
 
