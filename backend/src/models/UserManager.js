@@ -9,22 +9,42 @@ class userManager extends AbstractManager {
 
   // The C of CRUD - Create operation
 
-  async create(user) {
+  async create(
+    firstname,
+    lastname,
+    // eslint-disable-next-line camelcase
+    birth_date,
+    email,
+    hashPassword,
+    // eslint-disable-next-line camelcase
+    phone_number,
+    address,
+    // eslint-disable-next-line camelcase
+    postal_code,
+    city,
+    country,
+    // eslint-disable-next-line camelcase
+    img_url
+  ) {
     // Execute the SQL INSERT query to add a new user to the "user" table
     const [result] = await this.database.query(
-      `insert into ${this.table} (firstname, lastname, birth_date, email, img_url, hashPassword, phone_number, address, postal_code, city, country) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      `insert into ${this.table} (firstname, lastname, birth_date, email, hashPassword, phone_number, address, postal_code, city, country, img_url) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
-        user.firstname,
-        user.lastname,
-        user.birth_date,
-        user.email,
-        user.img_url,
-        user.hashPassword,
-        user.phone_number,
-        user.address,
-        user.postal_code,
-        user.city,
-        user.country,
+        firstname,
+        lastname,
+        // eslint-disable-next-line camelcase
+        birth_date,
+        email,
+        hashPassword,
+        // eslint-disable-next-line camelcase
+        phone_number,
+        address,
+        // eslint-disable-next-line camelcase
+        postal_code,
+        city,
+        country,
+        // eslint-disable-next-line camelcase
+        img_url,
       ]
     );
     // Return the ID of the newly inserted user
@@ -76,6 +96,15 @@ class userManager extends AbstractManager {
     return this.database.query(
       `UPDATE ${this.table} set ${values} where id=?`,
       [...valuesColumns, id]
+    );
+  }
+
+  // eslint-disable-next-line camelcase
+  editProfilImage(id, img_url) {
+    return this.database.query(
+      `UPDATE ${this.table} SET img_url = ? WHERE id = ?`,
+      // eslint-disable-next-line camelcase
+      [img_url, id]
     );
   }
 

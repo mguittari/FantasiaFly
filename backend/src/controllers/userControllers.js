@@ -121,13 +121,13 @@ const create = async (req, res) => {
       lastname,
       birth_date,
       email,
-      img_url,
       hashPassword,
       phone_number,
       address,
       postal_code,
       city,
-      country
+      country,
+      img_url
     );
     if (result.affectedRows) {
       res.status(201).send("created");
@@ -155,7 +155,24 @@ const edit = async (req, res) => {
     res.status(500).send(error);
   }
 };
+// eslint-disable-next-line consistent-return
+const editAvatar = async (req, res) => {
+  try {
+    const { id } = req.params;
 
+    const { path: img_url } = req.file;
+
+    const [result] = await tables.user.editUserOnlyAvatar(id, img_url);
+
+    if (result) {
+      res.status(200).json({ message: "Image updated!" });
+    } else {
+      res.status(401).send("Problem updating image");
+    }
+  } catch (error) {
+    res.status(500).send(error.message || "Internal Server Error");
+  }
+};
 const editPassword = async (req, res) => {
   try {
     const { id } = req.params;
@@ -198,6 +215,7 @@ module.exports = {
   readById,
   readByEmail,
   edit,
+  editAvatar,
   editPassword,
   deleteUser,
   logout,
