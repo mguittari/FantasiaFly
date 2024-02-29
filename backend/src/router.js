@@ -1,16 +1,17 @@
 const express = require("express");
 
 const router = express.Router();
-
+const upload = require("./services/upLoad");
 /* ************************************************************************* */
 // Define Your API Routes Here
 /* ************************************************************************* */
 
 // Import userControllers module for handling user-related operations
 const userControllers = require("./controllers/userControllers");
+const travelController = require("./controllers/travelController");
+const bookingController = require("./controllers/bookingController");
 const hashPassword = require("./services/hashPassword");
 const verifyToken = require("./services/verifyToken");
-const upload = require("./services/upload");
 
 // Route to get a list of users
 router.get("/users", userControllers.browse);
@@ -27,7 +28,7 @@ router.patch(
   hashPassword,
   userControllers.editPassword
 );
-
+router.patch("users/:id/update-avatar", userControllers.editAvatar);
 router.delete("/users/:id", userControllers.deleteUser);
 
 // Athentification
@@ -35,6 +36,16 @@ router.post("/login", userControllers.readByEmail);
 router.get("/me", verifyToken, userControllers.readById);
 router.post("/logout", userControllers.logout);
 
-/* ************************************************************************* */
+// Route travel
+router.get("/travels", travelController.browse);
+router.get("/travels/:id", travelController.read);
+router.post("/travels", travelController.createByAdmin);
+router.put("/travels/:id", travelController.updateByAdmin);
+router.delete("/travels/:id", travelController.deleteByAmin);
 
+// Route booking
+router.get("/bookings", bookingController.browse);
+router.get("/bookings/:id", bookingController.read);
+router.post("/bookings", bookingController.create);
+/* ************************************************************************* */
 module.exports = router;

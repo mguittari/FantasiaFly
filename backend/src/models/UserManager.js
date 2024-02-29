@@ -25,7 +25,7 @@ class userManager extends AbstractManager {
   ) {
     // Execute the SQL INSERT query to add a new user to the "user" table
     const [result] = await this.database.query(
-      `insert into ${this.table} (firstname, lastname, birth_date, email, img_url, hashPassword, phone_number, address, postal_code, city, country) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      `insert into ${this.table} (firstname, lastname, birth_date, email, hashPassword, phone_number, address, postal_code, city, country, img_url) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
         firstname,
         lastname,
@@ -89,6 +89,15 @@ class userManager extends AbstractManager {
     return this.database.query(
       `UPDATE ${this.table} set ${values} where id=?`,
       [...valuesColumns, id]
+    );
+  }
+
+  // eslint-disable-next-line camelcase
+  editProfilImage(id, img_url) {
+    return this.database.query(
+      `UPDATE ${this.table} SET img_url = ? WHERE id = ?`,
+      // eslint-disable-next-line camelcase
+      [img_url, id]
     );
   }
 
