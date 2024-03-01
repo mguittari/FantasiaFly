@@ -7,8 +7,16 @@
 const UserManager = require("./models/UserManager");
 const TravelManager = require("./models/TravelManager");
 const BookingManager = require("./models/BookingManager");
+const PaymentManager = require("./models/paymentManager");
+const PeriodManager = require("./models/periodManager");
 
-const managers = [UserManager, TravelManager, BookingManager];
+const managers = [
+  UserManager,
+  TravelManager,
+  BookingManager,
+  PaymentManager,
+  PeriodManager,
+];
 
 // Create an empty object to hold data managers for different tables
 const tables = {};

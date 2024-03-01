@@ -25,9 +25,10 @@
 | /bookings                    | post   | non   | oui  | effectuer une réservation en payant et envoyer mail confirm                   |        |
 | /bookings/:id                | delete | non   | oui  | annuler une réservation                                                       |        |
 | /bookings/:id                | put    | non   | oui  | modifier une réservation                                                      |        |
-| /travels                     | post   | non   | oui  | ajouter un voyage (admin)                                                     |        |
-| /travels/:id                 | put    | non   | oui  | modifier un voyage (admin)                                                    |        |
-| /travels/:id                 | delete | non   | oui  | supprimer un voyage (admin)                                                   |        |
+| /travels +                   | post   | non   | oui  | ajouter un voyage (admin)                                                     |        |
+| /travels/:id +               | put    | non   | oui  | modifier un voyage (admin)                                                    |        |
+| /travels/:id +               | delete | non   | oui  | supprimer un voyage (admin)                                                   |        |
+| /payments                    | get    | non   | oui  | voir les payments pour récupérer l'id (admin)                                 |        |
 
 #USE CASES
 

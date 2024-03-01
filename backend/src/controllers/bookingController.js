@@ -56,8 +56,13 @@ const read = async (req, res, next) => {
 const create = async (req, res) => {
   try {
     // eslint-disable-next-line camelcase
-    const { booking_date } = req.body;
-    const result = await tables.booking.create(booking_date);
+    const { booking_date, id_user, id_travel, id_payment } = req.body;
+    const result = await tables.booking.create(
+      booking_date,
+      id_user,
+      id_travel,
+      id_payment
+    );
     if (result.affectedRows) {
       res.status(201).send("created");
     } else {

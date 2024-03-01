@@ -10,6 +10,9 @@ const upload = require("./services/upLoad");
 const userControllers = require("./controllers/userControllers");
 const travelController = require("./controllers/travelController");
 const bookingController = require("./controllers/bookingController");
+const paymentController = require("./controllers/paymentController");
+const periodController = require("./controllers/periodController");
+
 const hashPassword = require("./services/hashPassword");
 const verifyToken = require("./services/verifyToken");
 
@@ -50,6 +53,14 @@ router.get("/bookings/:id", bookingController.read);
 router.post("/bookings", bookingController.create);
 router.get("/currents-bookings", bookingController.getAllInfo);
 router.get("/bills/:id", bookingController.getFactureById);
+
+// Route payment
+router.get("/payments", paymentController.browse);
+router.post("/payments", paymentController.create);
+
+// Route period
+router.get("/periods", periodController.browse);
+// router.post("/periods", periodController.create);
 
 /* ************************************************************************* */
 module.exports = router;
