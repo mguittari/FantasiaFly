@@ -29,11 +29,11 @@ class BookingManager extends AbstractManager {
   }
 
   // eslint-disable-next-line camelcase
-  async create(booking_date) {
+  async create(booking_date, id_user, id_travel, id_payment, id_period) {
     const [result] = await this.database.query(
-      `insert into ${this.table} (booking_date ) values (?)`,
+      `insert into ${this.table} (booking_date, id_user, id_travel, id_payment, id_period) values (?, ?, ?, ?, ?)`,
       // eslint-disable-next-line camelcase
-      [booking_date]
+      [booking_date, id_user, id_travel, id_payment, id_period]
     );
     return result;
   }
@@ -63,6 +63,10 @@ JOIN payment AS p ON b.id_payment = p.id
 WHERE u.id = ${id}`
     );
     return result;
+  }
+
+  async deleteBooking(id) {
+    return this.database.query(`delete from ${this.table} where id = ?`, [id]);
   }
 }
 module.exports = BookingManager;

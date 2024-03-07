@@ -87,7 +87,7 @@ const getAllBookingsByUser = async (req, res) => {
   try {
     const { id } = req.params;
     const [bookings] = await await tables.user.getAllBookingsByUser(id);
-    if (bookings != null) {
+    if (bookings) {
       res.json(bookings);
     } else {
       res.status(401).send("client n'existe pas avec cette reservation");

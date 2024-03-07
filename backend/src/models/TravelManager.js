@@ -27,6 +27,8 @@ class TravelManager extends AbstractManager {
   }
 
   // eslint-disable-next-line camelcase
+
+  // eslint-disable-next-line camelcase
   async createByAdmin(destination_name, country, nb_of_total_seats) {
     const [result] = await this.database.query(
       `insert into ${this.table} (destination_name, country, nb_of_total_seats) values (?, ?, ?)`,

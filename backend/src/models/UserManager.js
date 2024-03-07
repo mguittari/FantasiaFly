@@ -96,9 +96,17 @@ class userManager extends AbstractManager {
             'date de la réservation', b.booking_date,
             'insurance_annulation', p.cancellation_insurance,
             'quantity', p.quantity,
-            'total_price', p.quantity * p.unit_price
+            'date_departure', pr.date_departure,
+            'date_return', pr.date_return,
+            'total_price', FORMAT(p.quantity * p.unit_price, 2)
                             ))
-                    as bookings from user as u join booking as b on u.id = b.id_user join payment as p on p.id = b.id_payment join travel as t on t.id = b.id_travel where u.id = ${id}`
+                    as bookings from user as u 
+                    join booking as b on u.id = b.id_user
+                    join payment as p on p.id = b.id_payment
+                    join travel as t on t.id = b.id_travel
+                    join period as pr on pr.id = b.id_period
+        WHERE 
+            u.id = ${id}`
     );
   }
 

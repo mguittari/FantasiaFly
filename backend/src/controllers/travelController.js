@@ -84,4 +84,10 @@ const deleteByAdmin = async (req, res) => {
     res.status(500).send(error);
   }
 };
-module.exports = { browse, read, createByAdmin, updateByAdmin, deleteByAdmin };
+module.exports = {
+  browse,
+  read,
+  createByAdmin,
+  updateByAdmin,
+  deleteByAdmin,
+};

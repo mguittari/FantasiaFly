@@ -12,6 +12,7 @@ const travelController = require("./controllers/travelController");
 const bookingController = require("./controllers/bookingController");
 const paymentController = require("./controllers/paymentController");
 const periodController = require("./controllers/periodController");
+// const travelPeriodController = require("./controllers/travelPeriodController");
 
 const hashPassword = require("./services/hashPassword");
 const verifyToken = require("./services/verifyToken");
@@ -47,12 +48,17 @@ router.post("/travels", travelController.createByAdmin);
 router.put("/travels/:id", travelController.updateByAdmin);
 router.delete("/travels/:id", travelController.deleteByAdmin);
 
+// Route travel_period
+
+// router.post("/travels/periods", travelPeriodController.choosePeriod);
+
 // Route booking
 router.get("/bookings", bookingController.browse);
-router.get("/bookings/:id", bookingController.read);
+// router.get("/bookings/:id", bookingController.read);
 router.post("/bookings", bookingController.create);
-router.get("/currents-bookings", bookingController.getAllInfo);
+// router.get("/currents-bookings", bookingController.getAllInfo);
 router.get("/bills/:id", bookingController.getFactureById);
+router.delete("/bookings/:id", bookingController.deleteBooking);
 
 // Route payment
 router.get("/payments", paymentController.browse);

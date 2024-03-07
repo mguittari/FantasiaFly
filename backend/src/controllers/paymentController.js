@@ -1,4 +1,6 @@
 /* eslint-disable prettier/prettier */
+/* eslint-disable camelcase */
+/* eslint-disable prettier/prettier */
 const tables = require("../tables");
 // The B of BREAD - Browse (Read All) operation
 const browse = async (req, res, next) => {
@@ -18,6 +20,19 @@ const create = async (req, res) => {
     // eslint-disable-next-line camelcase
     const { payment_date, unit_price, quantity, cancellation_insurance } =
       req.body;
+
+    if (
+      !payment_date ||
+      !unit_price ||
+      !quantity ||
+      cancellation_insurance === undefined
+    ) {
+      res
+        .status(400)
+        .send("Veuillez fournir toutes les informations nécessaires.");
+      return;
+    }
+
     const result = await tables.payment.create(
       payment_date,
       unit_price,

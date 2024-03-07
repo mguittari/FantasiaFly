@@ -56,12 +56,14 @@ const read = async (req, res, next) => {
 const create = async (req, res) => {
   try {
     // eslint-disable-next-line camelcase
-    const { booking_date, id_user, id_travel, id_payment } = req.body;
+    const { booking_date, id_user, id_travel, id_payment, id_period } =
+      req.body;
     const result = await tables.booking.create(
       booking_date,
       id_user,
       id_travel,
-      id_payment
+      id_payment,
+      id_period
     );
     if (result.affectedRows) {
       res.status(201).send("created");
@@ -72,5 +74,27 @@ const create = async (req, res) => {
     res.status(500).send(error);
   }
 };
+const deleteBooking = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const [result] = await tables.booking.deleteBooking(id);
+    if (result.affectedRows) {
+      res.status(200).json({
+        message: " Réservation supprimée !",
+      });
+    } else {
+      res.status(401).send("probleme");
+    }
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
 
-module.exports = { browse, read, create, getAllInfo, getFactureById };
+module.exports = {
+  browse,
+  read,
+  create,
+  getAllInfo,
+  getFactureById,
+  deleteBooking,
+};

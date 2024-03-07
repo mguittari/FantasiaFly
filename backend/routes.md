@@ -22,13 +22,14 @@
 | /travels +                   | get    | non   | oui  | consulter la liste des voyages disponibles                                    |        |
 | /travels/:id +               | get    | non   | oui  | consulter le détail d'un voyage                                               |        |
 | /bookings                    | get    | non   | oui  | afficher l'historique et la réservation en cours                              |        |
-| /bookings                    | post   | non   | oui  | effectuer une réservation en payant et envoyer mail confirm                   |        |
+| /bookings +                  | post   | non   | oui  | effectuer une réservation                                                     |        |
 | /bookings/:id                | delete | non   | oui  | annuler une réservation                                                       |        |
 | /bookings/:id                | put    | non   | oui  | modifier une réservation                                                      |        |
 | /travels +                   | post   | non   | oui  | ajouter un voyage (admin)                                                     |        |
 | /travels/:id +               | put    | non   | oui  | modifier un voyage (admin)                                                    |        |
 | /travels/:id +               | delete | non   | oui  | supprimer un voyage (admin)                                                   |        |
-| /payments                    | get    | non   | oui  | voir les payments pour récupérer l'id (admin)                                 |        |
+| /payments +                  | get    | non   | oui  | voir les payments pour récupérer l'id (admin)                                 |        |
+| /payments +                  | post   | non   | oui  | payer son voyage pour valider réservation                                     |        |
 
 #USE CASES
 
