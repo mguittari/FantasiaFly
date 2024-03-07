@@ -49,4 +49,20 @@ const create = async (req, res) => {
   }
 };
 
-module.exports = { browse, create };
+const deletePaymentAndBooking = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const [result] = await tables.payment.delete(id);
+    if (result.affectedRows) {
+      res.status(200).json({
+        message: " La réservation a bien été annulée",
+      });
+    } else {
+      res.status(401).send("probleme");
+    }
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
+module.exports = { browse, create, deletePaymentAndBooking };

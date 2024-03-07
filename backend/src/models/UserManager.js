@@ -113,23 +113,53 @@ class userManager extends AbstractManager {
   // The U of CRUD - Update operation
   // TODO: Implement the update operation to modify an existing user
 
-  editUserWithoutPassword(id, userWithoutpassword) {
-    const columns = Object.keys(userWithoutpassword);
-    const valuesColumns = Object.values(userWithoutpassword);
-    const values = columns.map((column) => `${column} = ?`).join(", ");
+  // editUserWithoutPassword(id, userWithoutpassword) {
+  //   const columns = Object.keys(userWithoutpassword);
+  //   const valuesColumns = Object.values(userWithoutpassword);
+  //   const values = columns.map((column) => `${column} = ?`).join(", ");
 
+  //   return this.database.query(
+  //     `UPDATE ${this.table} set ${values} where id=?`,
+  //     [...valuesColumns, id]
+  //   );
+  // }
+
+  editUserWithoutPassword(
+    id,
+    firstname,
+    lastname,
+    birth_date,
+    email,
+    phone_number,
+    address,
+    postal_code,
+    city,
+    country,
+    img_url
+  ) {
     return this.database.query(
-      `UPDATE ${this.table} set ${values} where id=?`,
-      [...valuesColumns, id]
+      `UPDATE ${this.table} set firstname = ?, lastname = ?, birth_date = ?, email = ?, phone_number = ?, address = ?, postal_code = ?, city = ?, country = ?, img_url = ? where id=?`,
+      [
+        firstname,
+        lastname,
+        birth_date,
+        email,
+        phone_number,
+        address,
+        postal_code,
+        city,
+        country,
+        img_url,
+        id,
+      ]
     );
   }
 
-  // eslint-disable-next-line camelcase
-  editProfilImage(id, img_url) {
+  editProfilPicture(img_url) {
     return this.database.query(
-      `UPDATE ${this.table} SET img_url = ? WHERE id = ?`,
+      `UPDATE ${this.table} SET img_url = ?`,
       // eslint-disable-next-line camelcase
-      [img_url, id]
+      [img_url]
     );
   }
 
@@ -138,6 +168,12 @@ class userManager extends AbstractManager {
       `UPDATE ${this.table} set hashPassword = ? where id=?`,
       [hashPassword, id]
     );
+  }
+
+  queryGetUserByEmail(email) {
+    return this.database.query(`select * from ${this.table} where email = ?`, [
+      email,
+    ]);
   }
 
   deleteUser(id) {

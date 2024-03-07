@@ -26,6 +26,10 @@ class PaymentManager extends AbstractManager {
     );
     return result;
   }
+
+  delete(id) {
+    return this.database.query(`delete from ${this.table} where id = ?`, [id]);
+  }
 }
 
 module.exports = PaymentManager;

@@ -74,6 +74,14 @@ const create = async (req, res) => {
     res.status(500).send(error);
   }
 };
+// const updateBooking = async (req, res) => {
+//   try {
+//     const { id } = req.params;
+//     const {booking_date} = req.body;
+//     const
+//   } catch (error) {}
+// };
+
 const deleteBooking = async (req, res) => {
   try {
     const { id } = req.params;

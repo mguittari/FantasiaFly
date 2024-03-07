@@ -27,13 +27,18 @@ router.get("/users/:id/bookings", userControllers.getAllBookingsByUser);
 // Route to add a new user
 router.post("/users", upload, hashPassword, userControllers.create);
 
-router.patch("/users/:id", userControllers.edit);
+router.patch("/users/:id", upload, userControllers.edit);
+router.patch(
+  "/users/:id/update-picture",
+  upload,
+  userControllers.editOnlyPicture
+);
 router.patch(
   "/users/:id/update-password",
   hashPassword,
   userControllers.editPassword
 );
-router.patch("users/:id/update-avatar", userControllers.editAvatar);
+// router.patch("users/:id/update-avatar", userControllers.editAvatar);
 router.delete("/users/:id", userControllers.deleteUser);
 
 // Athentification
@@ -63,6 +68,7 @@ router.delete("/bookings/:id", bookingController.deleteBooking);
 // Route payment
 router.get("/payments", paymentController.browse);
 router.post("/payments", paymentController.create);
+router.delete("/payments/:id", paymentController.deletePaymentAndBooking);
 
 // Route period
 router.get("/periods", periodController.browse);
