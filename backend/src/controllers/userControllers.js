@@ -8,11 +8,17 @@ const tables = require("../tables");
 // The B of BREAD - Browse (Read All) operation
 const browse = async (req, res, next) => {
   try {
-    // Fetch all users from the database
-    const users = await tables.user.readAll();
+    const [user] = req.user;
+    console.info(user);
+    if (user.role === "admin") {
+      // Fetch all users from the database
+      const users = await tables.user.readAll();
 
-    // Respond with the users in JSON format
-    res.json(users);
+      // Respond with the users in JSON format
+      res.json(users);
+    } else {
+      res.status(401).send("Accès non authorisé");
+    }
   } catch (err) {
     // Pass any errors to the error-handling middleware
     next(err);

@@ -5,7 +5,6 @@ const upload = require("./services/upLoad");
 /* ************************************************************************* */
 // Define Your API Routes Here
 /* ************************************************************************* */
-
 // Import userControllers module for handling user-related operations
 const userControllers = require("./controllers/userControllers");
 const travelController = require("./controllers/travelController");
@@ -16,17 +15,19 @@ const periodController = require("./controllers/periodController");
 
 const hashPassword = require("./services/hashPassword");
 const verifyToken = require("./services/verifyToken");
+const isAdmin = require("./services/isAdmin");
 
-// Route to get a list of users
-router.get("/users", userControllers.browse);
-
-// Route to get a specific user by ID
-router.get("/users/:id", userControllers.read);
-router.get("/users/:id/bookings", userControllers.getAllBookingsByUser);
-
-// Route to add a new user
+// routes publiques
 router.post("/users", upload, hashPassword, userControllers.create);
+router.post("/login", userControllers.readByEmail);
+router.get("/travels", travelController.browse);
+router.get("/travels/:id", travelController.read);
+router.get("/periods", periodController.browse);
 
+router.use(verifyToken);
+// routes utilisateur
+router.get("/me", userControllers.readById);
+router.post("/logout", userControllers.logout);
 router.patch("/users/:id", upload, userControllers.edit);
 router.patch(
   "/users/:id/update-picture",
@@ -38,41 +39,32 @@ router.patch(
   hashPassword,
   userControllers.editPassword
 );
-// router.patch("users/:id/update-avatar", userControllers.editAvatar);
+router.post("/payments", paymentController.create);
+router.post("/bookings", bookingController.create);
+router.delete("/payments/:id", paymentController.deletePaymentAndBooking);
+
+// routes administrateur
+
+router.get("/users", isAdmin, userControllers.browse);
+router.get("/users/:id", userControllers.read);
+router.get("/users/:id/bookings", userControllers.getAllBookingsByUser);
 router.delete("/users/:id", userControllers.deleteUser);
 
-// Athentification
-router.post("/login", userControllers.readByEmail);
-router.get("/me", verifyToken, userControllers.readById);
-router.post("/logout", userControllers.logout);
-
-// Route travel
-router.get("/travels", travelController.browse);
-router.get("/travels/:id", travelController.read);
 router.post("/travels", travelController.createByAdmin);
 router.put("/travels/:id", travelController.updateByAdmin);
 router.delete("/travels/:id", travelController.deleteByAdmin);
 
-// Route travel_period
-
-// router.post("/travels/periods", travelPeriodController.choosePeriod);
-
-// Route booking
 router.get("/bookings", bookingController.browse);
-// router.get("/bookings/:id", bookingController.read);
-router.post("/bookings", bookingController.create);
+router.get("/bookings/:id", bookingController.read);
 // router.get("/currents-bookings", bookingController.getAllInfo);
 router.get("/bills/:id", bookingController.getFactureById);
 router.delete("/bookings/:id", bookingController.deleteBooking);
 
-// Route payment
+// Route payment (créer une route pour récup payment + user)
 router.get("/payments", paymentController.browse);
-router.post("/payments", paymentController.create);
-router.delete("/payments/:id", paymentController.deletePaymentAndBooking);
 
 // Route period
-router.get("/periods", periodController.browse);
-// router.post("/periods", periodController.create);
+// à créer => router.post("/periods", periodController.create);
 
 /* ************************************************************************* */
 module.exports = router;

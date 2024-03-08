@@ -10,16 +10,18 @@ create table user(
     postal_code VARCHAR(5),
     city VARCHAR(150),
     country VARCHAR(50),
-    img_url VARCHAR(150)
+    img_url VARCHAR(150),
+    role ENUM("user", "admin")
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;
 );
 
-INSERT INTO user (firstname, lastname, birth_date, email, hashpassword, phone_number, address, postal_code, city, country, img_url)
+INSERT INTO user (firstname, lastname, birth_date, email, hashpassword, phone_number, address, postal_code, city, country, img_url, role)
 VALUES
-('Jean', 'Dupont', '1980-03-12', 'jean.dupont@example.com', 'M0tDeP@ss', '0612345678', '12 Rue de la République', '75001', 'Paris', 'France');
+('Jean', 'Dupont', '1980-03-12', 'jean.dupont@example.com', 'M0tDeP@ss', '0612345678', '12 Rue de la République', '75001', 'Paris', 'France', 'user');
 
 create table booking(
     id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    booking_date DATE,
     id_payment INT,
     CONSTRAINT fk_booking_payment FOREIGN KEY (id_payment) REFERENCES payment(id) ON DELETE CASCADE,
     id_user INT,
@@ -27,7 +29,8 @@ create table booking(
     id_travel INT,
     CONSTRAINT fk_booking_travel FOREIGN KEY (id_travel) REFERENCES travel(id),
     id_period INT,
-    CONSTRAINT fk_booking_period FOREIGN KEY (id_period) REFERENCES period(id)
+    CONSTRAINT fk_booking_period FOREIGN KEY (id_period) REFERENCES period(id),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 INSERT INTO booking (booking_date, id_payment, id_user, id_travel)
@@ -60,7 +63,6 @@ VALUES
 create table payment(
     id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     cancellation_insurance BOOLEAN,
-    payment_date DATE,
     quantity INT
 );
 
@@ -71,18 +73,18 @@ VALUES
 
 create table period(
     id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    date_departure DATE,
-    date_return DATE,
+    departure_date TIMESTAMP,
+    return_date TIMESTAMP,
     duration_stay INT,
     unit_price DECIMAL(10,2)
 );
 
-INSERT INTO period (date_departure, date_return, duration_stay, unit_price)
+INSERT INTO period (departure_date, return_date, departure_place, return_place, duration_stay, unit_price)
 VALUES
-('2025-01-01', '2025-01-05', 6, 350.00),
-('2025-04-21', '2025-04-28', 8, 400.00),
-('2025-07-10', '2025-07-20', 11, 750.80),
-('2025-09-01', '2025-09-15', 16, 990.90),
+(CONVERT_TZ('2025-01-01 00:00:00', 'France', 'Poudlard'), CONVERT_TZ('2025-01-05 00:00:00', 'Poudlard', 'France'), 6, 350.00),
+(CONVERT_TZ('2025-04-21 00:00:00', 'France', 'Poudlard'), CONVERT_TZ('2025-04-28 00:00:00', 'UTC', 'Europe/Paris'), 8, 400.00),
+(CONVERT_TZ('2025-07-10 00:00:00', 'France', 'Poudlard'), CONVERT_TZ('2025-07-20 00:00:00', 'UTC', 'Europe/Paris'), 11, 750.80),
+(CONVERT_TZ('2025-09-01 00:00:00', 'France', 'Poudlard'), CONVERT_TZ('2025-09-15 00:00:00', 'UTC', 'Europe/Paris'), 16, 990.90);
 
 ('2025-01-02', '2025-01-11', 10, 125.00),
 ('2025-03-03', '2025-03-09', 7, 175.00),
@@ -150,7 +152,9 @@ create table travel_period(
     CONSTRAINT fk_travel_period FOREIGN KEY (id_travel) REFERENCES travel(id),
     id_period INT,
     CONSTRAINT fk_period_travel FOREIGN KEY (id_period) REFERENCES period(id),
-    type_transport VARCHAR(50)
+    type_transport VARCHAR(50),
+    departure_place, VARCHAR(50),
+    return_place, VARCHAR(50)
 );
  
 INSERT INTO travel_period (id_travel, id_period, type_transport)
