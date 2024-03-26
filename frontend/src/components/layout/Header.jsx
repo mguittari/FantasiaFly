@@ -12,15 +12,15 @@ export default function Header() {
     setActive(!active);
   };
   return (
-    <div className=" w-full bg-mm text-white flex justify-between uppercase p-4 item-center">
-      <nav className="flex justify-center gap-20 ">
+    <div className=" w-full bg-mm text-white flex justify-between font-itim text-3xl p-4 item-center">
+      <nav className="flex justify-center gap-4 ">
         <div className="absolute right-6 md:hidden top-8 scale-150">
           <IoMenuOutline
             onClick={showMenu}
             className="scale=150 cursor-pointer"
           />
         </div>
-        <ul className="hidden md:flex gap-8 pt-6">
+        <ul className="hidden md:flex gap-14 pt-6">
           <li>
             <Link to="/">Nos destinations</Link>
           </li>
@@ -29,9 +29,9 @@ export default function Header() {
           </li>
         </ul>
         <div>
-          <img className="w-20 items-center" src={img} alt="img" />
+          <img className="w-20 ml-18" src={img} alt="img" />
         </div>
-        <ul className="hidden md:flex gap-8 pt-6">
+        <ul className="hidden md:flex gap-14 pt-6 ml-18">
           <li>
             <Link to="/"> Connexion</Link>
           </li>

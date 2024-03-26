@@ -8,7 +8,7 @@ export default function NavMobile({ showMenu, active }) {
       <ul
         className={
           active
-            ? "flex-col flex items-center fixed inset-0 left-1/4 uppercase bg-mm backedrop-blur-lg gap-6 justify-center p-6 md:hidden"
+            ? "flex-col flex items-center fixed inset-0 left-1/4 text-3xl font-itim bg-mm backedrop-blur-lg gap-10 justify-center p-6 md:hidden"
             : "hidden"
         }
       >
