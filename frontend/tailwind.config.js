@@ -8,6 +8,11 @@ export const theme = {
     colors: {
       bottle: "#025728",
       cream: "rgba(255, 251, 219, 1)",
+      purpull: "rgba(59, 35, 153, 1)",
+      gold: "rgba(232, 165, 36, 1)",
+    },
+    width: {
+      652: "652px",
     },
   },
 };
