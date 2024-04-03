@@ -7,40 +7,36 @@ import img from "../../assets/image 10.png";
 import NavMobile from "../nav-mobile/NavMobile";
 
 export default function Header() {
-  const [active, setActive] = useState(false);
-  const showMenu = () => {
-    setActive(!active);
+  const [showMenu, setShowMenu] = useState(false);
+  const toggleMenu = () => {
+    setShowMenu(!showMenu);
   };
   return (
-    <div className=" w-full bg-mm text-white flex justify-between font-itim text-3xl p-4 item-center">
-      <nav className="flex justify-center gap-4 ">
-        <div className="absolute right-6 md:hidden top-8 scale-150">
-          <IoMenuOutline
-            onClick={showMenu}
-            className="scale=150 cursor-pointer"
-          />
-        </div>
-        <ul className="hidden md:flex gap-14 pt-6">
-          <li>
-            <Link to="/">Nos destinations</Link>
-          </li>
-          <li>
-            <Link to="/">Concept</Link>
-          </li>
-        </ul>
-        <div>
-          <img className="w-20 ml-18" src={img} alt="img" />
-        </div>
-        <ul className="hidden md:flex gap-14 pt-6 ml-18">
-          <li>
-            <Link to="/"> Connexion</Link>
-          </li>
-          <li>
-            <Link to="/">Inscription</Link>
-          </li>
-        </ul>
-        <NavMobile showMenu={showMenu} active={active} />
-      </nav>
+    <div className="bg-mm text-white flex justify-between p-4 items-center font-itim text-2xl">
+      <div className="flex items-center md:hidden ">
+        <IoMenuOutline onClick={toggleMenu} className="text-white" />
+      </div>
+      <ul className="hidden md:flex gap-8 ">
+        <li>
+          <Link to="/">Nos destinations</Link>
+        </li>
+        <li>
+          <Link to="/">Concept</Link>
+        </li>
+      </ul>
+      <div>
+        <img className=" w-20" src={img} alt="img" />
+      </div>
+      <ul className="hidden md:flex gap-8 ">
+        <li>
+          <Link to="/"> Connexion</Link>
+        </li>
+        <li>
+          <Link to="/">Inscription</Link>
+        </li>
+      </ul>
+      <NavMobile active={showMenu} showMenu={toggleMenu} />
+      {/* </nav> */}
     </div>
   );
 }

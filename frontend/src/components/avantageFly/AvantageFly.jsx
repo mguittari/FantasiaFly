@@ -16,9 +16,11 @@ export default function AvantageFly() {
             src={expertise}
             alt="expertise"
           />
+
           <h2 className="text-jaune text-lg lg:text-xl font-itim">
             Expertise locale
           </h2>
+
           <p className="text-sm lg:text-base font-inria">
             Une sélection de voyages organisés <br /> dans des lieux imaginaires
             réels, <br /> organisés par nos soins.
