@@ -2,13 +2,18 @@ import { Link } from "react-router-dom";
 
 export default function Bloc2() {
   return (
-    <div className="container">
+    <div className="md:flex md:flex-row md:gap-2">
       <img
-        className="w-80 h-40 mx-auto"
+        className="w-80 h-40 mx-auto md:hidden"
         src="src/assets/Train.png"
         alt="Hogwart express"
       />
-      <div className="w-80 h-40 mx-auto p-1.5 text-justify">
+      <img
+        className="hidden md:flex w-40 h-40 ml-auto"
+        src="src/assets/Twin Peaks.png"
+        alt="Twin Peaks"
+      />
+      <div className="w-80 h-40 mx-auto p-1.5 text-justify md:mx-0">
         <h1 className="font-semibold">
           Vivez des expériences uniques et insolites
         </h1>
@@ -24,7 +29,12 @@ export default function Bloc2() {
           En savoir plus
         </Link>
       </div>
-      <div className="flex justify-center items-center mb-2 mx-[-1px]">
+      <img
+        className="hidden md:flex w-40 h-40 mr-auto"
+        src="src/assets/Western.png"
+        alt="Western"
+      />
+      <div className="md:hidden flex justify-center items-center mb-2 mx-[-1px]">
         <div className="flex w-80">
           <img
             className="w-1/3 h-auto mr-1"
