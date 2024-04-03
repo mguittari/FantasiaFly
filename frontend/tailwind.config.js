@@ -29,6 +29,7 @@ export default {
         violet: "#3B2399",
         jaune: "#FFE44E",
         vert: "#00543C",
+        cream: "rgba(255, 251, 219, 1)",
       },
     },
   },
