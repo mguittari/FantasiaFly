@@ -1,23 +1,70 @@
 const express = require("express");
 
 const router = express.Router();
-
+const upload = require("./services/upLoad");
 /* ************************************************************************* */
 // Define Your API Routes Here
 /* ************************************************************************* */
+// Import userControllers module for handling user-related operations
+const userControllers = require("./controllers/userControllers");
+const travelController = require("./controllers/travelController");
+const bookingController = require("./controllers/bookingController");
+const paymentController = require("./controllers/paymentController");
+const periodController = require("./controllers/periodController");
+// const travelPeriodController = require("./controllers/travelPeriodController");
 
-// Import itemControllers module for handling item-related operations
-const itemControllers = require("./controllers/itemControllers");
+const hashPassword = require("./services/hashPassword");
+const verifyToken = require("./services/verifyToken");
+const isAdmin = require("./services/isAdmin");
 
-// Route to get a list of items
-router.get("/items", itemControllers.browse);
+// routes publiques
+router.post("/users", upload, hashPassword, userControllers.create);
+router.post("/login", userControllers.readByEmail);
+router.get("/travels", travelController.browse);
+router.get("/travels/:id", travelController.read);
+router.get("/periods", periodController.browse);
 
-// Route to get a specific item by ID
-router.get("/items/:id", itemControllers.read);
+router.use(verifyToken);
+// routes utilisateur
+router.get("/me", userControllers.readById);
+router.post("/logout", userControllers.logout);
+router.patch("/users/:id", upload, userControllers.edit);
+router.patch(
+  "/users/:id/update-picture",
+  upload,
+  userControllers.editOnlyPicture
+);
+router.patch(
+  "/users/:id/update-password",
+  hashPassword,
+  userControllers.editPassword
+);
+router.post("/payments", paymentController.create);
+router.post("/bookings", bookingController.create);
+router.delete("/payments/:id", paymentController.deletePaymentAndBooking);
 
-// Route to add a new item
-router.post("/items", itemControllers.add);
+// routes administrateur
+
+router.get("/users", isAdmin, userControllers.browse);
+router.get("/users/:id", userControllers.read);
+router.get("/users/:id/bookings", userControllers.getAllBookingsByUser);
+router.delete("/users/:id", userControllers.deleteUser);
+
+router.post("/travels", travelController.createByAdmin);
+router.put("/travels/:id", travelController.updateByAdmin);
+router.delete("/travels/:id", travelController.deleteByAdmin);
+
+router.get("/bookings", bookingController.browse);
+router.get("/bookings/:id", bookingController.read);
+// router.get("/currents-bookings", bookingController.getAllInfo);
+router.get("/bills/:id", bookingController.getFactureById);
+router.delete("/bookings/:id", bookingController.deleteBooking);
+
+// Route payment (créer une route pour récup payment + user)
+router.get("/payments", paymentController.browse);
+
+// Route period
+// à créer => router.post("/periods", periodController.create);
 
 /* ************************************************************************* */
-
 module.exports = router;
