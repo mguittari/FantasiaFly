@@ -19,8 +19,16 @@ export default {
       // => @media (min-width: 1536px) { ... }
     },
     extend: {
+      fontFamily: {
+        itim: ["Itim", "sans-serif"],
+        inria: ["Inria-sans", "sans-serif"],
+        jacques: ["Jacques-francois", "sans-serif"],
+      },
       colors: {
         mm: "#001F8A",
+        violet: "#3B2399",
+        jaune: "#FFE44E",
+        vert: "#00543C",
       },
     },
   },
