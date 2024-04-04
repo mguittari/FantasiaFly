@@ -10,6 +10,10 @@ export const theme = {
       cream: "rgba(255, 251, 219, 1)",
       purpull: "rgba(59, 35, 153, 1)",
       gold: "rgba(232, 165, 36, 1)",
+      mm: "#001F8A",
+      violet: "#3B2399",
+      jaune: "#FFE44E",
+      vert: "#00543C",
     },
     width: {
       652: "652px",
@@ -21,6 +25,11 @@ export const theme = {
     },
     backgroundImage: {
       miami: "url('/src/assets/Vice-City.png')",
+    },
+    fontFamily: {
+      itim: ["Itim", "sans-serif"],
+      inria: ["Inria-sans", "sans-serif"],
+      jacques: ["Jacques-francois", "sans-serif"],
     },
   },
 };
