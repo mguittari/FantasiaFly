@@ -22,14 +22,14 @@ export default function Bloc1() {
         <div>
           <img
             className="w-40 h-40 sm:mt-1 sm:mr-1 md:mt-1 md:mr-1"
-            src="src/assets/Map.png"
+            src="src/assets/Home/Map.png"
             alt="Map of fictional world"
           />
         </div>
         <div>
           <img
             className="w-40 h-40 mt-1"
-            src="src/assets/Space-Forest.png"
+            src="src/assets/Home/Space-Forest.png"
             alt="Map of fictional world"
           />
         </div>
@@ -48,7 +48,7 @@ export default function Bloc1() {
         <div>
           <img
             className="w-full h-40 mt-1"
-            src="src/assets/Bridge.png"
+            src="src/assets/Home/Bridge.png"
             alt="Map of fictional world"
           />
         </div>
@@ -67,7 +67,7 @@ export default function Bloc1() {
         <div>
           <img
             className="w-40 h-40 ml-1 mt-1"
-            src="src/assets/Plum-Creek.png"
+            src="src/assets/Home/Plum-Creek.png"
             alt="Ingall's Family"
           />
         </div>

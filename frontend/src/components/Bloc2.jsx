@@ -5,12 +5,12 @@ export default function Bloc2() {
     <div className="md:flex md:flex-row md:gap-2 md:mb-4">
       <img
         className="w-80 h-40 mx-auto md:hidden"
-        src="src/assets/Train.png"
+        src="src/assets/Home/Train.png"
         alt="Hogwart express"
       />
       <img
         className="hidden md:flex w-40 h-40 ml-auto"
-        src="src/assets/Twin Peaks.png"
+        src="src/assets/Home/Twin-Peaks.png"
         alt="Twin Peaks"
       />
       <div className="w-80 h-40 mx-auto p-1.5 text-justify md:mx-0">
@@ -31,36 +31,36 @@ export default function Bloc2() {
       </div>
       <img
         className="hidden md:flex w-40 h-40 mr-auto"
-        src="src/assets/Western.png"
+        src="src/assets/Home/Western.png"
         alt="Western"
       />
       <div className="md:hidden flex justify-center items-center mb-2 mx-[-1px]">
         <div className="flex w-80">
           <img
             className="hidden md:flex w-40 h-40 ml-auto"
-            src="src/assets/Pont.jpg"
-            alt="Twin Peaks"
+            src="src/assets/Home/Pont.jpg"
+            alt="Pont"
           />
           <img
             className="w-1/3 h-auto mr-1"
-            src="src/assets/Anor-Londo.png"
+            src="src/assets/Home/Anor-Londo.png"
             alt="Anor Londo Lordran"
           />
           <div className="w-1/3 mx-[0.5px]">
             <img
               className="w-full h-1/2 mb-[1px]"
-              src="src/assets/Ifrane.png"
-              alt="Anor Londo Lordran"
+              src="src/assets/Home/Ifrane.png"
+              alt="Ifrane"
             />
             <img
               className="w-full h-49 mt-1"
-              src="src/assets/Miami 1.png"
+              src="src/assets/Home/Miami.png"
               alt="Miami palmiers pink sky"
             />
           </div>
           <img
             className="w-1/3 h-auto ml-1"
-            src="src/assets/Mountain.png"
+            src="src/assets/Home/Mountain.png"
             alt="Snow Mountain"
           />
         </div>
