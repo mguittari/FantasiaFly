@@ -40,6 +40,8 @@ VALUES
 create table travel(
     id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     destination_name VARCHAR(100),
+    description VARCHAR(300),
+    img_url VARCHAR(300),
     country VARCHAR(100),
     nb_of_total_seats INT
 );
@@ -199,6 +201,25 @@ WHEN id = 11 THEN 'USA'
 WHEN id = 12 THEN 'Malta'
 WHEN id = 13 THEN 'France'
 ELSE country
+END;
+
+ UPDATE travel
+SET description =
+CASE
+WHEN id = 1 THEN 'xxx'
+WHEN id = 2 THEN 'xxx'
+WHEN id = 3 THEN 'xxx'
+WHEN id = 4 THEN 'xxx'
+WHEN id = 5 THEN 'xxx'
+WHEN id = 6 THEN 'xxx'
+WHEN id = 7 THEN 'xxx'
+WHEN id = 8 THEN 'xxx'
+WHEN id = 9 THEN 'xxx'
+WHEN id = 10 THEN 'xxx'
+WHEN id = 11 THEN 'xxx'
+WHEN id = 12 THEN 'xxx'
+WHEN id = 13 THEN 'xxx'
+ELSE description
 END;
 
 ALTER TABLE booking
