@@ -19,6 +19,9 @@ export const theme = {
       99: "99%",
       49: "49%",
     },
+    backgroundImage: {
+      miami: "url('/src/assets/Vice-City.png')",
+    },
   },
 };
 export const plugins = [];

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export default function Bloc2() {
   return (
-    <div className="md:flex md:flex-row md:gap-2">
+    <div className="md:flex md:flex-row md:gap-2 md:mb-4">
       <img
         className="w-80 h-40 mx-auto md:hidden"
         src="src/assets/Train.png"
@@ -36,6 +36,11 @@ export default function Bloc2() {
       />
       <div className="md:hidden flex justify-center items-center mb-2 mx-[-1px]">
         <div className="flex w-80">
+          <img
+            className="hidden md:flex w-40 h-40 ml-auto"
+            src="src/assets/Pont.jpg"
+            alt="Twin Peaks"
+          />
           <img
             className="w-1/3 h-auto mr-1"
             src="src/assets/Anor-Londo.png"
