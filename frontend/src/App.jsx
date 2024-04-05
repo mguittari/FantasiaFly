@@ -1,3 +1,4 @@
+
 import Layout from "./components/layout/Layout";
 import "./Index.css";
 import AvantageFly from "./components/avantageFly/AvantageFly";
@@ -9,7 +10,7 @@ import Bloc2 from "./components/Bloc2";
 
 export default function App() {
   return (
-    <Layout>
+    <div>
       <main className="min-h-[calc(100vh-160px)] bg-cream" />
       <Banner />
       <Bloc1 />
@@ -18,6 +19,6 @@ export default function App() {
       <AvantageFly />
       <QuestionsFreq />
       <NewsLetter />
-    </Layout>
+    </div>
   );
 }
