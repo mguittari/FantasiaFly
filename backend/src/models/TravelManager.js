@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 const AbstractManager = require("./AbstractManager");
 
 class TravelManager extends AbstractManager {
@@ -29,11 +30,17 @@ class TravelManager extends AbstractManager {
   // eslint-disable-next-line camelcase
 
   // eslint-disable-next-line camelcase
-  async createByAdmin(destination_name, country, nb_of_total_seats) {
+  async createByAdmin(
+    destination_name,
+    country,
+    description,
+    nb_of_total_seats,
+    img_url
+  ) {
     const [result] = await this.database.query(
-      `insert into ${this.table} (destination_name, country, nb_of_total_seats) values (?, ?, ?)`,
+      `insert into ${this.table} (destination_name, country, description, nb_of_total_seats, img_url) values (?, ?, ?, ?, ?)`,
       // eslint-disable-next-line camelcase
-      [destination_name, country, nb_of_total_seats]
+      [destination_name, country, description, nb_of_total_seats, img_url]
     );
     return result;
   }
@@ -44,6 +51,14 @@ class TravelManager extends AbstractManager {
       `UPDATE ${this.table} set destination_name = ?, country = ?, nb_of_total_seats = ? where id=?`,
       // eslint-disable-next-line camelcase
       [destination_name, country, nb_of_total_seats, id]
+    );
+  }
+
+  editTravelPicture(img_url, id) {
+    return this.database.query(
+      `UPDATE ${this.table} SET img_url = ? where id = ?`,
+      // eslint-disable-next-line camelcase
+      [img_url, id]
     );
   }
 

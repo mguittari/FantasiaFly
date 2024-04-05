@@ -134,11 +134,10 @@ class userManager extends AbstractManager {
     address,
     postal_code,
     city,
-    country,
-    img_url
+    country
   ) {
     return this.database.query(
-      `UPDATE ${this.table} set firstname = ?, lastname = ?, birth_date = ?, email = ?, phone_number = ?, address = ?, postal_code = ?, city = ?, country = ?, img_url = ? where id=?`,
+      `UPDATE ${this.table} set firstname = ?, lastname = ?, birth_date = ?, email = ?, phone_number = ?, address = ?, postal_code = ?, city = ?, country = ? where id=?`,
       [
         firstname,
         lastname,
@@ -149,7 +148,6 @@ class userManager extends AbstractManager {
         postal_code,
         city,
         country,
-        img_url,
         id,
       ]
     );

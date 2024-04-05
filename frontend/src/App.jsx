@@ -1,5 +1,3 @@
-
-import Layout from "./components/layout/Layout";
 import "./Index.css";
 import AvantageFly from "./components/avantageFly/AvantageFly";
 import QuestionsFreq from "./components/questionsFreq/QuestionsFreq";

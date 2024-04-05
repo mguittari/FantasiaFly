@@ -176,7 +176,7 @@ const edit = async (req, res) => {
       city,
       country,
     } = req.body;
-    const img_url = req.file.path;
+
     const [result] = await tables.user.editUserWithoutPassword(
       id,
       firstname,
@@ -187,17 +187,14 @@ const edit = async (req, res) => {
       address,
       postal_code,
       city,
-      country,
-      img_url
+      country
     );
     if (result.affectedRows) {
       res.status(200).json({ message: "Account updated !" });
     } else {
-      fs.unlinkSync(req.file.path);
       res.status(401).send("probleme");
     }
   } catch (error) {
-    fs.unlinkSync(req.file.path);
     res.status(500).send(error);
   }
 };

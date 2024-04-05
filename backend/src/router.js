@@ -2,6 +2,7 @@ const express = require("express");
 
 const router = express.Router();
 const upload = require("./services/upLoad");
+const uploadTravels = require("./services/upLoad-travels");
 /* ************************************************************************* */
 // Define Your API Routes Here
 /* ************************************************************************* */
@@ -28,7 +29,7 @@ router.use(verifyToken);
 // routes utilisateur
 router.get("/me", userControllers.readById);
 router.post("/logout", userControllers.logout);
-router.patch("/users/:id", upload, userControllers.edit);
+router.patch("/users/:id", userControllers.edit);
 router.patch(
   "/users/:id/update-picture",
   upload,
@@ -50,8 +51,13 @@ router.get("/users/:id", userControllers.read);
 router.get("/users/:id/bookings", userControllers.getAllBookingsByUser);
 router.delete("/users/:id", userControllers.deleteUser);
 
-router.post("/travels", travelController.createByAdmin);
-router.put("/travels/:id", travelController.updateByAdmin);
+router.post("/travels", uploadTravels, travelController.createByAdmin);
+router.patch("/travels/:id", travelController.updateByAdmin);
+router.patch(
+  "/travels/:id/upload-thumbnail",
+  uploadTravels,
+  travelController.updateTravelPicture
+);
 router.delete("/travels/:id", travelController.deleteByAdmin);
 
 router.get("/bookings", bookingController.browse);
