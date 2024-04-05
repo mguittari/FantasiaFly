@@ -77,7 +77,7 @@ const readByEmail = async (req, res) => {
             }
           );
 
-          res.status(200).send(token);
+          res.status(200).json(token);
         } else {
           res.status(401).send("verifier vos données");
         }

@@ -1,14 +1,27 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Outlet, createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import App from "./App";
+import Layout from "./components/layout/Layout";
+import LoginPage from "./pages/login-page/LoginPage";
+
+function AppLayout() {
+  return (
+    <Layout>
+      <Outlet />
+    </Layout>
+  );
+}
 
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: <App />,
+    element: <AppLayout />,
+    children: [
+      { path: "/", element: <App /> },
+      { path: "/connexion", element: <LoginPage /> },
+    ],
   },
 ]);
 

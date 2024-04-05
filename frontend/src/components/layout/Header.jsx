@@ -29,7 +29,7 @@ export default function Header() {
       </div>
       <ul className="hidden md:flex gap-8 ">
         <li>
-          <Link to="/"> Connexion</Link>
+          <Link to="/connexion"> Connexion</Link>
         </li>
         <li>
           <Link to="/">Inscription</Link>
