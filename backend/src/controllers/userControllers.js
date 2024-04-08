@@ -156,7 +156,9 @@ const create = async (req, res) => {
       res.status(401).send("erreur lors de l'enregistrement");
     }
   } catch (error) {
-    fs.unlinkSync(req.file.path);
+    if (req.file) {
+      fs.unlinkSync(req.file.path);
+    }
 
     res.status(500).send(error);
   }

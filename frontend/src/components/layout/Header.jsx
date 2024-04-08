@@ -32,7 +32,7 @@ export default function Header() {
           <Link to="/connexion"> Connexion</Link>
         </li>
         <li>
-          <Link to="/">Inscription</Link>
+          <Link to="/inscription">Inscription</Link>
         </li>
       </ul>
       <NavMobile active={showMenu} showMenu={toggleMenu} />
