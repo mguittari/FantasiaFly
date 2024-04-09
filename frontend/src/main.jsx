@@ -1,12 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-
 import { Outlet, createBrowserRouter, RouterProvider } from "react-router-dom";
-
 import App from "./App";
 import Layout from "./components/layout/Layout";
 import LoginPage from "./pages/login-page/LoginPage";
 import { UserProvider } from "./context/userContext";
+import InscriptionPage from "./pages/inscription-page/InscriptionPage";
+
 
 function AppLayout() {
   return (
@@ -22,6 +22,7 @@ const router = createBrowserRouter([
     children: [
       { path: "/", element: <App /> },
       { path: "/connexion", element: <LoginPage /> },
+      { path: "/inscription", element: <InscriptionPage /> },
     ],
   },
 ]);

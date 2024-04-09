@@ -28,10 +28,10 @@ export default function Header() {
       <div>
         <img className=" w-20" src={img} alt="img" />
       </div>
-
       <NavMobile active={showMenu} showMenu={toggleMenu} />
       {/* </nav> */}
       <Login />
     </div>
   );
 }
+    
