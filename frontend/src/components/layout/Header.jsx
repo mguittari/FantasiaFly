@@ -5,6 +5,7 @@ import { useState } from "react";
 import { IoMenuOutline } from "react-icons/io5";
 import img from "../../assets/image 10.png";
 import NavMobile from "../nav-mobile/NavMobile";
+import Login from "../login/Login";
 
 export default function Header() {
   const [showMenu, setShowMenu] = useState(false);
@@ -27,16 +28,10 @@ export default function Header() {
       <div>
         <img className=" w-20" src={img} alt="img" />
       </div>
-      <ul className="hidden md:flex gap-8 ">
-        <li>
-          <Link to="/connexion"> Connexion</Link>
-        </li>
-        <li>
-          <Link to="/inscription">Inscription</Link>
-        </li>
-      </ul>
       <NavMobile active={showMenu} showMenu={toggleMenu} />
       {/* </nav> */}
+      <Login />
     </div>
   );
 }
+    

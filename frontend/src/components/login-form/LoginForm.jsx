@@ -1,5 +1,5 @@
-import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
 import fb from "../../assets/facebook.png";
 import Apple from "../../assets/apple.png";
 import Google from "../../assets/Google.png";
@@ -16,6 +16,7 @@ export default function LoginForm() {
     const { name, value } = e.target;
     setDataForm({ ...dataForm, [name]: value });
   };
+
   console.info("dataForm :>>", dataForm);
   const handlSubmit = (e) => {
     e.preventDefault();
@@ -35,6 +36,7 @@ export default function LoginForm() {
       })
       .catch((err) => console.info("err :>>", err));
   };
+
   return (
     <>
       <div>
