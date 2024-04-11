@@ -36,7 +36,7 @@ app.use(
     ],
   })
 );
-
+console.info(process.env.FRONTEND_URL);
 /* ************************************************************************* */
 
 // Request Parsing: Understanding the purpose of this part
