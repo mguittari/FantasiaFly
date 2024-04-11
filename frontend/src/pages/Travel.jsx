@@ -7,7 +7,7 @@ export default function Travel() {
   const [travels, setTravels] = useState([]);
   const { id } = useParams();
   useEffect(() => {
-    fetch(`http://localhost:5000/api/travels/${id}`)
+    fetch(`http://localhost:3000/api/travels/${id}`)
       .then((res) => res.json())
       .then((res) => setTravels(res))
       .catch((error) => console.info(error));
@@ -18,7 +18,7 @@ export default function Travel() {
       <div className="relative">
         <img
           className="w-full"
-          src={`http://localhost:5000/${img_url}`}
+          src={`http://localhost:3000/${img_url}`}
           alt={destination_name}
         />
         <p className="bg-gold w-2/3 text-white font-serif text-xl md:text-3xl absolute bottom-0 text-center py-2 md:py-5">

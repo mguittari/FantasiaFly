@@ -8,7 +8,7 @@ export default function TravelsPage() {
   const [travels, setTravels] = useState([]);
   useEffect(() => {
     console.info(travels);
-    fetch("http://localhost:5000/api/travels")
+    fetch("http://localhost:3000/api/travels")
       .then((res) => res.json())
       .then((data) => setTravels(data));
   }, []);
