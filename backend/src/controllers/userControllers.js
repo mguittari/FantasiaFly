@@ -235,9 +235,11 @@ const editPassword = async (req, res) => {
 const editOnlyPicture = async (req, res) => {
   try {
     const { email } = req.body;
+    console.info("email:", email);
     const img_url = req.file.path;
+    console.info("img_url:", img_url);
     const [user] = await tables.user.queryGetUserByEmail(email);
-    console.info(user);
+    console.info("user:", user);
 
     if (user.length) {
       console.info("je suis dans if");

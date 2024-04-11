@@ -18,7 +18,8 @@ const browse = async (req, res, next) => {
 const read = async (req, res, next) => {
   try {
     // Fetch a specific travel from the database based on the provided ID
-    const travel = await tables.travel.read(req.params.id);
+    const [travel] = await tables.travel.read(req.params.id);
+    console.info(travel);
 
     // If the travel is not found, respond with HTTP 404 (Not Found)
     // Otherwise, respond with the travel in JSON format
@@ -70,7 +71,7 @@ const updateByAdmin = async (req, res) => {
       id
     );
     if (result.affectedRows) {
-      res.status(200).json({ message: "Travel updated !" });
+      res.status(200).json({ message: "Le voyage a bien été mis à jour !" });
     } else {
       res.status(401).send("probleme");
     }
@@ -80,20 +81,23 @@ const updateByAdmin = async (req, res) => {
 };
 const updateTravelPicture = async (req, res) => {
   try {
+    console.info("try?");
     const { id } = req.params;
+    console.info("id:", id);
     const img_url = req.file.path;
+    console.info("img_url:", img_url);
     const [travel] = await tables.travel.read(id);
-    console.info(travel);
+    console.info("travel:", travel);
 
     if (travel.length) {
       console.info("je suis dans if");
       fs.unlinkSync(travel[0].img_url);
-      await tables.travel.editTravelPicture(img_url);
+      await tables.travel.editTravelPicture(id, img_url);
       res.send("Image mise à jour avec succès");
     } else {
       fs.unlinkSync(req.file.path);
 
-      res.status(401).send("verifier vos données");
+      res.status(401).send("Vérifiez vos données");
     }
   } catch (error) {
     fs.unlinkSync(req.file.path);
@@ -106,7 +110,7 @@ const deleteByAdmin = async (req, res) => {
     const [result] = await tables.travel.delete(id);
     if (result.affectedRows) {
       res.status(200).json({
-        message: " La suppression du voyage à été prise en compte",
+        message: " Le voyage a bien été supprimé !",
       });
     } else {
       res.status(401).send("probleme");

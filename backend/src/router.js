@@ -54,7 +54,7 @@ router.delete("/users/:id", userControllers.deleteUser);
 router.post("/travels", uploadTravels, travelController.createByAdmin);
 router.patch("/travels/:id", travelController.updateByAdmin);
 router.patch(
-  "/travels/:id/upload-thumbnail",
+  "/travels/:id/update-thumbnail",
   uploadTravels,
   travelController.updateTravelPicture
 );

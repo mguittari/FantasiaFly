@@ -16,15 +16,11 @@ class TravelManager extends AbstractManager {
     return rows;
   }
 
-  async read(id) {
+  read(id) {
     // Execute the SQL SELECT query to retrieve a specific travel by its ID
-    const [rows] = await this.database.query(
-      `select * from ${this.table} where id = ?`,
-      [id]
-    );
-
-    // Return the first row of the result, which represents the travel
-    return rows[0];
+    return this.database.query(`select * from ${this.table} where id = ?`, [
+      id,
+    ]);
   }
 
   // eslint-disable-next-line camelcase
@@ -54,9 +50,9 @@ class TravelManager extends AbstractManager {
     );
   }
 
-  editTravelPicture(img_url, id) {
+  editTravelPicture(id, img_url) {
     return this.database.query(
-      `UPDATE ${this.table} SET img_url = ? where id = ?`,
+      `UPDATE ${this.table} SET img_url = ? WHERE id = ?`,
       // eslint-disable-next-line camelcase
       [img_url, id]
     );
