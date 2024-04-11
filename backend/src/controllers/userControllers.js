@@ -108,9 +108,9 @@ const logout = async (req, res) => {
     const token = jwt.sign({ payload: id }, process.env.SECRET_KEY_JWT, {
       expiresIn: "0h",
     });
-    res.status(200).send({ message: "vous avez été déconnecté", token });
+    res.status(200).json({ message: "vous avez été déconnecté", token });
   } catch (error) {
-    res.status(500).send(error);
+    res.status(500).json(error);
   }
 };
 

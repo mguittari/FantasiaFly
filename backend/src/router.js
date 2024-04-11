@@ -27,7 +27,7 @@ router.get("/periods", periodController.browse);
 router.use(verifyToken);
 // routes utilisateur
 router.get("/me", userControllers.readById);
-router.post("/logout", userControllers.logout);
+router.get("/logout", userControllers.logout);
 router.patch("/users/:id", upload, userControllers.edit);
 router.patch(
   "/users/:id/update-picture",
