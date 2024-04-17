@@ -23,7 +23,6 @@ class userManager extends AbstractManager {
     city,
     country
   ) {
-    // Execute the SQL INSERT query to add a new user to the "user" table
     const [result] = await this.database.query(
       `insert into ${this.table} (firstname, lastname, birth_date, email, hashPassword, phone_number, address, postal_code, city, country, img_url) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
@@ -40,7 +39,6 @@ class userManager extends AbstractManager {
         country,
       ]
     );
-    // Return the ID of the newly inserted user
     return result;
   }
 

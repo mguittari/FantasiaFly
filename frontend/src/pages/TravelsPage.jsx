@@ -7,7 +7,6 @@ import londo from "../assets/Londo.png";
 export default function TravelsPage() {
   const [travels, setTravels] = useState([]);
   useEffect(() => {
-    console.info(travels);
     fetch("http://localhost:5000/api/travels")
       .then((res) => res.json())
       .then((data) => setTravels(data));

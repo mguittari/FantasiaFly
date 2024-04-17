@@ -117,7 +117,6 @@ const logout = async (req, res) => {
 // The E of BREAD - Edit (Update) operation
 // This operation is not yet implemented
 
-// The A of BREAD - Add (Create) operation
 const create = async (req, res) => {
   try {
     const {
