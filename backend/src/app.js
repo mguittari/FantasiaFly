@@ -36,7 +36,7 @@ app.use(
     ],
   })
 );
-
+console.info(process.env.FRONTEND_URL);
 /* ************************************************************************* */
 
 // Request Parsing: Understanding the purpose of this part
@@ -88,6 +88,7 @@ const router = require("./router");
 // Mount the API routes under the "/api" endpoint
 app.use("/api", router);
 app.use("/uploads", express.static("uploads"));
+
 /* ************************************************************************* */
 
 // Production-ready setup: What is it for, and when should I enable it?

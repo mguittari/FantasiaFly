@@ -1,0 +1,495 @@
+[
+  {
+    "id": 1,
+    "description": "Bienvenue à Poudlard, l'école de sorcellerie la plus prestigieuse au monde ! Située au cœur des collines d'Écosse, cette école magique est le lieu où les jeunes sorciers et sorcières apprennent l'art de la magie.",
+    "benefits": [{
+      "id": 1,
+      "content": "Des courses de balai"
+      },
+      {
+      "id": 2,
+      "content": "Des créatures fabuleuses"
+      },
+      {
+      "id": 3,
+      "content": "Des batailles de sortilèges"
+      },
+      {
+      "id": 4,
+      "content": "Des passages secrets"
+      },
+      {
+      "id": 5,
+      "content": "Nourriture 100% british"
+      },
+      {
+      "id": 6,
+      "content": "Du rire et des larmes"
+      },
+      {
+      "id": 7,
+      "content": "Nourriture 100% british"
+      }]
+  },
+  {
+    "id": 2,
+    "description": "Bienvenue à Ifrane, surnommée la 'Suisse marocaine' pour ses paysages alpins pittoresques et son ambiance montagnarde. Nichée au cœur des montagnes du Moyen Atlas, cette charmante ville offre une escapade rafraîchissante et dépaysante. Explorez ses forêts de cèdres, admirez ses lacs cristallins et imprégnez-vous de son architecture distincte, où les toits de tuiles rouges rappellent son héritage européen.",
+    "benefits": [{
+      "id": 1,
+      "content": "Des courses de quad"
+      },
+      {
+      "id": 2,
+      "content": "Des randonnées incroyables"
+      },
+      {
+      "id": 3,
+      "content": "Des batailles de boules de neige"
+      },
+      {
+      "id": 4,
+      "content": "Winterfell comme si vous y étiez"
+      },
+      {
+      "id": 5,
+      "content": "L'aventure avec un grand A"
+      },
+      {
+      "id": 6,
+      "content": "Du rire et des bons moments"
+      },
+      {
+      "id": 7,
+      "content": "Goûtez le tajine de poulet aux pruneaux de Mattias"
+      }]
+  },
+  {
+    "id": 3,
+    "description": "Astapor, la cité des esclaves, est une ville située dans la baie des Serfs, le long de la côte sud de la Baie des Dragons dans le monde de Game of Thrones. Célèbre pour son commerce d'esclaves et sa production de soldats d'élite, les Immaculés, Astapor est une ville fascinante mais souvent impitoyable. Ses rues sont remplies de marchands et d'esclaves, créant une atmosphère à la fois animée et sinistre. Les voyageurs y découvrent un mélange unique de richesse culturelle et de cruauté.",
+    "benefits": [{
+      "id": 1,
+      "content": "Des balades à cheval sur les plages dorées"
+      },
+      {
+      "id": 2,
+      "content": "Des randonnées le long des remparts de la Cité Rouge"
+      },
+      {
+      "id": 3,
+      "content": "L'aventure vous attend à chaque coin de rue"
+      },
+      {
+      "id": 4,
+      "content": "Des moments de contemplation devant l'océan Atlantique"
+      },
+      {
+      "id": 5,
+      "content": "Visitez les meilleurs night club de Westeros"
+      },
+      {
+      "id": 6,
+      "content": "avantage 6"
+      },
+      {
+      "id": 7,
+      "content": "avantage 7"
+      },
+      {
+      "id": 8,
+      "content": "avantage 8"
+      }]
+  },
+  {
+    "id": 4,
+    "description": "Twin Peaks est une petite ville nichée au cœur des majestueuses montagnes de l'État de Washington. Connu pour ses paysages pittoresques et ses secrets obscurs, Twin Peaks est le théâtre de mystères insondables et d'intrigues captivantes. Ses habitants sont aussi variés que les sommets qui les entourent, chacun cachant ses propres secrets et motivations. Entre les bois sombres et les chutes d'eau murmures, l'atmosphère de Twin Peaks est à la fois envoûtante et troublante, attirant les curieux et les aventuriers intrépides.",
+    "benefits": [{
+      "id": 1,
+      "content": "Des ballades effrayantes dans les bois mystérieux"
+      },
+      {
+      "id": 2,
+      "content": "Baignade au pied de la cascade du Great Northern Hotel"
+      },
+      {
+      "id": 3,
+      "content": "Résolvez une sombre histoire d'assassinat"
+      },
+      {
+      "id": 4,
+      "content": "Une expérience immersive inédite"
+      },
+      {
+      "id": 5,
+      "content": "Le Canada juste à côté"
+      },
+      {
+      "id": 6,
+      "content": "Découvrez les mystères de la forêt"
+      },
+      {
+      "id": 7,
+      "content": "Petit déjeuner au Double R comme si vous étiez dans la série"
+      }]
+  },
+  {
+    "id": 5,
+    "description": "Planète Singes description",
+    "benefits": [{
+      "id": 1,
+      "content": "Planète Singes"
+      },
+      {
+      "id": 2,
+      "content": "Planète Singes"
+      },
+      {
+      "id": 3,
+      "content": "Planète Singes"
+      },
+      {
+      "id": 4,
+      "content": "Planète Singes"
+      },
+      {
+      "id": 5,
+      "content": "Planète Singes"
+      },
+      {
+      "id": 6,
+      "content": "Planète Singes"
+      },
+      {
+      "id": 7,
+      "content": "Planète Singes"
+      },
+      {
+      "id": 8,
+      "content": "Planète Singes"
+      }]
+  },
+  {
+    "id": 6,
+    "description": "Anor Londo description",
+    "benefits": [{
+      "id": 1,
+      "content": "Anor Londo"
+      },
+      {
+      "id": 2,
+      "content": "Anor Londo"
+      },
+      {
+      "id": 3,
+      "content": "Anor Londo"
+      },
+      {
+      "id": 4,
+      "content": "Anor Londo"
+      },
+      {
+      "id": 5,
+      "content": "Anor Londo"
+      },
+      {
+      "id": 6,
+      "content": "Anor Londo"
+      },
+      {
+      "id": 7,
+      "content": "Anor Londo"
+      },
+      {
+      "id": 8,
+      "content": "Anor Londo"
+      }]
+  },
+  {
+    "id": 7,
+    "description": "Astéroïde B616 description",
+    "benefits": [{
+      "id": 1,
+      "content": "Astéroïde"
+      },
+      {
+      "id": 2,
+      "content": "Avantage"
+      },
+      {
+      "id": 3,
+      "content": "Avantage"
+      },
+      {
+      "id": 4,
+      "content": "Avantage"
+      },
+      {
+      "id": 5,
+      "content": "Anvantage"
+      },
+      {
+      "id": 6,
+      "content": "Avantage"
+      },
+      {
+      "id": 7,
+      "content": "Avantage"
+      },
+      {
+      "id": 8,
+      "content": "Avantage"
+      }]
+  },
+  {
+    "id": 8,
+    "description": "Briarcliff description",
+    "benefits": [{
+      "id": 1,
+      "content": "Briarcliff"
+      },
+      {
+      "id": 2,
+      "content": "Avantage"
+      },
+      {
+      "id": 3,
+      "content": "Avantage"
+      },
+      {
+      "id": 4,
+      "content": "Avantage"
+      },
+      {
+      "id": 5,
+      "content": "Anvantage"
+      },
+      {
+      "id": 6,
+      "content": "Avantage"
+      },
+      {
+      "id": 7,
+      "content": "Avantage"
+      },
+      {
+      "id": 8,
+      "content": "Avantage"
+      }]
+  },
+  {
+    "id": 9,
+    "description": "Oompa Loompa description",
+    "benefits": [{
+      "id": 1,
+      "content": "Oompa Loompa"
+      },
+      {
+      "id": 2,
+      "content": "Avantage"
+      },
+      {
+      "id": 3,
+      "content": "Avantage"
+      },
+      {
+      "id": 4,
+      "content": "Avantage"
+      },
+      {
+      "id": 5,
+      "content": "Anvantage"
+      },
+      {
+      "id": 6,
+      "content": "Avantage"
+      },
+      {
+      "id": 7,
+      "content": "Avantage"
+      },
+      {
+      "id": 8,
+      "content": "Avantage"
+      }]
+  },
+  {
+    "id": 10,
+    "description": "Westworld description",
+    "benefits": [{
+      "id": 1,
+      "content": "Westworld"
+      },
+      {
+      "id": 2,
+      "content": "Avantage"
+      },
+      {
+      "id": 3,
+      "content": "Avantage"
+      },
+      {
+      "id": 4,
+      "content": "Avantage"
+      },
+      {
+      "id": 5,
+      "content": "Anvantage"
+      },
+      {
+      "id": 6,
+      "content": "Avantage"
+      },
+      {
+      "id": 7,
+      "content": "Avantage"
+      },
+      {
+      "id": 8,
+      "content": "Avantage"
+      }]
+  },
+  {
+    "id": 11,
+    "description": "Plum Creek description",
+    "benefits": [{
+      "id": 1,
+      "content": "Plum Creek"
+      },
+      {
+      "id": 2,
+      "content": "Avantage"
+      },
+      {
+      "id": 3,
+      "content": "Avantage"
+      },
+      {
+      "id": 4,
+      "content": "Avantage"
+      },
+      {
+      "id": 5,
+      "content": "Anvantage"
+      },
+      {
+      "id": 6,
+      "content": "Avantage"
+      },
+      {
+      "id": 7,
+      "content": "Avantage"
+      },
+      {
+      "id": 8,
+      "content": "Avantage"
+      }]
+  },
+  {
+    "id": 12,
+    "description": "Fenêtre Azur description",
+    "benefits": [{
+      "id": 1,
+      "content": "Azur Malta"
+      },
+      {
+      "id": 2,
+      "content": "Avantage"
+      },
+      {
+      "id": 3,
+      "content": "Avantage"
+      },
+      {
+      "id": 4,
+      "content": "Avantage"
+      },
+      {
+      "id": 5,
+      "content": "Anvantage"
+      },
+      {
+      "id": 6,
+      "content": "Avantage"
+      },
+      {
+      "id": 7,
+      "content": "Avantage"
+      },
+      {
+      "id": 8,
+      "content": "Avantage"
+      }]
+  },
+  {
+    "id": 13,
+    "description": "Picassiette description",
+    "benefits": [{
+      "id": 1,
+      "content": "Picassiette"
+      },
+      {
+      "id": 2,
+      "content": "Avantage"
+      },
+      {
+      "id": 3,
+      "content": "Avantage"
+      },
+      {
+      "id": 4,
+      "content": "Avantage"
+      },
+      {
+      "id": 5,
+      "content": "Anvantage"
+      },
+      {
+      "id": 6,
+      "content": "Avantage"
+      },
+      {
+      "id": 7,
+      "content": "Avantage"
+      },
+      {
+      "id": 8,
+      "content": "Avantage"
+      }]
+  },
+  {
+    "id": 14,
+    "description": "Vice City description",
+    "benefits": [{
+      "id": 1,
+      "content": "Vice City GTA"
+      },
+      {
+      "id": 2,
+      "content": "Avantage"
+      },
+      {
+      "id": 3,
+      "content": "Avantage"
+      },
+      {
+      "id": 4,
+      "content": "Avantage"
+      },
+      {
+      "id": 5,
+      "content": "Anvantage"
+      },
+      {
+      "id": 6,
+      "content": "Avantage"
+      },
+      {
+      "id": 7,
+      "content": "Avantage"
+      },
+      {
+      "id": 8,
+      "content": "Avantage"
+      }]
+  }
+  
+]

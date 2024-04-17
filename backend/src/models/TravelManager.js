@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 const AbstractManager = require("./AbstractManager");
 
 class TravelManager extends AbstractManager {
@@ -15,25 +16,27 @@ class TravelManager extends AbstractManager {
     return rows;
   }
 
-  async read(id) {
+  read(id) {
     // Execute the SQL SELECT query to retrieve a specific travel by its ID
-    const [rows] = await this.database.query(
-      `select * from ${this.table} where id = ?`,
-      [id]
-    );
-
-    // Return the first row of the result, which represents the travel
-    return rows[0];
+    return this.database.query(`select * from ${this.table} where id = ?`, [
+      id,
+    ]);
   }
 
   // eslint-disable-next-line camelcase
 
   // eslint-disable-next-line camelcase
-  async createByAdmin(destination_name, country, nb_of_total_seats) {
+  async createByAdmin(
+    destination_name,
+    country,
+    description,
+    nb_of_total_seats,
+    img_url
+  ) {
     const [result] = await this.database.query(
-      `insert into ${this.table} (destination_name, country, nb_of_total_seats) values (?, ?, ?)`,
+      `insert into ${this.table} (destination_name, country, description, nb_of_total_seats, img_url) values (?, ?, ?, ?, ?)`,
       // eslint-disable-next-line camelcase
-      [destination_name, country, nb_of_total_seats]
+      [destination_name, country, description, nb_of_total_seats, img_url]
     );
     return result;
   }
@@ -44,6 +47,14 @@ class TravelManager extends AbstractManager {
       `UPDATE ${this.table} set destination_name = ?, country = ?, nb_of_total_seats = ? where id=?`,
       // eslint-disable-next-line camelcase
       [destination_name, country, nb_of_total_seats, id]
+    );
+  }
+
+  editTravelPicture(id, img_url) {
+    return this.database.query(
+      `UPDATE ${this.table} SET img_url = ? WHERE id = ?`,
+      // eslint-disable-next-line camelcase
+      [img_url, id]
     );
   }
 
