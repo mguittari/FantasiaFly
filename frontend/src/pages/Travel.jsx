@@ -2,6 +2,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import travelDatas from "../data/travelDatas.json";
+import Tabs from "../components/tabs/Tabs";
 
 export default function Travel() {
   const [travels, setTravels] = useState([]);
@@ -31,8 +32,8 @@ export default function Travel() {
           {travelDatas.map((travelData) => {
             if (travelData.id === parseInt(id, 10)) {
               return (
-                <div key={travelData.id}>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 m-[40px]">
+                <div key={travelData.id} className="m-[40px]">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 ">
                     <div className="text-justify" key={travelData.id}>
                       <p>{travelData.description}</p>
                     </div>
@@ -46,7 +47,7 @@ export default function Travel() {
                     </div>
                   </div>
                   <div>Slide-show</div>
-                  <div>Onglets</div>
+                  <Tabs />
                 </div>
               );
             }

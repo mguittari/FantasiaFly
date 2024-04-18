@@ -12,7 +12,7 @@ const travelController = require("./controllers/travelController");
 const bookingController = require("./controllers/bookingController");
 const paymentController = require("./controllers/paymentController");
 const periodController = require("./controllers/periodController");
-// const travelPeriodController = require("./controllers/travelPeriodController");
+const travelPeriodController = require("./controllers/travelPeriodController");
 
 const hashPassword = require("./services/hashPassword");
 const verifyToken = require("./services/verifyToken");
@@ -24,6 +24,8 @@ router.post("/login", userControllers.readByEmail);
 router.get("/travels", travelController.browse);
 router.get("/travels/:id", travelController.read);
 router.get("/periods", periodController.browse);
+
+router.get("/travels/:id/periods", travelPeriodController.getPeriodsByIdTravel);
 
 router.use(verifyToken);
 // routes utilisateur
