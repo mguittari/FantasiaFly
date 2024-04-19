@@ -11,8 +11,6 @@ import Travel from "./pages/Travel";
 import { UserProvider } from "./context/userContext";
 import InscriptionPage from "./pages/inscription-page/InscriptionPage";
 
-
-
 function AppLayout() {
   return (
     <Layout>
@@ -30,7 +28,6 @@ const router = createBrowserRouter([
       { path: "/travels", element: <TravelsPage /> },
       { path: "/travel/:id", element: <Travel /> },
       { path: "/inscription", element: <InscriptionPage /> },
-
     ],
   },
 ]);
