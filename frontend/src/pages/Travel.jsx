@@ -13,7 +13,6 @@ export default function Travel() {
       .then((res) => setTravels(res))
       .catch((error) => console.info(error));
   }, []);
-  console.info(travels);
   return (
     <main className="bg-cream">
       {travels.map(({ id, destination_name, img_url, country }) => (
