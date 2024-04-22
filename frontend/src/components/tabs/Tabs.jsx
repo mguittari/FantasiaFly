@@ -1,7 +1,9 @@
+/* eslint-disable no-shadow */
 /* eslint-disable camelcase */
 // import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
+import travelData from "../../data/travelDatas.json";
 
 export default function Tab() {
   const [periods, setPeriods] = useState([]);
@@ -44,8 +46,8 @@ export default function Tab() {
       </div>
       <div className="content-tab text-left">
         <div className={toggleState === 1 ? "block" : "hidden"}>
-          <table className="w-full mt-2 rounded-t-xl">
-            <thead className="bg-gold rounded-3xl text-white uppercase">
+          <table className="w-full mt-2">
+            <thead className="bg-gold text-white uppercase">
               <tr className="">
                 <th className=" p-2">Date de départ</th>
                 <th className=" p-2">Date de retour</th>
@@ -58,11 +60,11 @@ export default function Tab() {
               ({ date_departure, date_return, duration_stay, unit_price }) => (
                 <tbody>
                   <tr className="hover:bg-purple-400">
-                    <td className=" p-2">{date_departure}</td>
-                    <td className=" p-2">{date_return}</td>
-                    <td className=" p-2">{duration_stay} jours</td>
-                    <td className=" p-2">{unit_price} €</td>
-                    <td className=" p-2">
+                    <td className="p-2">{date_departure}</td>
+                    <td className="p-2">{date_return}</td>
+                    <td className="p-2">{duration_stay} jours</td>
+                    <td className="p-2">{unit_price} €</td>
+                    <td className="p-2">
                       <Link to="/participants">
                         <button
                           type="button"
@@ -78,10 +80,31 @@ export default function Tab() {
             )}
           </table>
         </div>
-        <div className={toggleState === 2 ? "block" : "hidden"}>
-          <h2>Content 2</h2>
-          <hr />
-          <p>Lorem Ipsum 2</p>
+        <div className="content-tab text-left">
+          <div className={toggleState === 2 ? "block" : "hidden"}>
+            <table className="w-full mt-2">
+              <thead className="bg-gold text-white uppercase">
+                <th className="p-2">
+                  {" "}
+                  Inclus ✅ | Non inclus ❌ dans le prix du voyage du voyage
+                </th>
+              </thead>
+              {travelData.map((travelData) => {
+                if (travelData.id === parseInt(id, 10)) {
+                  return (
+                    <tbody>
+                      <tr className="grid grid-cols-1 mt-2 leading-7 p-2">
+                        {travelData.budget.map((budget) => (
+                          <td key={budget.id}>{budget.content}</td>
+                        ))}
+                      </tr>
+                    </tbody>
+                  );
+                }
+                return null;
+              })}
+            </table>
+          </div>
         </div>
       </div>
     </div>

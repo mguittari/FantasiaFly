@@ -28,8 +28,57 @@
       },
       {
       "id": 7,
-      "content": "Nourriture 100% british"
-      }]
+      "content": "Aragog, Buck l'Hippogriffe et autres créatures IRL"
+      }],
+      "budget":[{
+      "id": 1,
+      "content": "✅ Billet de train A/R"
+      },
+      {
+      "id": 2,
+      "content": "✅ Hôtel confort simple"
+      },
+      {
+      "id": 3,
+      "content": "✅ Demi-pension"
+      },
+      {
+      "id": 4,
+      "content": "✅ Deux nuits à Pré-au-Lard"
+      },
+      {
+      "id": 5,
+      "content": "✅ Location de voiture volante"
+      },
+      {
+      "id": 6,
+      "content": "✅ Assistance rapatriement"
+      },
+      {
+      "id": 7,
+      "content": "✅ Assurance annulation"
+      },
+      {
+      "id": 8,
+      "content": "✅ Droits de visa"
+      },
+      {
+      "id": 9,
+      "content": "❌ Activités non-mentionnées"
+      },
+      {
+      "id": 10,
+      "content": "❌ Pourboires"
+      },
+      {
+      "id": 11,
+      "content": "❌ Dépenses personnelles"
+      },
+      {
+      "id": 12,
+      "content": "❌ Assurance vol de bagages et effets personnels"
+      }
+    ]
   },
   {
     "id": 2,
@@ -61,7 +110,56 @@
       {
       "id": 7,
       "content": "Goûtez le tajine de poulet aux pruneaux de Mattias"
-      }]
+      }],
+      "budget":[{
+      "id": 1,
+      "content": "✅ Billet d'avion A/R"
+      },
+      {
+      "id": 2,
+      "content": "✅ Hôtel confort simple"
+      },
+      {
+      "id": 3,
+      "content": "✅ Demi-pension"
+      },
+      {
+      "id": 4,
+      "content": "✅ Deux nuits dans un chalet"
+      },
+      {
+      "id": 5,
+      "content": "✅ Randonnée avec guide"
+      },
+      {
+      "id": 6,
+      "content": "✅ Assistance rapatriement"
+      },
+      {
+      "id": 7,
+      "content": "✅ Assurance annulation"
+      },
+      {
+      "id": 8,
+      "content": "❌ Droits de visa"
+      },
+      {
+      "id": 9,
+      "content": "❌ Activités non-mentionnées"
+      },
+      {
+      "id": 10,
+      "content": "❌ Pourboires"
+      },
+      {
+      "id": 11,
+      "content": "❌ Dépenses personnelles"
+      },
+      {
+      "id": 12,
+      "content": "❌ Assurance vol de bagages et effets personnels"
+      }
+    ]
   },
   {
     "id": 3,
@@ -97,7 +195,56 @@
       {
       "id": 8,
       "content": "avantage 8"
-      }]
+      }],
+      "budget":[{
+      "id": 1,
+      "content": "✅ Billet de train A/R"
+      },
+      {
+      "id": 2,
+      "content": "✅ Hôtel confort simple"
+      },
+      {
+      "id": 3,
+      "content": "✅ Demi-pension"
+      },
+      {
+      "id": 4,
+      "content": "✅ Spectacle de la bataille d'Astapor"
+      },
+      {
+      "id": 5,
+      "content": "✅ Location de quads"
+      },
+      {
+      "id": 6,
+      "content": "✅ Assistance rapatriement"
+      },
+      {
+      "id": 7,
+      "content": "✅ Assurance annulation"
+      },
+      {
+      "id": 8,
+      "content": "❌ Droits de visa"
+      },
+      {
+      "id": 9,
+      "content": "❌ Activités non-mentionnées"
+      },
+      {
+      "id": 10,
+      "content": "❌ Pourboires"
+      },
+      {
+      "id": 11,
+      "content": "❌ Dépenses personnelles"
+      },
+      {
+      "id": 12,
+      "content": "❌ Assurance vol de bagages et effets personnels"
+      }
+    ]
   },
   {
     "id": 4,
@@ -129,7 +276,56 @@
       {
       "id": 7,
       "content": "Petit déjeuner au Double R comme si vous étiez dans la série"
-      }]
+      }],
+      "budget":[{
+      "id": 1,
+      "content": "✅ Billet d'avion A/R"
+      },
+      {
+      "id": 2,
+      "content": "✅ Pension à l'hôtel the Great Northern"
+      },
+      {
+      "id": 3,
+      "content": "✅ Abonnement télé"
+      },
+      {
+      "id": 4,
+      "content": "✅ Apéro avec Kyle MacLachlan"
+      },
+      {
+      "id": 5,
+      "content": "✅ Location de motocross"
+      },
+      {
+      "id": 6,
+      "content": "✅ Assistance rapatriement"
+      },
+      {
+      "id": 7,
+      "content": "✅ Assurance annulation"
+      },
+      {
+      "id": 8,
+      "content": "❌ Droits de visa"
+      },
+      {
+      "id": 9,
+      "content": "❌ Activités non-mentionnées"
+      },
+      {
+      "id": 10,
+      "content": "❌ Pourboires"
+      },
+      {
+      "id": 11,
+      "content": "❌ Dépenses personnelles"
+      },
+      {
+      "id": 12,
+      "content": "❌ Assurance vol de bagages et effets personnels"
+      }
+    ]
   },
   {
     "id": 5,
@@ -165,7 +361,56 @@
       {
       "id": 8,
       "content": "Planète Singes"
-      }]
+      }],
+      "budget":[{
+      "id": 1,
+      "content": "✅ Billet de fusée A/R"
+      },
+      {
+      "id": 2,
+      "content": "✅ Pension à l'hôtel"
+      },
+      {
+      "id": 3,
+      "content": "✅ Abonnement télé"
+      },
+      {
+      "id": 4,
+      "content": "✅ Équipement de guerre"
+      },
+      {
+      "id": 5,
+      "content": "✅ Location d'hoverboard"
+      },
+      {
+      "id": 6,
+      "content": "✅ Assistance rapatriement"
+      },
+      {
+      "id": 7,
+      "content": "✅ Assurance annulation"
+      },
+      {
+      "id": 8,
+      "content": "❌ Droits de visa"
+      },
+      {
+      "id": 9,
+      "content": "❌ Activités non-mentionnées"
+      },
+      {
+      "id": 10,
+      "content": "❌ Pourboires"
+      },
+      {
+      "id": 11,
+      "content": "❌ Dépenses personnelles"
+      },
+      {
+      "id": 12,
+      "content": "❌ Assurance vol de bagages et effets personnels"
+      }
+    ]
   },
   {
     "id": 6,
@@ -201,7 +446,56 @@
       {
       "id": 8,
       "content": "Anor Londo"
-      }]
+      }],
+      "budget":[{
+      "id": 1,
+      "content": "✅ Ticket passage vortex A/R"
+      },
+      {
+      "id": 2,
+      "content": "✅ Pension au feu de camp"
+      },
+      {
+      "id": 3,
+      "content": "✅ Équipement de guerrier"
+      },
+      {
+      "id": 4,
+      "content": "✅ Fioles d'estus"
+      },
+      {
+      "id": 5,
+      "content": "✅ Passe-partout"
+      },
+      {
+      "id": 6,
+      "content": "✅ Assistance rapatriement"
+      },
+      {
+      "id": 7,
+      "content": "✅ Assurance annulation"
+      },
+      {
+      "id": 8,
+      "content": "❌ Droits de visa"
+      },
+      {
+      "id": 9,
+      "content": "❌ Activités non-mentionnées"
+      },
+      {
+      "id": 10,
+      "content": "❌ Pourboires"
+      },
+      {
+      "id": 11,
+      "content": "❌ Dépenses personnelles"
+      },
+      {
+      "id": 12,
+      "content": "❌ Assurance vol de bagages et effets personnels"
+      }
+    ]
   },
   {
     "id": 7,
@@ -237,7 +531,56 @@
       {
       "id": 8,
       "content": "Avantage"
-      }]
+      }],
+      "budget":[{
+      "id": 1,
+      "content": "✅ Billet de fusée A/R"
+      },
+      {
+      "id": 2,
+      "content": "✅ Matelas sommaire"
+      },
+      {
+      "id": 3,
+      "content": "✅ De quoi cuisiner"
+      },
+      {
+      "id": 4,
+      "content": "✅ Un exemplaire du Petit Prince"
+      },
+      {
+      "id": 5,
+      "content": "✅ Un oreiller"
+      },
+      {
+      "id": 6,
+      "content": "✅ Assistance rapatriement"
+      },
+      {
+      "id": 7,
+      "content": "✅ Assurance annulation"
+      },
+      {
+      "id": 8,
+      "content": "❌ Droits de visa"
+      },
+      {
+      "id": 9,
+      "content": "❌ Activités non-mentionnées"
+      },
+      {
+      "id": 10,
+      "content": "❌ Pourboires"
+      },
+      {
+      "id": 11,
+      "content": "❌ Dépenses personnelles"
+      },
+      {
+      "id": 12,
+      "content": "❌ Assurance vol de bagages et effets personnels"
+      }
+    ]
   },
   {
     "id": 8,
@@ -273,7 +616,56 @@
       {
       "id": 8,
       "content": "Avantage"
-      }]
+      }],
+      "budget":[{
+      "id": 1,
+      "content": "✅ Billet d'avion A/R"
+      },
+      {
+      "id": 2,
+      "content": "✅ Repas apportés en cellule"
+      },
+      {
+      "id": 3,
+      "content": "✅ Camisole de force"
+      },
+      {
+      "id": 4,
+      "content": "✅ Pilules et cachets"
+      },
+      {
+      "id": 5,
+      "content": "✅ Séances de torture dont électrochocs (à volonté)"
+      },
+      {
+      "id": 6,
+      "content": "✅ Assistance rapatriement"
+      },
+      {
+      "id": 7,
+      "content": "✅ Assurance annulation"
+      },
+      {
+      "id": 8,
+      "content": "❌ Droits de visa"
+      },
+      {
+      "id": 9,
+      "content": "❌ Activités non-mentionnées"
+      },
+      {
+      "id": 10,
+      "content": "❌ Pourboires"
+      },
+      {
+      "id": 11,
+      "content": "❌ Dépenses personnelles"
+      },
+      {
+      "id": 12,
+      "content": "❌ Assurance vol de bagages et effets personnels"
+      }
+    ]
   },
   {
     "id": 9,
@@ -309,7 +701,56 @@
       {
       "id": 8,
       "content": "Avantage"
-      }]
+      }],
+      "budget":[{
+      "id": 1,
+      "content": "✅ Billet d'avion A/R"
+      },
+      {
+      "id": 2,
+      "content": "✅ Accueil festif avec DJ"
+      },
+      {
+      "id": 3,
+      "content": "✅ Chocolat à volonté"
+      },
+      {
+      "id": 4,
+      "content": "✅ Location de jetski"
+      },
+      {
+      "id": 5,
+      "content": "✅ Accès piscine de l'hôtel h24"
+      },
+      {
+      "id": 6,
+      "content": "✅ Assistance rapatriement"
+      },
+      {
+      "id": 7,
+      "content": "✅ Assurance annulation"
+      },
+      {
+      "id": 8,
+      "content": "❌ Droits de visa"
+      },
+      {
+      "id": 9,
+      "content": "❌ Activités non-mentionnées"
+      },
+      {
+      "id": 10,
+      "content": "❌ Pourboires"
+      },
+      {
+      "id": 11,
+      "content": "❌ Dépenses personnelles"
+      },
+      {
+      "id": 12,
+      "content": "❌ Assurance vol de bagages et effets personnels"
+      }
+    ]
   },
   {
     "id": 10,
@@ -345,7 +786,56 @@
       {
       "id": 8,
       "content": "Avantage"
-      }]
+      }],
+      "budget":[{
+      "id": 1,
+      "content": "✅ Billet d'avion A/R"
+      },
+      {
+      "id": 2,
+      "content": "✅ Pension à l'auberge"
+      },
+      {
+      "id": 3,
+      "content": "✅ Tenue de cow-boy et pistolets"
+      },
+      {
+      "id": 4,
+      "content": "✅ Location de cheval"
+      },
+      {
+      "id": 5,
+      "content": "✅ Abonnement à HBO"
+      },
+      {
+      "id": 6,
+      "content": "✅ Assistance rapatriement"
+      },
+      {
+      "id": 7,
+      "content": "✅ Assurance annulation"
+      },
+      {
+      "id": 8,
+      "content": "❌ Droits de visa"
+      },
+      {
+      "id": 9,
+      "content": "❌ Activités non-mentionnées"
+      },
+      {
+      "id": 10,
+      "content": "❌ Pourboires"
+      },
+      {
+      "id": 11,
+      "content": "❌ Dépenses personnelles"
+      },
+      {
+      "id": 12,
+      "content": "❌ Assurance vol de bagages et effets personnels"
+      }
+    ]
   },
   {
     "id": 11,
@@ -381,7 +871,56 @@
       {
       "id": 8,
       "content": "Avantage"
-      }]
+      }],
+      "budget":[{
+      "id": 1,
+      "content": "✅ Billet d'avion A/R"
+      },
+      {
+      "id": 2,
+      "content": "✅ Pension chez les Ingalls"
+      },
+      {
+      "id": 3,
+      "content": "✅ Location de cheval"
+      },
+      {
+      "id": 4,
+      "content": "✅ Travail à la ferme"
+      },
+      {
+      "id": 5,
+      "content": "✅ Spectacle reconstitution de la bataille de Plum Creek"
+      },
+      {
+      "id": 6,
+      "content": "✅ Assistance rapatriement"
+      },
+      {
+      "id": 7,
+      "content": "✅ Assurance annulation"
+      },
+      {
+      "id": 8,
+      "content": "❌ Droits de visa"
+      },
+      {
+      "id": 9,
+      "content": "❌ Activités non-mentionnées"
+      },
+      {
+      "id": 10,
+      "content": "❌ Pourboires"
+      },
+      {
+      "id": 11,
+      "content": "❌ Dépenses personnelles"
+      },
+      {
+      "id": 12,
+      "content": "❌ Assurance vol de bagages et effets personnels"
+      }
+    ]
   },
   {
     "id": 12,
@@ -417,7 +956,56 @@
       {
       "id": 8,
       "content": "Avantage"
-      }]
+      }],
+      "budget":[{
+      "id": 1,
+      "content": "✅ Pass bateau A/R"
+      },
+      {
+      "id": 2,
+      "content": "✅ Hôtel avec piscine et jacuzzi"
+      },
+      {
+      "id": 3,
+      "content": "✅ Crème solaire"
+      },
+      {
+      "id": 4,
+      "content": "✅ Location de jetski"
+      },
+      {
+      "id": 5,
+      "content": "✅ Initiation à la plongée sous-marine"
+      },
+      {
+      "id": 6,
+      "content": "✅ Assistance rapatriement"
+      },
+      {
+      "id": 7,
+      "content": "✅ Assurance annulation"
+      },
+      {
+      "id": 8,
+      "content": "❌ Droits de visa"
+      },
+      {
+      "id": 9,
+      "content": "❌ Activités non-mentionnées"
+      },
+      {
+      "id": 10,
+      "content": "❌ Pourboires"
+      },
+      {
+      "id": 11,
+      "content": "❌ Dépenses personnelles"
+      },
+      {
+      "id": 12,
+      "content": "❌ Assurance vol de bagages et effets personnels"
+      }
+    ]
   },
   {
     "id": 13,
@@ -453,7 +1041,56 @@
       {
       "id": 8,
       "content": "Avantage"
-      }]
+      }],
+      "budget":[{
+      "id": 1,
+      "content": "✅ Billet de train A/R"
+      },
+      {
+      "id": 2,
+      "content": "✅ Hôtel confort simple"
+      },
+      {
+      "id": 3,
+      "content": "✅ Accès au musée Pablo Picassiette"
+      },
+      {
+      "id": 4,
+      "content": "✅ Location de vélo"
+      },
+      {
+      "id": 5,
+      "content": "✅ Visite guidée de la Maison Picassiette"
+      },
+      {
+      "id": 6,
+      "content": "✅ Assistance rapatriement"
+      },
+      {
+      "id": 7,
+      "content": "✅ Assurance annulation"
+      },
+      {
+      "id": 8,
+      "content": "❌ Droits de visa"
+      },
+      {
+      "id": 9,
+      "content": "❌ Activités non-mentionnées"
+      },
+      {
+      "id": 10,
+      "content": "❌ Pourboires"
+      },
+      {
+      "id": 11,
+      "content": "❌ Dépenses personnelles"
+      },
+      {
+      "id": 12,
+      "content": "❌ Assurance vol de bagages et effets personnels"
+      }
+    ]
   },
   {
     "id": 14,
@@ -489,7 +1126,56 @@
       {
       "id": 8,
       "content": "Avantage"
-      }]
+      }],
+      "budget":[{
+      "id": 1,
+      "content": "✅ Billet d'avion A/R"
+      },
+      {
+      "id": 2,
+      "content": "✅ Pension à l'hôtel Ocean View"
+      },
+      {
+      "id": 3,
+      "content": "✅ Accès au Malibu Club"
+      },
+      {
+      "id": 4,
+      "content": "✅ Location de jetski"
+      },
+      {
+      "id": 5,
+      "content": "✅ Visite guidée des studios de cinéma Interglobal Studios"
+      },
+      {
+      "id": 6,
+      "content": "✅ Assistance rapatriement"
+      },
+      {
+      "id": 7,
+      "content": "✅ Assurance annulation"
+      },
+      {
+      "id": 8,
+      "content": "❌ Droits de visa"
+      },
+      {
+      "id": 9,
+      "content": "❌ Activités non-mentionnées"
+      },
+      {
+      "id": 10,
+      "content": "❌ Pourboires"
+      },
+      {
+      "id": 11,
+      "content": "❌ Dépenses personnelles"
+      },
+      {
+      "id": 12,
+      "content": "❌ Assurance vol de bagages et effets personnels"
+      }
+    ]
   }
   
 ]
