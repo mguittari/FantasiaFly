@@ -1,5 +1,5 @@
 // Load the express module to create a web application
-
+require("dotenv").config();
 const express = require("express");
 
 const app = express();
@@ -56,6 +56,62 @@ app.use(express.json());
 // app.use(express.urlencoded());
 // app.use(express.text());
 // app.use(express.raw());
+// eslint-disable-next-line consistent-return
+
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+
+// eslint-disable-next-line camelcase
+// const calculateOrderAmount = (unit_price, quantity) => {
+//   // Replace this constant with a calculation of the order's amount
+//   // Calculate the order total on the server to prevent
+//   // people from directly manipulating the amount on the client
+//   // eslint-disable-next-line camelcase
+//   if (typeof unit_price !== "number" || typeof quantity !== "number") {
+//     throw new Error("Les arguments doivent être des nombres");
+//   }
+//   // Calculer le montant total
+//   // eslint-disable-next-line camelcase
+//   const totalAmount = unit_price * quantity;
+//   // Retourner le montant total
+//   return totalAmount;
+// };
+
+app.post("/pay", async (req, res) => {
+  const { totalAmount } = req.body;
+
+  // Create a PaymentIntent with the order amount and currency
+  const paymentIntent = await stripe.paymentIntents.create({
+    amount: totalAmount,
+    currency: "eur",
+    // In the latest version of the API, specifying the `automatic_payment_methods` parameter is optional because Stripe enables its functionality by default.
+    automatic_payment_methods: {
+      enabled: true,
+    },
+  });
+
+  res.json({
+    clientSecret: paymentIntent.client_secret,
+  });
+});
+
+// app.post("/pay", async (req, res) => {
+//   try {
+//     const { price } = req.body;
+//     if (!price)
+//       return res.status(400).json({ message: "Please enter a price" });
+//     const paymentIntent = await stripe.paymentIntent.create({
+//       amount: Math.round(25 * 100),
+//       currency: "INR",
+//       payment_method_types: ["card"],
+//       metadata: { price },
+//     });
+//     const clientSecret = paymentIntent.client_secret;
+//     res.json({ message: "Payment initiated", clientSecret });
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ error: error.message });
+//   }
+// });
 
 /* ************************************************************************* */
 

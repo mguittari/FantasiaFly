@@ -65,6 +65,7 @@ router.get("/payments", paymentController.browse);
 
 // Route period
 // à créer => router.post("/periods", periodController.create);
-
+router.get("/periods/:id", periodController.readById);
 /* ************************************************************************* */
+
 module.exports = router;
