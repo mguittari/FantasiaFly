@@ -5,6 +5,7 @@ const fs = require("fs");
 const jwt = require("jsonwebtoken");
 const tables = require("../tables");
 
+console.info(process.env.SECRET_KEY_JWT);
 // The B of BREAD - Browse (Read All) operation
 const browse = async (req, res, next) => {
   try {
@@ -120,6 +121,7 @@ const logout = async (req, res) => {
 // The A of BREAD - Add (Create) operation
 const create = async (req, res) => {
   try {
+    console.info(req.body);
     const {
       firstname,
       lastname,
@@ -133,7 +135,10 @@ const create = async (req, res) => {
       country,
     } = req.body;
 
-    const img_url = req.file.path;
+    let img_url = "";
+    if (req.file) {
+      img_url = req.file.path;
+    }
 
     const result = await tables.user.create(
       firstname,
@@ -150,10 +155,10 @@ const create = async (req, res) => {
     );
     console.info(req.file);
     if (result.affectedRows) {
-      res.status(201).send("created");
+      res.status(201).json("created");
     } else {
       fs.unlinkSync(req.file.path);
-      res.status(401).send("erreur lors de l'enregistrement");
+      res.status(401).json("erreur lors de l'enregistrement");
     }
   } catch (error) {
     if (req.file) {

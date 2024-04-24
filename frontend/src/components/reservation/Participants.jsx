@@ -1,10 +1,10 @@
 /* eslint-disable camelcase */
-import React, { useState, useEffect } from "react";
-import "./stepper.css";
+import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import vid1 from "../../assets/vid1.mp4";
-import Reservation from "./Reservation";
 import Payment from "./Payment";
+import Reservation from "./Reservation";
+import "./stepper.css";
 
 export default function Participants() {
   const steps = ["Participants", "Coordonnées", "payment"];
@@ -60,7 +60,7 @@ export default function Participants() {
           autoPlay
           loop
           muted
-          className=" absolute top-0 left-0 min-w-full min-h-full z-0"
+          className=" absolute top-0 left-0 min-w-full min-h-full z-0 pointer-events-none"
         />
       </div>
       <div className="z-10 flex flex-col justify-center items-center relative ">

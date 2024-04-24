@@ -154,13 +154,13 @@
 //     </>
 //   );
 // }
-import React, { useEffect, useState } from "react";
-import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+import React, { useEffect, useState } from "react";
 import CheckoutForm from "../stripe/CheckoutForm";
 
 const stripePromise = loadStripe(
-  "pk_live_51P5ZPi1Tf5Roqbp5zp0Rtbs4XTUUsrrVQG6BMc4esMIOeCv7y8DDopjQWPG7cRDknTmJnro5af72nlGbddBY9QP600aPedVn7B"
+  "pk_test_51HaUZjFs5eldFP7lkxwEQ01EsRIQWnzDKtxXw3r3Kr9osvn4QOQ4yF4NpD3CJT7T7JkDO5Mswoyy5aIs3YFUxhMA00LLHgtZr9"
 );
 export default function Payment() {
   const [clientSecret, setClientSecret] = useState("");
@@ -175,7 +175,7 @@ export default function Payment() {
       .then((res) => res.json())
       .then((data) => setClientSecret(data.clientSecret));
   }, []);
-
+  console.info("clientSecret", clientSecret);
   return (
     <div>
       {clientSecret && (

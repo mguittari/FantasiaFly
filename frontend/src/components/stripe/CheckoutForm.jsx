@@ -1,126 +1,83 @@
-/* eslint-disable react/button-has-type */
-// /* eslint-disable react/button-has-type */
-// import React from "react";
-// import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
-// import { element } from "prop-types";
+/* eslint-disable react/prop-types */
+import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Success from "../../assets/success.svg";
 
-// export default function CheckoutForm() {
-//   const stripe = useStripe();
-//   // eslint-disable-next-line no-unused-vars
-//   const elements = useElements();
-
-//   const handleSubmit = async (event) => {
-//     event.preventDefault();
-//     const [error, paymentMethod] = await stripe.createPaymentMethod({
-//       type: "card",
-//       card: element.getElement(CardElement),
-//     });
-//     if (!error) {
-//       console.info("Token Généré:", paymentMethod);
-//     }
-//   };
-
-//   return (
-//     <form onSubmit={handleSubmit} style={{ maxWidth: 400 }}>
-//       <CardElement
-//         options={{
-//           hidePostalCode: true,
-//         }}
-//       />
-//       <button>payer</button>
-//     </form>
-//   );
-// }
-
-import React, { useEffect, useState } from "react";
-import {
-  PaymentElement,
-  useStripe,
-  useElements,
-} from "@stripe/react-stripe-js";
-
-// eslint-disable-next-line react/prop-types
 export default function CheckoutForm({ clientSecret }) {
+  const navigate = useNavigate();
+  const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
 
-  const [message, setMessage] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    if (!stripe) {
-      return;
-    }
-
-    if (!clientSecret) {
-      return;
-    }
-
-    stripe.retrievePaymentIntent(clientSecret).then(({ paymentIntent }) => {
-      switch (paymentIntent.status) {
-        case "succeeded":
-          setMessage("Payment succeeded!");
-          break;
-        case "processing":
-          setMessage("Your payment is processing.");
-          break;
-        case "requires_payment_method":
-          setMessage("Your payment was not successful, please try again.");
-          break;
-        default:
-          setMessage("Something went wrong.");
-          break;
-      }
-    });
-  }, [stripe]);
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
     if (!stripe || !elements) {
-      // Stripe.js hasn't yet loaded.
-      // Make sure to disable form submission until Stripe.js has loaded.
       return;
     }
+    setLoading(true);
+    const { error, paymentIntent } = await stripe.confirmCardPayment(
+      clientSecret,
+      {
+        payment_method: {
+          card: elements.getElement(CardElement),
+        },
+      }
+    );
 
-    setIsLoading(true);
-
-    const { error } = await stripe.confirmPayment({
-      elements,
-      // confirmParams: {
-      //   // Make sure to change this to your payment completion page
-      //   // return_url: "http://localhost:3000/pay",
-      // },
-    });
-
-    // This point will only be reached if there is an immediate error when
-    // confirming the payment. Otherwise, your customer will be redirected to
-    // your `return_url`. For some payment methods like iDEAL, your customer will
-    // be redirected to an intermediate site first to authorize the payment, then
-    // redirected to the `return_url`.
-    if (error.type === "card_error" || error.type === "validation_error") {
-      setMessage(error.message);
+    if (error) {
+      console.error("Payment Confirmation Error:", error);
+      setMessage("echec");
+      setLoading(false);
     } else {
-      setMessage("An unexpected error occurred.");
+      console.info("Payment Intent:", paymentIntent);
+      setLoading(false);
+      setMessage(paymentIntent.status);
+      setTimeout(() => {
+        navigate("/");
+      }, 2000);
     }
-
-    setIsLoading(false);
-  };
-
-  const paymentElementOptions = {
-    layout: "tabs",
   };
 
   return (
-    <form id="payment-form" onSubmit={handleSubmit}>
-      <PaymentElement id="payment-element" options={paymentElementOptions} />
-      <button disabled={isLoading || !stripe || !elements} id="submit">
-        <span id="button-text">
-          {isLoading ? <div className="spinner" id="spinner" /> : "Pay now"}
-        </span>
+    <form onSubmit={handleSubmit} className="max-w-md mx-auto">
+      <div className="mb-4">
+        <label htmlFor="card-element" className="block mb-2 font-medium">
+          Card details
+        </label>
+        <div className="w-96 bg-white p-4 rounded-md shadow-md">
+          <CardElement
+            id="card-element"
+            options={{
+              hidePostalCode: true,
+              style: {
+                base: {
+                  width: "400px",
+                  fontSize: "16px",
+                  fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+                },
+              },
+            }}
+          />
+        </div>
+      </div>
+      <button
+        type="submit"
+        className={`w-full py-2 px-4 bg-blue-500 text-white font-semibold rounded-md shadow-md hover:bg-blue-600 ${
+          loading ? " bg-opacity-15" : ""
+        }`}
+        disabled={loading}
+      >
+        Pay
       </button>
-      {/* Show any error or success messages */}
-      {message && <div id="payment-message">{message}</div>}
+      {message && (
+        <div className="absolute bottom-0 flex flex-row gap-4 items-center bg-white text-green-700 border px-8 py-2 rounded-lg">
+          <img src={Success} className="w-8" alt="icon-sucess" />
+          <p className="">{message}</p>
+        </div>
+      )}
     </form>
   );
 }

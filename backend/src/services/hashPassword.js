@@ -2,6 +2,7 @@ const argon2 = require("argon2");
 const fs = require("fs");
 
 const hashPassword = async (req, res, next) => {
+  console.info(req.body);
   const hashOptions = {
     type: argon2.argon2id,
     memoryCost: 2 ** 16,
