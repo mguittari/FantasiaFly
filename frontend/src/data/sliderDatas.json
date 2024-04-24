@@ -1,0 +1,225 @@
+[
+    {"id": 1,
+    "slide_pictures":[{
+      "id": 1,
+      "path": "/src/assets/Slider/Poudlard-1.jpg"
+      },
+      {
+      "id": 2,
+      "path": "/src/assets/Slider/Poudlard-2.jpg"
+      },
+      {
+      "id": 3,
+      "path": "/src/assets/Slider/Poudlard-3.jpg"
+      }
+    ]
+},
+{
+    "id": 2,
+    "slide_pictures":[{
+      "id": 1,
+      "path": "/src/assets/Slider/Ifrane-1.jpg"
+      },
+      {
+      "id": 2,
+      "path": "/src/assets/Slider/Ifrane-2.jpg"
+      },
+      {
+      "id": 3,
+      "path": "/src/assets/Slider/Ifrane-3.jpg"
+      }
+    ]
+},
+{
+    "id": 3,
+    "slide_pictures":[{
+      "id": 1,
+      "path": "/src/assets/Slider/Astapor-1.jpg"
+      },
+      {
+      "id": 2,
+      "path": "/src/assets/Slider/Astapor-2.jpg"
+      },
+      {
+      "id": 3,
+      "path": "/src/assets/Slider/Astapor-3.jpg"
+      }
+    ]
+},
+{
+    "id": 4,
+    "slide_pictures":[{
+      "id": 1,
+      "path": "/src/assets/Slider/Twin-Peaks-1.jpg"
+      },
+      {
+      "id": 2,
+      "path": "/src/assets/Slider/Twin-Peaks-2.jpeg"
+      },
+      {
+      "id": 3,
+      "path": "/src/assets/Slider/Twin-Peaks-3.jpg"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "slide_pictures":[{
+      "id": 1,
+      "path": "/src/assets/Slider/Image-1.jpg"
+      },
+      {
+      "id": 2,
+      "path": "/src/assets/Slider/Image-2.jpg"
+      },
+      {
+      "id": 3,
+      "path": "/src/assets/Slider/Image-3.jpg"
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "slide_pictures":[{
+      "id": 1,
+      "path": "/src/assets/Slider/Image-1.jpg"
+      },
+      {
+      "id": 2,
+      "path": "/src/assets/Slider/Image-2.jpg"
+      },
+      {
+      "id": 3,
+      "path": "/src/assets/Slider/Image-3.jpg"
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "slide_pictures":[{
+      "id": 1,
+      "path": "/src/assets/Slider/Image-1.jpg"
+      },
+      {
+      "id": 2,
+      "path": "/src/assets/Slider/Image-2.jpg"
+      },
+      {
+      "id": 3,
+      "path": "/src/assets/Slider/Image-3.jpg"
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "slide_pictures":[{
+      "id": 1,
+      "path": "/src/assets/Slider/Image-1.jpg"
+      },
+      {
+      "id": 2,
+      "path": "/src/assets/Slider/Image-2.jpg"
+      },
+      {
+      "id": 3,
+      "path": "/src/assets/Slider/Image-3.jpg"
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "slide_pictures":[{
+      "id": 1,
+      "path": "/src/assets/Slider/Image-1.jpg"
+      },
+      {
+      "id": 2,
+      "path": "/src/assets/Slider/Image-2.jpg"
+      },
+      {
+      "id": 3,
+      "path": "/src/assets/Slider/Image-3.jpg"
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "slide_pictures":[{
+      "id": 1,
+      "path": "/src/assets/Slider/Image-1.jpg"
+      },
+      {
+      "id": 2,
+      "path": "/src/assets/Slider/Image-2.jpg"
+      },
+      {
+      "id": 3,
+      "path": "/src/assets/Slider/Image-3.jpg"
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "slide_pictures":[{
+      "id": 1,
+      "path": "/src/assets/Slider/Image-1.jpg"
+      },
+      {
+      "id": 2,
+      "path": "/src/assets/Slider/Image-2.jpg"
+      },
+      {
+      "id": 3,
+      "path": "/src/assets/Slider/Image-3.jpg"
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "slide_pictures":[{
+      "id": 1,
+      "path": "/src/assets/Slider/Image-1.jpg"
+      },
+      {
+      "id": 2,
+      "path": "/src/assets/Slider/Image-2.jpg"
+      },
+      {
+      "id": 3,
+      "path": "/src/assets/Slider/Image-3.jpg"
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "slide_pictures":[{
+      "id": 1,
+      "path": "/src/assets/Slider/Image-1.jpg"
+      },
+      {
+      "id": 2,
+      "path": "/src/assets/Slider/Image-2.jpg"
+      },
+      {
+      "id": 3,
+      "path": "/src/assets/Slider/Image-3.jpg"
+      }
+    ]
+  },
+  {
+    "id": 14,
+    "slide_pictures":[{
+      "id": 1,
+      "path": "/src/assets/Slider/Image-1.jpg"
+      },
+      {
+      "id": 2,
+      "path": "/src/assets/Slider/Image-2.jpg"
+      },
+      {
+      "id": 3,
+      "path": "/src/assets/Slider/Image-3.jpg"
+      }
+    ]
+  }
+]

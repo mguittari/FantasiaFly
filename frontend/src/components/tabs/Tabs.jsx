@@ -48,7 +48,7 @@ export default function Tab() {
         <div className={toggleState === 1 ? "block" : "hidden"}>
           <table className="w-full mt-2">
             <thead className="bg-gold text-white uppercase">
-              <tr className="">
+              <tr>
                 <th className=" p-2">Date de départ</th>
                 <th className=" p-2">Date de retour</th>
                 <th className=" p-2">Durée</th>
