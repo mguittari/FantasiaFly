@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import travelDatas from "../data/travelDatas.json";
 import Tabs from "../components/tabs/Tabs";
+import Slider from "../components/slider/Slider";
 
 export default function Travel() {
   const [travels, setTravels] = useState([]);
@@ -45,7 +46,7 @@ export default function Travel() {
                       </ul>
                     </div>
                   </div>
-                  <div>Slide-show</div>
+                  <Slider />
                   <Tabs />
                 </div>
               );
