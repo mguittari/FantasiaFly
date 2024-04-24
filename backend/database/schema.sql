@@ -205,19 +205,4 @@ VALUES
 (14, 55, 'Plane'),
 (14, 56, 'Plane');
 
-INSERT INTO user (firstname, lastname, birth_date, email, hashPassword, phone_number, address, postal_code, city, country, role) 
-VALUES ('John', 'Doe', '1990-05-15', 'john.doe@example.com', 'pa$$worD1', '1234567890', '123 Main Street', '12345', 'Anytown', 'France', 'user'),
-('Emily', 'Brown', '1998-03-25', 'emily.brown@example.com', 'pa$$worD3', '1112223333', '321 Elm Street', '98765', 'Villagetown', 'France', 'user'),
-('Jane', 'Smith', '1985-10-20', 'jane.smith@example.com', 'pa$$worD3', '9876543210', '456 Oak Street', '54321', 'Bigcity', 'France', 'admin');
-
-INSERT INTO payment (cancellation_insurance, quantity) 
-VALUES (TRUE, 2),
-(TRUE, 4),
-(FALSE, 3);
-
-INSERT INTO booking (id_payment, id_user, id_travel, id_period) 
-VALUES (1, 1, 1, 1),
-(2, 2, 3, 9),
-(3, 2, 4, 14);
-
 SET foreign_key_checks = 1;
