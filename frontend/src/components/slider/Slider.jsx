@@ -32,12 +32,12 @@ export default function Slider() {
     <div className="">
       <div className="w-[400px] h-[265px] md:w-[800px] md:h-[520px] overflow-hidden flex mx-auto my-5 rounded-3xl shadow-lg">
         <div className="container-slider relative w-full h-full">
-          {pictures.map((picture, index) =>
-            picture.slide_pictures.map((value) => {
+          {pictures.map((picture) =>
+            picture.slide_pictures.map((value, index) => {
               if (picture.id === parseInt(id, 10)) {
                 return (
                   <img
-                    key={value}
+                    key={value.id}
                     className={`${
                       slideIndex === index + 1 ? "opacity-100" : "opacity-0"
                     } w-full absolute transition-opacity duration-500 ease-in-out`}
@@ -53,18 +53,20 @@ export default function Slider() {
           <ButtonSlider moveSlide={nextSlide} direction="next" />
           <ButtonSlider moveSlide={prevSlide} direction="prev" />
           <div className="container-dots absolute flex bottom-0 right-1/2 transform translate-x-1/2">
-            {Array.from({ length: 3 }).map((item, index) => (
-              <button
-                type="button"
-                onClick={() => moveDot(index + 1)}
-                key={item}
-                className={`${
-                  slideIndex === index + 1
-                    ? "bg-gray-700 border-2 md:border-4 border-white"
-                    : "bg-white"
-                }  w-3 h-3 md:w-6 md:h-6 rounded-full mx-2 mb-2 z-10 cursor-pointer transition-transform hover:scale-110`}
-              />
-            ))}
+            {Array.from(pictures[0].slide_pictures.length).map(
+              (item, index) => (
+                <button
+                  type="button"
+                  onClick={() => moveDot(index + 1)}
+                  key={item}
+                  className={`${
+                    slideIndex === index + 1
+                      ? "bg-gray-700 border-2 md:border-4 border-white"
+                      : "bg-white"
+                  }  w-3 h-3 md:w-6 md:h-6 rounded-full mx-2 mb-2 z-10 cursor-pointer transition-transform hover:scale-110`}
+                />
+              )
+            )}
           </div>
         </div>
       </div>
