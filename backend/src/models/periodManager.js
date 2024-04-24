@@ -14,7 +14,6 @@ class PeriodManager extends AbstractManager {
       `select *, DATE_FORMAT(date_departure, '%d-%m-%Y') AS date_departure, DATE_FORMAT(date_return, '%d-%m-%Y') AS date_return from ${this.table}`
     );
 
-    // Return the array of period
     return rows;
   }
 

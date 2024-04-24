@@ -13,6 +13,7 @@ const browse = async (req, res, next) => {
     next(err);
   }
 };
+
 const readById = async (req, res) => {
   try {
     const { id }= req.params;
@@ -28,4 +29,8 @@ const readById = async (req, res) => {
     res.status(500).json(error);
   }
 };
+
 module.exports = { browse, readById };
+
+
+

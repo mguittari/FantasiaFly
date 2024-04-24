@@ -118,7 +118,6 @@ const logout = async (req, res) => {
 // The E of BREAD - Edit (Update) operation
 // This operation is not yet implemented
 
-// The A of BREAD - Add (Create) operation
 const create = async (req, res) => {
   try {
     console.info(req.body);
@@ -183,7 +182,7 @@ const edit = async (req, res) => {
       city,
       country,
     } = req.body;
-    const img_url = req.file.path;
+
     const [result] = await tables.user.editUserWithoutPassword(
       id,
       firstname,
@@ -194,17 +193,14 @@ const edit = async (req, res) => {
       address,
       postal_code,
       city,
-      country,
-      img_url
+      country
     );
     if (result.affectedRows) {
       res.status(200).json({ message: "Account updated !" });
     } else {
-      fs.unlinkSync(req.file.path);
       res.status(401).send("probleme");
     }
   } catch (error) {
-    fs.unlinkSync(req.file.path);
     res.status(500).send(error);
   }
 };
@@ -245,9 +241,11 @@ const editPassword = async (req, res) => {
 const editOnlyPicture = async (req, res) => {
   try {
     const { email } = req.body;
+    console.info("email:", email);
     const img_url = req.file.path;
+    console.info("img_url:", img_url);
     const [user] = await tables.user.queryGetUserByEmail(email);
-    console.info(user);
+    console.info("user:", user);
 
     if (user.length) {
       console.info("je suis dans if");
