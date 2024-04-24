@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
-import fb from "../../assets/facebook.png";
-import Apple from "../../assets/apple.png";
+import { Link, useNavigate } from "react-router-dom";
 import Google from "../../assets/Google.png";
 import INS from "../../assets/INS.png";
+import Apple from "../../assets/apple.png";
+import fb from "../../assets/facebook.png";
 
 export default function InscriptionForm() {
   const navigate = useNavigate();
@@ -16,7 +16,7 @@ export default function InscriptionForm() {
     address: "",
     img_url: "", // Champ pour stocker le chemin de l'image
   });
-
+  console.info(formData);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
