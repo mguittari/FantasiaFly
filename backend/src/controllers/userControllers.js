@@ -80,14 +80,14 @@ const readByEmail = async (req, res) => {
 
           res.status(200).json(token);
         } else {
-          res.status(401).send("verifier vos données");
+          res.status(401).json("verifier vos données");
         }
       } else {
-        res.status(401).send("addresse mail n'existe pas");
+        res.status(401).json("addresse mail n'existe pas");
       }
     }
   } catch (error) {
-    res.status(500).send(error);
+    res.status(500).json(error);
   }
 };
 const getAllBookingsByUser = async (req, res) => {
@@ -152,7 +152,7 @@ const create = async (req, res) => {
       country,
       img_url
     );
-    console.info(req.file);
+
     if (result.affectedRows) {
       res.status(201).json("created");
     } else {

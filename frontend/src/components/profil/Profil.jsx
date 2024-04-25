@@ -1,26 +1,15 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable react/button-has-type */
-import { Link } from "react-router-dom"; // Import correct pour Link
-import { TbPhotoEdit } from "react-icons/tb";
+import { useContext } from "react";
 import { IoMdLogOut } from "react-icons/io";
 import { IoSettingsOutline } from "react-icons/io5";
 import { SlCalender } from "react-icons/sl";
-import { useContext } from "react";
+import { TbPhotoEdit } from "react-icons/tb";
+import { Link } from "react-router-dom"; // Import correct pour Link
 import { UserContext } from "../../context/userContext";
 
 export default function Profil() {
   const { user } = useContext(UserContext);
-  // useEffect(() => {
-  //   fetch(`http://localhost:3310/api/me`, {
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}`,
-  //     },
-  //   })
-  //     .then((res) => res.json())
-  //     .then((data) => console.info(data) || setUser(data))
-  //     .catch((error) => console.info(error));
-  // }, []);
 
   return (
     <div className=" flex flex-col justify-center items-center max-w-lg w-full bg-white shadow-lg rounded-lg overflow-hidden">
@@ -30,7 +19,7 @@ export default function Profil() {
             <TbPhotoEdit />
           </div>
           <h1 className="text-xl  text-gray-800">
-            Profil de{user?.user?.firstname}
+            Profil de {user?.user?.firstname}
           </h1>
           <p className="mb-2">
             <div className="font-semibold">Email :{user?.user?.email} </div>
