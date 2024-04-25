@@ -10,48 +10,57 @@ import { UserContext } from "../../context/userContext";
 
 export default function Profil() {
   const { user } = useContext(UserContext);
-
+  console.info(user?.user?.img_url);
   return (
-    <div className=" flex flex-col justify-center items-center max-w-lg w-full bg-white shadow-lg rounded-lg overflow-hidden">
-      <div className="flex justify-center py-20">
+    <>
+      <div className="flex justify-center py-12">
         <div>
-          <div className="max-w-lg w-full bg-white shadow-lg rounded-lg overflow-hidden flex flex-col">
-            <TbPhotoEdit />
+          <div>
+            <button>
+              <TbPhotoEdit />
+            </button>
           </div>
-          <h1 className="text-xl  text-gray-800">
-            Profil de {user?.user?.firstname}
+          <img
+            className=" w-40 rounded-full mx-auto "
+            src={`http://localhost:3310/${user?.user?.img_url}`}
+            alt="user avatar"
+          />
+          <h1 className="text-xl  font-semibold text-gray-800 py-2 text-center">
+            {user?.user?.lastname} {user?.user?.firstname}
           </h1>
           <p className="mb-2">
             <div className="font-semibold">Email :{user?.user?.email} </div>
           </p>
         </div>
       </div>
-      <div className=" flex p-4">
-        <div className=" p-2">
-          <SlCalender />
+      <div className="flex flex-col items-center mx-auto w-1/3 rounded-2xl py-8 bg-violet">
+        <div className=" flex py-4 items-center">
+          <div className=" p-2 ">
+            <SlCalender className=" text-white" />
+          </div>
+          <Link to="/MesReservations">
+            <button className=" bg-slate-400  hover:bg-slate-500 rounded-full text-white font-bold w-64 py-2 px-4 ">
+              Mes réservations
+            </button>
+          </Link>
         </div>
-        <Link to="/MesReservations">
-          <button className=" bg-slate-300  hover:bg-slate-400 rounded-full text-white font-bold w-64 py-2 px-4 ">
-            Mes réservations
+        <div className=" flex py-4 items-center">
+          <div className=" p-2">
+            <IoSettingsOutline className=" text-white" />
+          </div>
+          <button className="bg-slate-400  hover:bg-slate-500 rounded-full text-white font-bold w-64 py-2 px-4">
+            Modifier le profil
           </button>
-        </Link>
-      </div>
-      <div className=" flex  p-4">
-        <div className=" p-2">
-          <IoSettingsOutline />
         </div>
-        <button className="bg-slate-300  hover:bg-slate-400 rounded-full text-white font-bold w-64 py-2 px-4">
-          Modifier le profil
-        </button>
-      </div>
-      <div className=" flex p-4">
-        <div className=" p-2">
-          <IoMdLogOut />
+        <div className=" flex py-4 items-center">
+          <div className=" p-2">
+            <IoMdLogOut className=" text-white" />
+          </div>
+          <button className="bg-slate-400  hover:bg-slate-500 rounded-full text-white font-bold w-64 py-2 px-4">
+            Déconnexion
+          </button>
         </div>
-        <button className="bg-slate-300  hover:bg-slate-400 rounded-full text-white font-bold w-64 py-2 px-4">
-          Déconnexion
-        </button>
       </div>
-    </div>
+    </>
   );
 }
