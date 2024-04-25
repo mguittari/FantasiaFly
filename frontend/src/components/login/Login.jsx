@@ -1,13 +1,14 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { IoMdLogOut } from "react-icons/io";
 import { FaUserCheck } from "react-icons/fa";
+import { IoMdLogOut } from "react-icons/io";
+import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/userContext";
 import ModalLogOut from "../modal/ModalLogOut";
 
 export default function Login() {
-  const { user, setUser } = useContext(UserContext);
+  const { user, setUser, updateToken, token } = useContext(UserContext);
+  console.info("user from Login", user);
   const [show, setShow] = useState(false);
   const navigate = useNavigate();
   const handleClick = () => {
@@ -15,12 +16,13 @@ export default function Login() {
       // method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}`,
+        Authorization: `Bearer ${token}`,
       },
     })
       .then((res) => res.json())
       .then((res) => {
-        localStorage.setItem("token", JSON.stringify(res));
+        console.info("res from Login", res);
+        updateToken(res);
         setUser({});
         navigate("/");
       })
