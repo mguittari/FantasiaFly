@@ -17,7 +17,7 @@ import ParticipantPage from "./pages/participant-page/ParticipantPage";
 import Success from "./pages/afterPayment/Success";
 import Cancel from "./pages/afterPayment/Cancel";
 import Payment from "./components/reservation/Payment";
-
+import ProfilPage from "./pages/profil-page/ProfilPage";
 
 function AppLayout() {
   return (
@@ -41,6 +41,7 @@ const router = createBrowserRouter([
       { path: "/pay", element: <Payment /> },
       { path: "/success", element: <Success /> },
       { path: "/cancel", element: <Cancel /> },
+      { path: "/myProfile", element: <ProfilPage /> },
     ],
   },
 ]);
