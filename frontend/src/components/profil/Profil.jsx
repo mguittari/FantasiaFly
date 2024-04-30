@@ -8,6 +8,7 @@ import { TbPhotoEdit } from "react-icons/tb";
 import { Link } from "react-router-dom";
 
 import { UserContext } from "../../context/userContext";
+import ButtonLogout from "../buttonLogout/ButtonLogout";
 
 export default function Profil() {
   const { user, token } = useContext(UserContext);
@@ -121,7 +122,7 @@ export default function Profil() {
             <IoMdLogOut className="text-white" />
           </div>
           <button className="bg-slate-400 hover:bg-slate-500 rounded-full text-white font-bold w-64 py-2 px-4">
-            Déconnexion
+            <ButtonLogout />
           </button>
         </div>
       </div>

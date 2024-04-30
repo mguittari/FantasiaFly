@@ -1,7 +1,7 @@
 import Button from "../button/button";
 
 // eslint-disable-next-line react/prop-types
-export default function ModalLogOut({ show, handleClick }) {
+export default function ModalLogOut({ show, handleClick, handleCancel }) {
   return (
     <div
       className={` ${
@@ -18,7 +18,10 @@ export default function ModalLogOut({ show, handleClick }) {
         }`}
       >
         <p className="pb-4 text-black">Voulez-vous vous déconnecter ?</p>
-        <Button type="button" content="confirmer" handleClick={handleClick} />
+        <div className="flex justify-center space-x-4">
+          <Button type="button" content="Annuler" handleClick={handleCancel} />
+          <Button type="button" content="Confirmer" handleClick={handleClick} />
+        </div>
       </div>
     </div>
   );
