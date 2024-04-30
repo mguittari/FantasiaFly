@@ -132,6 +132,7 @@ const create = async (req, res) => {
       postal_code,
       city,
       country,
+      role,
     } = req.body;
 
     let img_url = "";
@@ -150,6 +151,7 @@ const create = async (req, res) => {
       postal_code,
       city,
       country,
+      role,
       img_url
     );
 
@@ -204,24 +206,6 @@ const edit = async (req, res) => {
     res.status(500).send(error);
   }
 };
-// eslint-disable-next-line consistent-return
-// const editAvatar = async (req, res) => {
-//   try {
-//     const { id } = req.params;
-
-//     const { path: img_url } = req.file;
-
-//     const [result] = await tables.user.editUserOnlyAvatar(id, img_url);
-
-//     if (result) {
-//       res.status(200).json({ message: "Image updated!" });
-//     } else {
-//       res.status(401).send("Problem updating image");
-//     }
-//   } catch (error) {
-//     res.status(500).send(error.message || "Internal Server Error");
-//   }
-// };
 
 const editPassword = async (req, res) => {
   try {
@@ -240,26 +224,26 @@ const editPassword = async (req, res) => {
 
 const editOnlyPicture = async (req, res) => {
   try {
-    const { email } = req.body;
-    console.info("email:", email);
+    const id = req.payload;
+    console.info("id:", id);
+    console.info(req.file);
     const img_url = req.file.path;
     console.info("img_url:", img_url);
-    const [user] = await tables.user.queryGetUserByEmail(email);
+    const [user] = await tables.user.getUserById(id);
     console.info("user:", user);
 
     if (user.length) {
       console.info("je suis dans if");
-      fs.unlinkSync(user[0].img_url);
       await tables.user.editProfilPicture(img_url);
-      res.send("Image mise à jour avec succès");
+      res.json("Image mise à jour avec succès");
     } else {
       fs.unlinkSync(req.file.path);
 
-      res.status(401).send("verifier vos données");
+      res.status(401).json("verifier vos données");
     }
   } catch (error) {
-    fs.unlinkSync(req.file.path);
-    res.status(500).send(error);
+    // fs.unlinkSync(req.file.path);
+    res.status(500).json(error);
   }
 };
 
