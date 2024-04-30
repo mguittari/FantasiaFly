@@ -76,6 +76,7 @@ class userManager extends AbstractManager {
   getUserById(id) {
     return this.database.query(
       `select id, firstname, lastname, img_url, email, phone_number, address, postal_code, city, country, role from ${this.table} where id=?`,
+
       [id]
     );
   }
