@@ -234,7 +234,6 @@ const editOnlyPicture = async (req, res) => {
 
     if (user.length) {
       console.info("je suis dans if");
-      fs.unlinkSync(user[0].img_url);
       await tables.user.editProfilPicture(img_url);
       res.json("Image mise à jour avec succès");
     } else {

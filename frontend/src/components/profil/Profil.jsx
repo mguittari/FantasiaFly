@@ -1,22 +1,17 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
-/* eslint-disable react/no-unstable-nested-components */
 /* eslint-disable react/button-has-type */
-/* eslint-disable import/no-extraneous-dependencies */
 import { useContext, useState } from "react";
 import { IoMdLogOut } from "react-icons/io";
 import { IoSettingsOutline } from "react-icons/io5";
 import { SlCalender } from "react-icons/sl";
 import { TbPhotoEdit } from "react-icons/tb";
 import { Link } from "react-router-dom";
-import Avatar from "react-avatar-edit";
-import { Dialog } from "primereact/dialog";
-import { InputText } from "primereact/inputtext";
+
 import { UserContext } from "../../context/userContext";
 
 export default function Profil() {
   const { user, token } = useContext(UserContext);
-  const [imageCrop, setImageCrop] = useState(false);
-
+  const [inputVisible, setInputVisible] = useState(false); // Gestion de la visibilité de l'input
   const [image, setImage] = useState({
     image: user?.user?.img_url,
   });
@@ -31,71 +26,54 @@ export default function Profil() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append("image", image);
+    formData.append("avatar", image);
 
     fetch(`http://localhost:3310/api/users/${user?.user?.id}/update-picture`, {
       method: "PATCH",
       headers: {
-        "Content-Type": "multipart/form-data",
         Authorization: `Bearer ${token} `,
       },
       body: formData,
     })
       .then((res) => res.json())
-      .then((res) => setImage(res))
+      .then((res) => {
+        setImage(res);
+        setInputVisible(false);
+      })
       .catch((error) => console.error(error));
   };
   console.info(user?.user?.id);
   console.info(user?.user?.img_url);
   return (
     <>
-      <div className="flex justify-center py-12">
+      <div className="flex justify-center py-10">
         <div>
           <div>
-            <button>
-              <TbPhotoEdit
-                onClick={() => setImageCrop(true)}
-                onChange={handleChange}
-              />
-            </button>
-          </div>
-          <Dialog
-            className=" bg-white w-1/2 h-auto border-2"
-            visible={imageCrop}
-            header={() => (
-              <p htmlFor="" className="text-xl font-semibold">
-                Update picture
-              </p>
+            {inputVisible && (
+              <div className="flex">
+                <input
+                  type="file"
+                  accept=".jpeg, .jpg, .png"
+                  onChange={handleChange}
+                />
+                <div className=" items-center flex justify-center">
+                  <button
+                    type="submit"
+                    onClick={handleSubmit}
+                    className=" border-2 bg-slate-400 w-28 h-8 rounded-lg hover:bg-slate-300"
+                  >
+                    Save
+                  </button>
+                </div>
+              </div>
             )}
-            onHide={() => setImageCrop(false)}
-          >
-            <div className="confirmation-content flex flex-col items-center">
-              <Avatar
-                width={500}
-                height={400}
-                onCrop={() => {}}
-                onClose={() => {}}
-                shadingColor="#474649"
-                backgroundColor="#474649"
-              />
-            </div>
-
-            <InputText
-              type="file"
-              accept=".jpeg, .jpg, .png"
-              onChange={handleChange}
-            />
-
-            <div className=" items-center flex justify-center">
-              <button
-                type="submit"
-                onClick={handleSubmit}
-                className=" border-2 bg-violet w-36 h-10 rounded-lg hover:bg-slate-500"
-              >
-                Save
+            {!inputVisible && (
+              <button onClick={() => setInputVisible(true)}>
+                <TbPhotoEdit />
               </button>
-            </div>
-          </Dialog>
+            )}
+          </div>
+
           <img
             className="w-40 rounded-full mx-auto"
             src={
@@ -105,13 +83,17 @@ export default function Profil() {
             }
             alt="user avatar"
           />
-          <h1 className="text-xl font-semibold text-gray-800 py-2 text-center">
-            {user?.user?.lastname} {user?.user?.firstname}
-          </h1>
-          <p className="mb-2">
-            <div className="font-semibold">Email: {user?.user?.email}</div>
-          </p>
         </div>
+      </div>
+      <div className="flex flex-col py-6">
+        <h1 className="text-xl font-semibold text-gray-800 py-2 text-center">
+          {user?.user?.lastname} {user?.user?.firstname}
+        </h1>
+        <p className="mb-2">
+          <div className="font-semibold text-center">
+            Email: {user?.user?.email}
+          </div>
+        </p>
       </div>
       <div className="flex flex-col items-center mx-auto w-1/3 rounded-2xl py-8 bg-violet">
         <div className="flex py-4 items-center">
