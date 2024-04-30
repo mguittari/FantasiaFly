@@ -13,7 +13,7 @@ export default function Tab() {
   };
   const { id } = useParams();
   useEffect(() => {
-    fetch(`http://localhost:5000/api/travels/${id}/periods`)
+    fetch(`http://localhost:3310/api/travels/${id}/periods`)
       .then((res) => res.json())
       .then((res) => setPeriods(res))
       .catch((error) => console.info(error));

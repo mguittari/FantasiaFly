@@ -35,7 +35,7 @@ router.post("/logout", userControllers.logout);
 router.patch("/users/:id", userControllers.edit);
 
 router.get("/logout", userControllers.logout);
-router.patch("/users/:id", upload, userControllers.edit);
+// router.patch("/users/:id", upload, userControllers.edit);
 
 router.patch(
   "/users/:id/update-picture",

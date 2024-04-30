@@ -7,7 +7,7 @@ import londo from "../assets/Londo.png";
 export default function TravelsPage() {
   const [travels, setTravels] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/api/travels")
+    fetch("http://localhost:3310/api/travels")
       .then((res) => res.json())
       .then((data) => setTravels(data));
   }, []);
@@ -33,7 +33,7 @@ export default function TravelsPage() {
               <Link to={`/travel/${id}`}>
                 <img
                   className="w-full"
-                  src={`http://localhost:5000/${img_url}`}
+                  src={`http://localhost:3310/${img_url}`}
                   alt="test"
                 />
               </Link>

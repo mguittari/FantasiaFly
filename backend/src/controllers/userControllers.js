@@ -51,10 +51,10 @@ const readById = async (req, res) => {
     if (user.length) {
       res.status(200).json({ message: "isLogged", user: user[0] });
     } else {
-      res.status(401).send("verfier vos données");
+      res.status(401).json("verfier vos données");
     }
   } catch (error) {
-    res.status(500).send(error);
+    res.status(500).json(error);
   }
 };
 const readByEmail = async (req, res) => {
@@ -120,7 +120,6 @@ const logout = async (req, res) => {
 
 const create = async (req, res) => {
   try {
-    console.info(req.body);
     const {
       firstname,
       lastname,
@@ -132,7 +131,10 @@ const create = async (req, res) => {
       postal_code,
       city,
       country,
+      role,
     } = req.body;
+    console.info("controller create user:", req.body);
+    console.info("role?:", req.body.firstname);
 
     let img_url = "";
     if (req.file) {
@@ -150,7 +152,8 @@ const create = async (req, res) => {
       postal_code,
       city,
       country,
-      img_url
+      img_url,
+      role
     );
 
     if (result.affectedRows) {
@@ -198,10 +201,10 @@ const edit = async (req, res) => {
     if (result.affectedRows) {
       res.status(200).json({ message: "Account updated !" });
     } else {
-      res.status(401).send("probleme");
+      res.status(401).json("probleme");
     }
   } catch (error) {
-    res.status(500).send(error);
+    res.status(500).json(error);
   }
 };
 // eslint-disable-next-line consistent-return

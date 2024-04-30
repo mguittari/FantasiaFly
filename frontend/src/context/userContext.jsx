@@ -52,7 +52,7 @@ export function UserProvider({ children }) {
 
     fetchUserData();
   }, [token]);
-
+  console.info(user);
   const contextValue = useMemo(
     () => ({
       user,
