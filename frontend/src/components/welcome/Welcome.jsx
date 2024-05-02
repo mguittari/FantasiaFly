@@ -10,11 +10,11 @@ export default function Welcome() {
   const [results, setResults] = useState([]);
 
   return (
-    <div className="relative h-screen bg-cover bg-center">
+    <div className="relative h-screen bg-cover bg-center  ">
       <img
         src={welcome}
         alt="welcome"
-        className="absolute inset-0 w-full h-full"
+        className=" relative inset-0 w-full h-full"
       />
       <div className="absolute top-0 left-0 w-full h-full   opacity-50" />
       <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center">
