@@ -15,23 +15,20 @@ class userManager extends AbstractManager {
     lastname,
     birth_date,
     email,
-    img_url,
     hashPassword,
     phone_number,
     address,
     postal_code,
     city,
     country,
-    role
+    role,
+    img_url
   ) {
     const [result] = await this.database.query(
-      `insert into ${this.table} (firstname, lastname, birth_date, email, hashPassword, phone_number, address, postal_code, city, country, img_url, role) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-      [
-        firstname,
+      `insert into ${this.table} (firstname,
         lastname,
         birth_date,
         email,
-        img_url,
         hashPassword,
         phone_number,
         address,
@@ -39,6 +36,20 @@ class userManager extends AbstractManager {
         city,
         country,
         role,
+        img_url) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      [
+        firstname,
+        lastname,
+        birth_date,
+        email,
+        hashPassword,
+        phone_number,
+        address,
+        postal_code,
+        city,
+        country,
+        role,
+        img_url,
       ]
     );
     return result;
@@ -75,7 +86,7 @@ class userManager extends AbstractManager {
 
   getUserById(id) {
     return this.database.query(
-      `select id, firstname, lastname, img_url, email, phone_number, address, postal_code, city, country, role from ${this.table} where id=?`,
+      `select id, firstname, lastname, img_url, email, phone_number, address, postal_code, city, country, hashPassword, role from ${this.table} where id=?`,
 
       [id]
     );

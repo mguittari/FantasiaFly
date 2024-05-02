@@ -15,6 +15,7 @@ const periodController = require("./controllers/periodController");
 const travelPeriodController = require("./controllers/travelPeriodController");
 
 const hashPassword = require("./services/hashPassword");
+const hashEditPassword = require("./services/hashEditPassword");
 const verifyToken = require("./services/verifyToken");
 const isAdmin = require("./services/isAdmin");
 
@@ -43,8 +44,8 @@ router.patch(
   userControllers.editOnlyPicture
 );
 router.patch(
-  "/users/:id/update-password",
-  hashPassword,
+  "/users/update-password",
+  hashEditPassword,
   userControllers.editPassword
 );
 router.post("/payments", paymentController.create);

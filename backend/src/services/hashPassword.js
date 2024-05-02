@@ -21,12 +21,12 @@ const hashPassword = async (req, res, next) => {
       next();
     } else {
       fs.unlinkSync(req.file.path);
-      res.status(401).send("verifier vos données");
+      res.status(401).json("Vérifier vos données (hashPassword middleware)");
     }
   } catch (error) {
-    fs.unlinkSync(req.file.path);
+    // fs.unlinkSync(req.file.path);
 
-    res.status(500).send(error);
+    res.status(500).json(error);
   }
 };
 module.exports = hashPassword;

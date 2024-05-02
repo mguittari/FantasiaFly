@@ -155,7 +155,6 @@ const create = async (req, res) => {
 
       role,
       img_url
-
     );
 
     if (result.affectedRows) {
@@ -212,16 +211,19 @@ const edit = async (req, res) => {
 
 const editPassword = async (req, res) => {
   try {
-    const { id } = req.params;
-    const { hashPassword } = req.body;
-    const [result] = await tables.user.editUserOnlyPassword(id, hashPassword);
-    if (result.affectedRows) {
-      res.status(200).json({ message: "votre demande à été pris en compte" });
-    } else {
-      res.status(401).send("probleme");
-    }
+    const id = req.payload;
+    const { hashedPassword } = req.body;
+    console.info(id);
+    console.info(hashedPassword);
+    // const [result] = await tables.user.editUserOnlyPassword(id, hashedPassword);
+
+    // if (result.affectedRows) {
+    //   res.status(200).json({ message: "votre demande à été pris en compte" });
+    // } else {
+    //   res.status(401).json("probleme");
+    // }
   } catch (error) {
-    res.status(500).send(error);
+    res.status(500).json(error);
   }
 };
 
