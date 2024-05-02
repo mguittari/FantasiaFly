@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import { useContext, useState } from "react";
-import { FaUserCheck } from "react-icons/fa";
+
 import { IoMdLogOut } from "react-icons/io";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/userContext";
@@ -9,11 +9,17 @@ import ModalLogOut from "../modal/ModalLogOut";
 export default function Login() {
   const { user, setUser, updateToken, token } = useContext(UserContext);
   console.info("user from Login", user);
-  const [show, setShow] = useState(false);
+
+  const [showModal, setShowModal] = useState(false);
+
   const navigate = useNavigate();
+
+  const handleCancel = () => {
+    setShowModal(false);
+  };
+
   const handleClick = () => {
     fetch("http://localhost:3310/api/logout", {
-      // method: "POST",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
@@ -27,25 +33,32 @@ export default function Login() {
         navigate("/");
       })
       .catch((err) => console.info(err));
-    setShow(false);
+    setShowModal(false);
   };
   return (
     // eslint-disable-next-line react/jsx-no-useless-fragment
     <>
       {user.message === "isLogged" ? (
         <>
-          <ModalLogOut show={show} handleClick={handleClick} />
-          <div className="flex  gap-2">
-            <FaUserCheck />
-            <p>{user.user.lastname}</p>
+          <div className=" absolute z-20">
+            <ModalLogOut
+              show={showModal}
+              handleClick={handleClick}
+              handleCancel={handleCancel}
+            />
           </div>
-          <button
-            className="bg-transparent border-none"
-            type="button"
-            onClick={() => setShow(true)}
-          >
-            <IoMdLogOut />
-          </button>
+          <div className=" gap-8  items-center hidden md:flex">
+            <Link to="/myProfile">Mon profil</Link>
+
+            <button
+              className="bg-transparent border-none flex gap-8 items-center"
+              type="button"
+              onClick={() => setShowModal(true)}
+            >
+              Se déconnecter
+              <IoMdLogOut className="" />
+            </button>
+          </div>
         </>
       ) : (
         <ul className="hidden md:flex gap-8 ">

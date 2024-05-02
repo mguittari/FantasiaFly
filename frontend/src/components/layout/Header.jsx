@@ -13,23 +13,28 @@ export default function Header() {
     setShowMenu(!showMenu);
   };
   return (
-    <div className="bg-mm text-white flex justify-between p-4 items-center font-itim text-2xl">
-      <div className="flex items-center md:hidden ">
-        <IoMenuOutline onClick={toggleMenu} className="text-white" />
+    <div className="bg-mm text-white flex justify-between  p-4 md:p-8 gap-8 items-center font-itim text-2xl">
+      <div className="flex gap-8 items-center md:hidden  ">
+        <IoMenuOutline onClick={toggleMenu} className="text-white " />
       </div>
       <ul className="hidden md:flex gap-8 ">
         <li>
           <Link to="/travels">Nos destinations</Link>
         </li>
         <li>
-          <Link to="/">Concept</Link>
+          <Link to="/concept">Concept</Link>
         </li>
       </ul>
-      <div>
-        <img className=" w-20" src={img} alt="img" />
+      <Link to="/">
+        <img
+          className="  hidden md:flex left-1/2 transform -translate-x-1/2  absolute  z-10 w-36 top-6 "
+          src={img}
+          alt="img"
+        />
+      </Link>
+      <div className="  z-20">
+        <NavMobile active={showMenu} showMenu={toggleMenu} />
       </div>
-      <NavMobile active={showMenu} showMenu={toggleMenu} />
-      {/* </nav> */}
       <Login />
     </div>
   );
