@@ -25,7 +25,7 @@ const hashEditPassword = async (req, res, next) => {
             const hashedPassword = await argon2.hash(newPassword, hashOptions);
             delete req.body.oldPassword;
             delete req.body.newPassword;
-            req.body.hashedPassword = hashedPassword;
+            req.body.hashPassword = hashedPassword;
             next();
           } else {
             res.status(401).json("Vérifiez vos données");

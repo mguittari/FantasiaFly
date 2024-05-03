@@ -30,7 +30,7 @@ export default function EditPasswordPage() {
       return;
     }
 
-    fetch(`http://localhost:3310/api/users/update-password`, {
+    fetch(`http://localhost:3310/api/user/update-password`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

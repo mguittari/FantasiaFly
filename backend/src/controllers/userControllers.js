@@ -134,7 +134,7 @@ const create = async (req, res) => {
       role,
     } = req.body;
     console.info("controller create user:", req.body);
-    console.info("role?:", req.body.firstname);
+    console.info("role?:", req.body.role);
 
     let img_url = "";
     if (req.file) {
@@ -152,9 +152,8 @@ const create = async (req, res) => {
       postal_code,
       city,
       country,
-
-      role,
-      img_url
+      img_url,
+      role
     );
 
     if (result.affectedRows) {
@@ -212,16 +211,16 @@ const edit = async (req, res) => {
 const editPassword = async (req, res) => {
   try {
     const id = req.payload;
-    const { hashedPassword } = req.body;
+    const { hashPassword } = req.body;
     console.info(id);
-    console.info(hashedPassword);
-    // const [result] = await tables.user.editUserOnlyPassword(id, hashedPassword);
+    console.info(hashPassword);
+    const [result] = await tables.user.editUserOnlyPassword(id, hashPassword);
 
-    // if (result.affectedRows) {
-    //   res.status(200).json({ message: "votre demande à été pris en compte" });
-    // } else {
-    //   res.status(401).json("probleme");
-    // }
+    if (result.affectedRows) {
+      res.status(200).json({ message: "votre demande à été pris en compte" });
+    } else {
+      res.status(401).json("probleme");
+    }
   } catch (error) {
     res.status(500).json(error);
   }

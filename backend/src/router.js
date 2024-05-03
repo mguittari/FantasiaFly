@@ -33,10 +33,10 @@ router.use(verifyToken);
 router.get("/me", userControllers.readById);
 
 router.post("/logout", userControllers.logout);
-router.patch("/users/:id", userControllers.edit);
+// router.patch("/users/:id", userControllers.edit);
+router.patch("/users/:id", upload, userControllers.edit);
 
 router.get("/logout", userControllers.logout);
-// router.patch("/users/:id", upload, userControllers.edit);
 
 router.patch(
   "/users/:id/update-picture",
@@ -44,7 +44,7 @@ router.patch(
   userControllers.editOnlyPicture
 );
 router.patch(
-  "/users/update-password",
+  "/user/update-password",
   hashEditPassword,
   userControllers.editPassword
 );

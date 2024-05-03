@@ -21,8 +21,8 @@ class userManager extends AbstractManager {
     postal_code,
     city,
     country,
-    role,
-    img_url
+    img_url,
+    role
   ) {
     const [result] = await this.database.query(
       `insert into ${this.table} (firstname,
@@ -35,8 +35,8 @@ class userManager extends AbstractManager {
         postal_code,
         city,
         country,
-        role,
-        img_url) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+        img_url,
+        role) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
         firstname,
         lastname,
@@ -48,8 +48,8 @@ class userManager extends AbstractManager {
         postal_code,
         city,
         country,
-        role,
         img_url,
+        role,
       ]
     );
     return result;
