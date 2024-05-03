@@ -1,5 +1,5 @@
 import { useState, useContext, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { UserContext } from "../../context/userContext";
 import ModalUpdate from "../../components/modal/ModalUpdate";
 
@@ -172,11 +172,16 @@ export default function EditProfilePage() {
           placeholder="country"
           required
         />
-        <h2> Composant Mise à jour mot de passe</h2>
+        <label htmlFor="Mot de passe">Mot de passe</label>
+        <Link to="/edit-password">
+          <p className="bg-gray-300 hover:bg-gray-400 active:bg-gray-500 text-gray-800 font-semibold pl-2 h-12 rounded flex justify-center items-center">
+            Je modifie mon mot de passe
+          </p>
+        </Link>
 
         <button
           type="submit"
-          className="h-12 bg-vert text-white hover:border-2 hover:boder-slate-700 hover:bg-white hover:text-slate-700 transition-all duration-500"
+          className="h-12 bg-vert text-white hover:border-2 hover:boder-slate-700 hover:bg-white hover:text-slate-700 transition-all duration-500 font-bold"
         >
           Je valide
         </button>

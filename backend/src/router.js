@@ -15,6 +15,7 @@ const periodController = require("./controllers/periodController");
 const travelPeriodController = require("./controllers/travelPeriodController");
 
 const hashPassword = require("./services/hashPassword");
+const hashEditPassword = require("./services/hashEditPassword");
 const verifyToken = require("./services/verifyToken");
 const isAdmin = require("./services/isAdmin");
 
@@ -32,10 +33,10 @@ router.use(verifyToken);
 router.get("/me", userControllers.readById);
 
 router.post("/logout", userControllers.logout);
-router.patch("/users/:id", userControllers.edit);
+// router.patch("/users/:id", userControllers.edit);
+router.patch("/users/:id", upload, userControllers.edit);
 
 router.get("/logout", userControllers.logout);
-// router.patch("/users/:id", upload, userControllers.edit);
 
 router.patch(
   "/users/:id/update-picture",
@@ -43,8 +44,8 @@ router.patch(
   userControllers.editOnlyPicture
 );
 router.patch(
-  "/users/:id/update-password",
-  hashPassword,
+  "/user/update-password",
+  hashEditPassword,
   userControllers.editPassword
 );
 router.post("/payments", paymentController.create);
