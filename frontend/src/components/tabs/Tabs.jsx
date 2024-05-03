@@ -57,7 +57,13 @@ export default function Tab() {
               </tr>
             </thead>
             {periods.map(
-              ({ date_departure, date_return, duration_stay, unit_price }) => (
+              ({
+                date_departure,
+                date_return,
+                duration_stay,
+                unit_price,
+                id_period,
+              }) => (
                 <tbody>
                   <tr className="hover:bg-purple-400">
                     <td className="p-2">{date_departure}</td>
@@ -65,7 +71,7 @@ export default function Tab() {
                     <td className="p-2">{duration_stay} jours</td>
                     <td className="p-2">{unit_price} €</td>
                     <td className="p-2">
-                      <Link to="/participants">
+                      <Link to={`/Reservations/period/${id_period}`}>
                         <button
                           type="button"
                           className="bg-green-500 border border-white text-white py-1 px-2 rounded-md hover:bg-green-600 focus:outline-none focus:ring focus:ring-green-300"

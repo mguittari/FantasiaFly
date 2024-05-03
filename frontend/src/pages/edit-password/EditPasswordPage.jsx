@@ -10,16 +10,9 @@ export default function EditPasswordPage() {
     confirmPassword: "",
   });
 
-  // const [oldPassword, setOldPassword] = useState("");
-  // const [newPassword, setNewPassword] = useState("");
-  // const [confirmPassword, setConfirmPassword] = useState("");
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setData({ ...data, [name]: value });
-    // if (name === "oldPassword") setOldPassword(value);
-    // if (name === "newPassword") setNewPassword(value);
-    // if (name === "confirmPassword") setConfirmPassword(value);
   };
 
   const handleSubmit = (e) => {
