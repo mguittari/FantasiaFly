@@ -71,7 +71,7 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 //   }
 //   // Calculer le montant total
 //   // eslint-disable-next-line camelcase
-//   const totalAmount = unit_price * quantity;
+// const totalAmount = unit_price * quantity;
 //   // Retourner le montant total
 //   return totalAmount;
 // };
@@ -88,6 +88,8 @@ app.post("/pay", async (req, res) => {
       enabled: true,
     },
   });
+  console.info(paymentIntent);
+  console.info(totalAmount);
 
   res.json({
     clientSecret: paymentIntent.client_secret,

@@ -6,6 +6,7 @@ const verifyToken = (req, res, next) => {
     const headers = req.get("Authorization");
     // check token
     const [type, token] = headers.split(" ");
+    console.info(token);
     if (type === "Bearer") {
       const { payload } = jwt.verify(token, process.env.SECRET_KEY_JWT);
       req.payload = payload;

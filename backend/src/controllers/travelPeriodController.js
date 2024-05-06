@@ -39,4 +39,21 @@ const getPeriodsByIdTravel = async (req, res) => {
   }
 };
 
-module.exports = { choosePeriod, getPeriodsByIdTravel };
+const getTravelByIdPeriod = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const [travel] = await tables.travel_period.getTravelByIdPeriod(
+      parseInt(id, 10)
+    );
+    console.info("travel in controller getTravelByIdPeriod-->", travel);
+    if (travel.length) {
+      res.status(200).json(travel);
+    } else {
+      res.status(401).json("erreur");
+    }
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
+module.exports = { choosePeriod, getPeriodsByIdTravel, getTravelByIdPeriod };

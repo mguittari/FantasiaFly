@@ -74,7 +74,7 @@ const readByEmail = async (req, res) => {
             { payload: user[0].id },
             process.env.SECRET_KEY_JWT,
             {
-              expiresIn: "0.5h",
+              expiresIn: "4h",
             }
           );
 
@@ -178,26 +178,26 @@ const edit = async (req, res) => {
       firstname,
       lastname,
       birth_date,
-      email,
       phone_number,
       address,
       postal_code,
       city,
       country,
     } = req.body;
+    console.info(req.body);
 
     const [result] = await tables.user.editUserWithoutPassword(
       id,
       firstname,
       lastname,
       birth_date,
-      email,
       phone_number,
       address,
       postal_code,
       city,
       country
     );
+    console.info("result-->", result);
     if (result.affectedRows) {
       res.status(200).json({ message: "Account updated !" });
     } else {

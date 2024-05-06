@@ -11,9 +11,14 @@ export default function InscriptionForm() {
   const [formData, setFormData] = useState({
     firstname: "",
     lastname: "",
+    birth_date: "",
     email: "",
+    phone_number: "",
     password: "",
     address: "",
+    postal_code: "",
+    city: "",
+    country: "",
     img_url: "", // Champ pour stocker le chemin de l'image
   });
   console.info(formData);
@@ -67,6 +72,15 @@ export default function InscriptionForm() {
           onChange={handleChange}
           placeholder="Nom de famille"
         />
+        <h2>Date de naissance</h2>
+        <input
+          className="border-2 pl-2 h-12"
+          type="date"
+          name="birth_date"
+          value={formData.birth_date}
+          onChange={handleChange}
+          placeholder="Date de naissance"
+        />
         <h2>Address</h2>
         <input
           className="border-2 pl-2 h-12"
@@ -76,6 +90,33 @@ export default function InscriptionForm() {
           onChange={handleChange}
           placeholder="Address"
         />
+        <h2>Code Postal</h2>
+        <input
+          className="border-2 pl-2 h-12"
+          type="text"
+          name="postal_code"
+          value={formData.postal_code}
+          onChange={handleChange}
+          placeholder="Postal Code"
+        />
+        <h2>Ville</h2>
+        <input
+          className="border-2 pl-2 h-12"
+          type="text"
+          name="city"
+          value={formData.city}
+          onChange={handleChange}
+          placeholder="City"
+        />
+        <h2>Pays</h2>
+        <input
+          className="border-2 pl-2 h-12"
+          type="text"
+          name="country"
+          value={formData.country}
+          onChange={handleChange}
+          placeholder="country"
+        />
         <h2>Email</h2>
         <input
           className="border-2 pl-2 h-12"
@@ -84,6 +125,15 @@ export default function InscriptionForm() {
           value={formData.email}
           onChange={handleChange}
           placeholder="Email"
+        />
+        <h2>Numéro de téléphone</h2>
+        <input
+          className="border-2 pl-2 h-12"
+          type="texte"
+          name="phone_number"
+          value={formData.phone_number}
+          onChange={handleChange}
+          placeholder="Phone Number"
         />
         <h2>Mot de passe</h2>
         <input

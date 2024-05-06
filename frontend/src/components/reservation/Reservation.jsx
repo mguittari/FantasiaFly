@@ -1,26 +1,32 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable camelcase */
 /* eslint-disable react/button-has-type */
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 
 import { useLocation, useParams } from "react-router-dom";
+
+import { UserContext } from "../../context/userContext";
 
 export default function ReservationPage() {
   // Utilisez useLocation() pour récupérer les données de période et de prix total
   const location = useLocation();
   const { periodData } = location.state || {};
   const [showInfo, setShowInfo] = useState(false);
+  const { user, token } = useContext(UserContext);
+
+  console.info("user-->", user);
 
   const [dataForm, setDataForm] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    confirmEmail: "",
-    city: "",
-    country: "",
-    postalCode: "",
-    phone_number: "",
+    firstname: user.user.firstname,
+    lastname: user.user.lastname,
+    address: user.user.address,
+    city: user.user.city,
+    country: user.user.country,
+    postal_code: user.user.postal_code,
+    phone_number: user.user.phone_number,
   });
+
+  console.info("dataform in reservation page-->", dataForm);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -28,6 +34,22 @@ export default function ReservationPage() {
       ...dataForm,
       [name]: value,
     });
+  };
+
+  const handleSubmitInfoUser = () => {
+    fetch(`http://localhost:3310/api/users/${user.user.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(dataForm),
+    })
+      .then((res) => res.json())
+      .then((res) => console.info(res))
+      .catch((error) => {
+        console.error("Error:", error);
+      });
   };
 
   const handleSubmit = (e) => {
@@ -40,9 +62,15 @@ export default function ReservationPage() {
   useEffect(() => {
     fetch(`http://localhost:3310/api/travels/${id}`)
       .then((res) => res.json())
-      .then((data) => setTravel([data]))
+      .then((data) => setTravel(data))
       .catch((error) => console.info(error));
   }, []);
+
+  console.info("id?", id);
+  console.info("user id", user.user.id);
+  console.info("/me", user);
+  console.info(travel);
+  console.info("dataForm -->", dataForm);
 
   return (
     <div className=" flex flex-col">
@@ -60,72 +88,54 @@ export default function ReservationPage() {
         <form onSubmit={handleSubmit} className="space-y-4  p-4 shadow-2xl">
           <div className=" flex  gap-4">
             <div>
-              <label htmlFor="firstName" className="block">
+              <label htmlFor="firstname" className="block">
                 <div className=" flex">
                   Prénom<p className=" text-red-700">*</p>
                 </div>
               </label>
               <input
                 type="text"
-                id="firstName"
-                name="firstName"
-                value={dataForm.firstName}
+                id="firstname"
+                name="firstname"
+                value={dataForm.firstname}
                 onChange={handleChange}
                 required
                 className="border border-gray-300 rounded-md px-4 py-2 w-full"
               />
             </div>
             <div>
-              <label htmlFor="lastName" className="block">
+              <label htmlFor="lastname" className="block">
                 <div className=" flex">
                   Nom<p className=" text-red-700">*</p>
                 </div>
               </label>
               <input
                 type="text"
-                id="lastName"
-                name="lastName"
-                value={dataForm.lastName}
+                id="lastname"
+                name="lastname"
+                value={dataForm.lastname}
                 onChange={handleChange}
                 required
                 className="border border-gray-300 rounded-md px-4 py-2 w-full"
               />
             </div>
           </div>
-          <div className=" flex gap-4">
-            <div>
-              <label htmlFor="email" className="block">
-                <div className=" flex">
-                  Email<p className=" text-red-700">*</p>
-                </div>
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={dataForm.email}
-                onChange={handleChange}
-                required
-                className="border border-gray-300 rounded-md px-4 py-2 w-full"
-              />
-            </div>
-            <div>
-              <label htmlFor="confirmEmail" className="block">
-                <div className=" flex">
-                  Confirmer Email<p className=" text-red-700">*</p>
-                </div>
-              </label>
-              <input
-                type="email"
-                id="confirmEmail"
-                name="confirmEmail"
-                value={dataForm.confirmEmail}
-                onChange={handleChange}
-                required
-                className="border border-gray-300 rounded-md px-4 py-2 w-full"
-              />
-            </div>
-          </div>
+          {/* <div>
+            <label htmlFor="birth_date" className="block">
+              <div className=" flex">
+                Date de naissance<p className=" text-red-700">*</p>
+              </div>
+            </label>
+            <input
+              type="date"
+              id="birth_date"
+              name="birth_date"
+              value={dataForm.birth_date}
+              onChange={handleChange}
+              required
+              className="border border-gray-300 rounded-md px-4 py-2 w-full"
+            />
+          </div> */}
           <div className=" flex gap-4">
             <div>
               <label htmlFor="country" className="block">
@@ -186,7 +196,7 @@ export default function ReservationPage() {
               type="text"
               id="adress"
               name="address"
-              value={dataForm.adress}
+              value={dataForm.address}
               onChange={handleChange}
               required
               className="border border-gray-300 rounded-md px-4 py-2 w-full"
@@ -209,20 +219,14 @@ export default function ReservationPage() {
                 className="border border-gray-300 rounded-md px-4 py-2 w-full"
               />
             </div>
-            <div>
-              <label htmlFor="phoneNumber" className="block">
-                Téléphone 2(facultatif)
-              </label>
-              <input
-                type="tel"
-                id="phoneN"
-                name="phoneN"
-                value={dataForm.phoneN}
-                onChange={handleChange}
-                className="border border-gray-300 rounded-md px-4 py-2 w-full"
-              />
-            </div>
           </div>
+          <button
+            type="button"
+            onClick={handleSubmitInfoUser}
+            className="w-44 bg-gold text-white px-4 py-2 rounded-md hover:bg-gold"
+          >
+            Je confirme mes coordonnées
+          </button>
         </form>
 
         <div>
@@ -231,10 +235,7 @@ export default function ReservationPage() {
           </div>
           <div>
             {travel.map(({ destination_name, img_url }) => (
-              <div
-                key={id}
-                className="relative w-96 md:w-72 flex flex-col justify-center items-center gap-4 shadow-2xl p-7"
-              >
+              <div>
                 <h2 className="font-bold text-md text-center">
                   {destination_name}
                 </h2>
@@ -254,19 +255,20 @@ export default function ReservationPage() {
             >
               Voir les details de voyage
             </button>
-            {showInfo && (
-              <div className="absolute right-0 mt-2 w-72 bg-white border border-gray-300 shadow-lg rounded-lg p-4">
-                <p className="text-gray-800">
-                  Ceci est un petit onglet d'information.
-                </p>
-                <button
-                  className="mt-2 bg-slate-400 hover:bg-slate-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                  onClick={() => setShowInfo(false)}
-                >
-                  Voir moins
-                </button>
-              </div>
-            )}
+            {showInfo &&
+              travel.map(({ country, description }) => (
+                <div className="absolute right-0 mt-2 w-72 bg-white border border-gray-300 shadow-lg rounded-lg p-4">
+                  <p className="text-gray-800">{country}</p>
+                  <p className="text-gray-800">{description}</p>
+
+                  <button
+                    className="mt-2 bg-slate-400 hover:bg-slate-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    onClick={() => setShowInfo(false)}
+                  >
+                    Voir moins
+                  </button>
+                </div>
+              ))}
           </div>
         </div>
       </div>

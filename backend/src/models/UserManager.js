@@ -63,7 +63,7 @@ class userManager extends AbstractManager {
       `select *, DATE_FORMAT(birth_date, '%d-%m-%Y') AS birth_date from ${this.table} where id = ?`,
       [id]
     );
-
+    console.info(rows);
     // Return the first row of the result, which represents the user
     return rows[0];
   }
@@ -86,7 +86,7 @@ class userManager extends AbstractManager {
 
   getUserById(id) {
     return this.database.query(
-      `select id, firstname, lastname, img_url, email, phone_number, address, postal_code, city, country, hashPassword, role from ${this.table} where id=?`,
+      `select id, firstname, lastname, birth_date, img_url, email, phone_number, address, postal_code, city, country, hashPassword, role from ${this.table} where id=?`,
 
       [id]
     );
@@ -141,20 +141,29 @@ class userManager extends AbstractManager {
     firstname,
     lastname,
     birth_date,
-    email,
     phone_number,
     address,
     postal_code,
     city,
     country
   ) {
+    console.info({
+      id,
+      firstname,
+      lastname,
+      birth_date,
+      phone_number,
+      address,
+      postal_code,
+      city,
+      country,
+    });
     return this.database.query(
-      `UPDATE ${this.table} set firstname = ?, lastname = ?, birth_date = ?, email = ?, phone_number = ?, address = ?, postal_code = ?, city = ?, country = ? where id=?`,
+      `UPDATE ${this.table} set firstname = ?, lastname = ?, birth_date = ?, phone_number = ?, address = ?, postal_code = ?, city = ?, country = ? where id=?`,
       [
         firstname,
         lastname,
         birth_date,
-        email,
         phone_number,
         address,
         postal_code,
