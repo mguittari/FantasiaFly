@@ -177,7 +177,6 @@ const edit = async (req, res) => {
     const {
       firstname,
       lastname,
-      birth_date,
       phone_number,
       address,
       postal_code,
@@ -190,7 +189,6 @@ const edit = async (req, res) => {
       id,
       firstname,
       lastname,
-      birth_date,
       phone_number,
       address,
       postal_code,

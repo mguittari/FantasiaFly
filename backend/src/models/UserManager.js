@@ -140,30 +140,17 @@ class userManager extends AbstractManager {
     id,
     firstname,
     lastname,
-    birth_date,
     phone_number,
     address,
     postal_code,
     city,
     country
   ) {
-    console.info({
-      id,
-      firstname,
-      lastname,
-      birth_date,
-      phone_number,
-      address,
-      postal_code,
-      city,
-      country,
-    });
     return this.database.query(
-      `UPDATE ${this.table} set firstname = ?, lastname = ?, birth_date = ?, phone_number = ?, address = ?, postal_code = ?, city = ?, country = ? where id=?`,
+      `UPDATE ${this.table} set firstname = ?, lastname = ?, phone_number = ?, address = ?, postal_code = ?, city = ?, country = ? where id=?`,
       [
         firstname,
         lastname,
-        birth_date,
         phone_number,
         address,
         postal_code,

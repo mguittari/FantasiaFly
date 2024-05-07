@@ -40,7 +40,7 @@ export default function InscriptionForm() {
       .then((res) => res.json())
       // eslint-disable-next-line no-unused-vars
       .then((res) => {
-        navigate("/");
+        navigate("/connexion");
       })
       .catch((error) => {
         console.error("Error:", error);
