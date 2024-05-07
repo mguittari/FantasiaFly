@@ -18,27 +18,16 @@ const browse = async (req, res, next) => {
 const create = async (req, res) => {
   try {
     // eslint-disable-next-line camelcase
-    const { payment_date, unit_price, quantity, cancellation_insurance } =
-      req.body;
+    const { quantity, total_price } = req.body;
 
-    if (
-      !payment_date ||
-      !unit_price ||
-      !quantity ||
-      cancellation_insurance === undefined
-    ) {
+    if (!quantity || !total_price === undefined) {
       res
         .status(400)
         .send("Veuillez fournir toutes les informations nécessaires.");
       return;
     }
 
-    const result = await tables.payment.create(
-      payment_date,
-      unit_price,
-      quantity,
-      cancellation_insurance
-    );
+    const result = await tables.payment.create(quantity, total_price);
     if (result.affectedRows) {
       res.status(201).send(`Payment ok with id : ${result.insertId} `);
     } else {

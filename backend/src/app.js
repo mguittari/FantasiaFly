@@ -89,7 +89,7 @@ app.post("/pay", async (req, res) => {
     },
   });
   console.info(paymentIntent);
-  console.info(totalAmount);
+  console.info("totalAmount -->", totalAmount);
 
   res.json({
     clientSecret: paymentIntent.client_secret,

@@ -17,7 +17,7 @@ export default function Payment({ totalPrice }) {
     fetch("http://localhost:3310/pay", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ totalAmount: 100 }),
+      body: JSON.stringify({ totalAmount: totalPrice[0] }),
     })
       .then((res) => res.json())
       .then((data) => setClientSecret(data.clientSecret));
