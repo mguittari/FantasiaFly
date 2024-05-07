@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import CheckoutForm from "../stripe/CheckoutForm";
 
 const stripePromise = loadStripe(
-  "pk_test_51HaUZjFs5eldFP7lkxwEQ01EsRIQWnzDKtxXw3r3Kr9osvn4QOQ4yF4NpD3CJT7T7JkDO5Mswoyy5aIs3YFUxhMA00LLHgtZr9"
+  "pk_test_51P5ZPi1Tf5Roqbp5Lg8nvqh4QrG4YFk9O3hMrAP6PMl0GUHfTXu9mzUre6WlzhYlGJzWBC8Zv555NgEefGp13clO00u0pkFpcG"
 );
 export default function Payment() {
   const [clientSecret, setClientSecret] = useState("");

@@ -11,7 +11,7 @@ import { UserContext } from "../../context/userContext";
 import ButtonLogout from "../buttonLogout/ButtonLogout";
 
 export default function Profil() {
-  const { user, token } = useContext(UserContext);
+  const { user } = useContext(UserContext);
   const [inputVisible, setInputVisible] = useState(false); // Gestion de la visibilité de l'input
   const [image, setImage] = useState({
     image: user?.user?.img_url,
@@ -32,7 +32,7 @@ export default function Profil() {
     fetch(`http://localhost:3310/api/users/${user?.user?.id}/update-picture`, {
       method: "PATCH",
       headers: {
-        Authorization: `Bearer ${token} `,
+        Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}`,
       },
       body: formData,
     })
@@ -46,8 +46,8 @@ export default function Profil() {
   console.info(user?.user?.id);
   console.info(user?.user?.img_url);
   return (
-    <>
-      <div className="flex justify-center py-10">
+    <div className="py-8">
+      <div className="flex justify-center py-24">
         <div>
           <div>
             {inputVisible && (
@@ -80,23 +80,22 @@ export default function Profil() {
             src={
               user?.user?.img_url
                 ? `http://localhost:3310/${user?.user?.img_url}`
-                : ""
+                : "src/assets/avatar.png"
             }
             alt="user avatar"
           />
         </div>
       </div>
-      <div className="flex flex-col py-6">
-        <h1 className="text-xl font-semibold text-gray-800 py-2 text-center">
+      <div className="flex flex-col ">
+        <h1 className="text-xl font-semibold text-gray-800   text-center">
           {user?.user?.lastname} {user?.user?.firstname}
         </h1>
-        <p className="mb-2">
-          <div className="font-semibold text-center">
-            Email: {user?.user?.email}
-          </div>
-        </p>
+
+        <div className="font-semibold text-center py-2">
+          Email: {user?.user?.email}
+        </div>
       </div>
-      <div className="flex flex-col items-center mx-auto w-1/3 rounded-2xl py-8 bg-violet">
+      <div className="flex flex-col items-center mx-auto w-1/3 rounded-2xl py-8  bg-violet ">
         <div className="flex py-4 items-center">
           <div className="p-2">
             <SlCalender className="text-white" />
@@ -126,6 +125,6 @@ export default function Profil() {
           </button>
         </div>
       </div>
-    </>
+    </div>
   );
 }
