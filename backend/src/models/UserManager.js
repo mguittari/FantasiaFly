@@ -105,12 +105,11 @@ class userManager extends AbstractManager {
                 JSON_OBJECT(
             'destination', t.destination_name,
             'n°réservation', b.id,
-            'date de la réservation', b.booking_date,
-            'insurance_annulation', p.cancellation_insurance,
+            'date de la réservation', b.created_at,
             'quantity', p.quantity,
             'date_departure', pr.date_departure,
             'date_return', pr.date_return,
-            'total_price', FORMAT(p.quantity * p.unit_price, 2)
+            'total_price', FORMAT(p.quantity * pr.unit_price, 2)
                             ))
                     as bookings from user as u 
                     join booking as b on u.id = b.id_user

@@ -59,6 +59,7 @@ app.use(express.json());
 // eslint-disable-next-line consistent-return
 
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+const tables = require("./tables");
 
 // eslint-disable-next-line camelcase
 // const calculateOrderAmount = (unit_price, quantity) => {
@@ -79,6 +80,11 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 app.post("/pay", async (req, res) => {
   const { totalAmount } = req.body;
 
+  console.info(totalAmount);
+
+  const result = await tables.payment.create(totalAmount);
+  console.info("result-->", result);
+
   // Create a PaymentIntent with the order amount and currency
   const paymentIntent = await stripe.paymentIntents.create({
     amount: totalAmount,
@@ -88,7 +94,7 @@ app.post("/pay", async (req, res) => {
       enabled: true,
     },
   });
-  console.info(paymentIntent);
+  console.info("payment intent -->", paymentIntent);
   console.info("totalAmount -->", totalAmount);
 
   res.json({

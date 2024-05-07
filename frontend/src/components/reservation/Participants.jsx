@@ -155,7 +155,7 @@ export default function Participants() {
         {currentStep === 3 && (
           <div>
             {/* Affichez ici les éléments spécifiques à l'étape 3 */}
-            <Payment totalPrice={totalPrice} />
+            <Payment totalPrice={totalPrice} quantity={nbPlace} />
           </div>
         )}
         <div className=" flex justify-center gap-16 py-8">

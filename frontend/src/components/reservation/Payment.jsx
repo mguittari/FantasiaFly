@@ -7,10 +7,11 @@ const stripePromise = loadStripe(
   "pk_test_51P5ZPi1Tf5Roqbp5Lg8nvqh4QrG4YFk9O3hMrAP6PMl0GUHfTXu9mzUre6WlzhYlGJzWBC8Zv555NgEefGp13clO00u0pkFpcG"
 );
 // eslint-disable-next-line react/prop-types
-export default function Payment({ totalPrice }) {
+export default function Payment({ totalPrice, quantity }) {
   const [clientSecret, setClientSecret] = useState("");
 
   console.info(totalPrice);
+  console.info(quantity);
 
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
@@ -25,6 +26,7 @@ export default function Payment({ totalPrice }) {
   console.info("clientSecret", clientSecret);
   return (
     <div>
+      <p>Nombre de places : {quantity}</p>
       <p>Montant à régler : {totalPrice} € TTC </p>
       {clientSecret && (
         <Elements stripe={stripePromise}>

@@ -29,12 +29,12 @@ const create = async (req, res) => {
 
     const result = await tables.payment.create(quantity, total_price);
     if (result.affectedRows) {
-      res.status(201).send(`Payment ok with id : ${result.insertId} `);
+      res.status(201).json(`Payment ok with id : ${result.insertId} `);
     } else {
-      res.status(401).send("erreur lors de l'enregistrement");
+      res.status(401).json("erreur lors de l'enregistrement");
     }
   } catch (error) {
-    res.status(500).send(error);
+    res.status(500).json(error);
   }
 };
 
