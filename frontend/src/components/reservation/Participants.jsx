@@ -12,16 +12,12 @@ export default function Participants() {
   const [complete, setComplete] = useState(false);
   const [nbPlace, setNbPlace] = useState(1);
 
-  const [dataForm, setDataForm] = useState({
-    email: "",
-  });
-
   const { id } = useParams();
   const [period, setPeriod] = useState([]);
-  console.info(period);
+  console.info("period", period);
 
   useEffect(() => {
-    fetch(`http://localhost:3310/api/periods/${id}`, {
+    fetch(`http://localhost:3310/api/period/${id}/travel`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}`,
@@ -32,14 +28,6 @@ export default function Participants() {
       .catch((error) => console.info(error));
   }, []);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setDataForm({
-      ...dataForm,
-      [name]: value,
-    });
-  };
-
   const incrementPlace = () => {
     setNbPlace(nbPlace + 1);
   };
@@ -49,6 +37,10 @@ export default function Participants() {
       setNbPlace(nbPlace - 1);
     }
   };
+
+  const totalPrice = period.map(({ unit_price }) => {
+    return unit_price * nbPlace;
+  });
 
   return (
     <div className="relative">
@@ -123,7 +115,7 @@ export default function Participants() {
                       </div>
                       <div className="flex gap-4">
                         <p className="font-bold">Prix total</p>
-                        <p className=" ">{unit_price * nbPlace} euros</p>
+                        <p className=" ">{unit_price * nbPlace} €</p>
                       </div>
                     </div>
                   )
@@ -150,26 +142,6 @@ export default function Participants() {
                   +
                 </button>
               </div>
-              <div className="flex p-4 justify-end ">
-                <p className=" text-red-700">*</p>
-                <p className="fond-bold"> Champs obligatoire</p>
-              </div>
-              <div>
-                <label htmlFor="email" className="block">
-                  <div className=" flex">
-                    Email<p className=" text-red-700">*</p>
-                  </div>
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={dataForm.email}
-                  onChange={handleChange}
-                  required
-                  className="border border-gray-300 rounded-md px-4 py-2 w-full"
-                />
-              </div>
             </div>
           </div>
         )}
@@ -183,39 +155,33 @@ export default function Participants() {
         {currentStep === 3 && (
           <div>
             {/* Affichez ici les éléments spécifiques à l'étape 3 */}
-            <Payment />
+            <Payment totalPrice={totalPrice} />
           </div>
         )}
         <div className=" flex justify-center gap-16 py-8">
-          {currentStep !== 3 && (
-            <p className=" p-10 font-bold  ">
-              En cliquant sur "Réserver", j'enregistre mes coordonnées et valide
-              mon inscription <br /> au programme de fidélisation de Fram. Voir
-              notre Charte de Confidentialité.
-            </p>
-          )}
-
           <div className=" p-10">
-            {!complete && (
-              <Link
-                to={{
-                  pathname: `/reservations/travel/${id}`,
-                }}
-              >
-                <button
-                  type="button"
-                  className="w-44 bg-vert text-white px-4 py-2 rounded-md hover:bg-green-800"
-                  onClick={() => {
-                    // eslint-disable-next-line no-unused-expressions
-                    currentStep === steps.length
-                      ? setComplete(true)
-                      : setCurrentStep((prev) => prev + 1);
+            {!complete &&
+              period.map(({ id_travel }) => (
+                <Link
+                  key={id_travel}
+                  to={{
+                    pathname: `/reservations/travel/${id_travel}`,
                   }}
                 >
-                  {currentStep === steps.length ? "Finish" : "Réserver"}
-                </button>
-              </Link>
-            )}
+                  <button
+                    type="button"
+                    className="w-44 bg-vert text-white px-4 py-2 rounded-md hover:bg-green-800"
+                    onClick={() => {
+                      // eslint-disable-next-line no-unused-expressions
+                      currentStep === steps.length
+                        ? setComplete(true)
+                        : setCurrentStep((prev) => prev + 1);
+                    }}
+                  >
+                    {currentStep === steps.length ? "Finish" : "Réserver"}
+                  </button>
+                </Link>
+              ))}
           </div>
         </div>
       </div>

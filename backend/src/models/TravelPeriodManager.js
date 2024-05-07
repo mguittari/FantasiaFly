@@ -25,6 +25,14 @@ class TravelPeriodManager extends AbstractManager {
     );
     return periods;
   }
+
+  async getTravelByIdPeriod(id) {
+    const travel = await this.database.query(
+      `select * from ${this.table} join travel on travel.id = ${this.table}.id_travel join period on period.id = ${this.table}.id_period WHERE id_period = ?`,
+      [id]
+    );
+    return travel;
+  }
 }
 
 module.exports = TravelPeriodManager;

@@ -26,13 +26,13 @@ export default function CheckoutForm({ clientSecret }) {
         },
       }
     );
-
+    console.info("Payment Intent:", paymentIntent);
+    console.info("error", error);
     if (error) {
       console.error("Payment Confirmation Error:", error);
       setMessage("echec");
       setLoading(false);
     } else {
-      console.info("Payment Intent:", paymentIntent);
       setLoading(false);
       setMessage(paymentIntent.status);
       setTimeout(() => {

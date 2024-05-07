@@ -27,6 +27,7 @@ router.get("/travels/:id", travelController.read);
 router.get("/periods", periodController.browse);
 
 router.get("/travels/:id/periods", travelPeriodController.getPeriodsByIdTravel);
+router.get("/period/:id/travel", travelPeriodController.getTravelByIdPeriod);
 
 router.use(verifyToken);
 // routes utilisateur
@@ -34,7 +35,7 @@ router.get("/me", userControllers.readById);
 
 router.post("/logout", userControllers.logout);
 // router.patch("/users/:id", userControllers.edit);
-router.patch("/users/:id", upload, userControllers.edit);
+router.patch("/users/:id", userControllers.edit);
 
 router.get("/logout", userControllers.logout);
 
