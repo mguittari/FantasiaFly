@@ -29,7 +29,7 @@ const createPayment = async (req, res) => {
     const result = await tables.payment.create(totalPrice, quantity);
 
     if (result.affectedRows) {
-      res.status(201).json(`Payment ok with id : ${result.insertId} `);
+      res.status(201).json(result.insertId);
     } else {
       res.status(401).json("erreur lors de l'enregistrement");
     }

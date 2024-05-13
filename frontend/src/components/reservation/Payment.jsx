@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import CheckoutForm from "../stripe/CheckoutForm";
 
 const stripePromise = loadStripe(
-  "pk_test_51HaUZjFs5eldFP7lkxwEQ01EsRIQWnzDKtxXw3r3Kr9osvn4QOQ4yF4NpD3CJT7T7JkDO5Mswoyy5aIs3YFUxhMA00LLHgtZr9"
+  "pk_test_51P97enCpAjFkrctJ02lKDRdtKzUDc6NXWQwJH03RqAbwzYNzF9QIWS9C43p0hkjKYs5F2zeS2wjy2MsLjw84pmEz00x4ofOq1e"
 );
 // eslint-disable-next-line react/prop-types
 export default function Payment({ totalPrice, quantity }) {

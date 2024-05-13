@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import React, { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Success from "../../assets/success.svg";
 import { UserContext } from "../../context/userContext";
 
@@ -14,9 +14,12 @@ export default function CheckoutForm({
   const navigate = useNavigate();
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
+  const [paymentId, setPaymentId] = useState("");
   const stripe = useStripe();
   const elements = useElements();
-  const { token } = useContext(UserContext);
+  const { user, token } = useContext(UserContext);
+  const params = useParams();
+  console.info(params);
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -51,6 +54,20 @@ export default function CheckoutForm({
         .then((res) => res.json())
         .then((data) => {
           console.info("data", data);
+          setPaymentId(data);
+          fetch("http://localhost:3310/api/bookings", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({
+              id_payment: paymentId,
+              // id_travel,
+              // id_period,
+              id_user: user.user.id,
+            }),
+          });
           navigate("/");
         })
         .catch((err) => console.info(err));
