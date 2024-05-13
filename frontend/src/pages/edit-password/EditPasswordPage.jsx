@@ -42,7 +42,7 @@ export default function EditPasswordPage() {
   };
 
   return (
-    <div className="py-10 bg-cream">
+    <div className="py-24 bg-cream">
       <form
         className="w-96 mx-auto flex flex-col justify-center gap-4 bg-white p-5 shadow-xl rounded-2xl"
         onSubmit={handleSubmit}
@@ -51,7 +51,7 @@ export default function EditPasswordPage() {
 
         <label htmlFor="old-password">Ancien mot de passe</label>
         <input
-          className="border-2 pl-2 h-12"
+          className="shadow appearance-none border rounded w-full  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           type="text"
           name="oldPassword"
           value={data.oldPassword}
@@ -61,7 +61,7 @@ export default function EditPasswordPage() {
         />
         <label htmlFor="new-password">Nouveau mot de passe</label>
         <input
-          className="border-2 pl-2 h-12"
+          className="shadow appearance-none border rounded w-full  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           type="text"
           name="newPassword"
           value={data.newPassword}
@@ -73,7 +73,7 @@ export default function EditPasswordPage() {
           Confirmation nouveau mot de passe
         </label>
         <input
-          className="border-2 pl-2 h-12"
+          className="shadow appearance-none border rounded w-full  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           type="text"
           name="confirmPassword"
           value={data.confirmPassword}
