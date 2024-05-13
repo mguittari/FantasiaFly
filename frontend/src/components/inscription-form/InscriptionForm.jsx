@@ -80,6 +80,7 @@ export default function InscriptionForm() {
                 value={formData.firstname}
                 onChange={handleChange}
                 placeholder="Firstname"
+                required
               />
             </div>
             <div className="flex flex-col">
@@ -91,6 +92,7 @@ export default function InscriptionForm() {
                 value={formData.lastname}
                 onChange={handleChange}
                 placeholder="Lastname"
+                required
               />
             </div>
           </div>
@@ -103,6 +105,7 @@ export default function InscriptionForm() {
               value={formData.birth_date}
               onChange={handleChange}
               placeholder="Date de naissance"
+              required
             />
           </div>
           <div className="flex flex-row gap-6 md:w-96 ">
@@ -115,6 +118,7 @@ export default function InscriptionForm() {
                 value={formData.address}
                 onChange={handleChange}
                 placeholder="Address"
+                required
               />
             </div>
             <div>
@@ -126,6 +130,7 @@ export default function InscriptionForm() {
                 value={formData.postal_code}
                 onChange={handleChange}
                 placeholder="Postal Code"
+                required
               />
             </div>
           </div>
@@ -139,6 +144,7 @@ export default function InscriptionForm() {
                 value={formData.city}
                 onChange={handleChange}
                 placeholder="City"
+                required
               />
             </div>
             <div>
@@ -150,6 +156,7 @@ export default function InscriptionForm() {
                 value={formData.country}
                 onChange={handleChange}
                 placeholder="country"
+                required
               />
             </div>
           </div>
@@ -162,6 +169,7 @@ export default function InscriptionForm() {
               value={formData.phone_number}
               onChange={handleChange}
               placeholder="Phone Number"
+              required
             />
           </div>
           <div className="md:w-96">
@@ -173,6 +181,7 @@ export default function InscriptionForm() {
               value={formData.email}
               onChange={handleChange}
               placeholder="Email"
+              required
             />
           </div>
 
@@ -185,6 +194,7 @@ export default function InscriptionForm() {
               value={formData.password}
               onChange={handleChange}
               placeholder="Mot de passe"
+              required
             />
           </div>
 
