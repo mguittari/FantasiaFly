@@ -18,12 +18,13 @@ class PaymentManager extends AbstractManager {
     return rows;
   }
 
-  async create(quantity, total_price) {
+  async create(total_price, quantity) {
     const [result] = await this.database.query(
-      `insert into ${this.table} (quantity, total_price) values (?, ?)`,
+      `insert into ${this.table} (total_price, quantity) values (?, ?)`,
       // eslint-disable-next-line camelcase
-      [quantity, total_price]
+      [total_price, quantity]
     );
+    console.info("result in manager -->", result);
     return result;
   }
 

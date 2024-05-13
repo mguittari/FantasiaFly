@@ -20,6 +20,9 @@ import ParticipantPage from "./pages/participant-page/ParticipantPage";
 import ProfilPage from "./pages/profil-page/ProfilPage";
 import EditProfilePage from "./pages/edit-profile-page/EditProfilePage";
 import EditPasswordPage from "./pages/edit-password/EditPasswordPage";
+
+import MyBookingsPage from "./pages/my-bookings-page/MyBookingsPage";
+
 import ConceptPage from "./pages/concept/ConceptPage";
 
 function AppLayout() {
@@ -49,7 +52,9 @@ const router = createBrowserRouter([
       { path: "/myProfile", element: <ProfilPage /> },
       { path: "/edit-profile", element: <EditProfilePage /> },
       { path: "/edit-password", element: <EditPasswordPage /> },
+      { path: "/my-bookings", element: <MyBookingsPage /> },
       { path: "/concept", element: <ConceptPage /> },
+
     ],
   },
 ]);

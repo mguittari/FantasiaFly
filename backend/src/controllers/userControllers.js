@@ -93,14 +93,17 @@ const readByEmail = async (req, res) => {
 const getAllBookingsByUser = async (req, res) => {
   try {
     const { id } = req.params;
-    const [bookings] = await await tables.user.getAllBookingsByUser(id);
+    const [bookings] = await tables.user.getAllBookingsByUser(id);
+    console.info(id);
+    console.info(bookings);
+
     if (bookings) {
       res.json(bookings);
     } else {
-      res.status(401).send("client n'existe pas avec cette reservation");
+      res.status(401).json("client n'existe pas avec cette reservation");
     }
   } catch (error) {
-    res.status(500).send(error);
+    res.status(500).json(error);
   }
 };
 const logout = async (req, res) => {

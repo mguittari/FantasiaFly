@@ -59,6 +59,7 @@ app.use(express.json());
 // eslint-disable-next-line consistent-return
 
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+const tables = require("./tables");
 
 // eslint-disable-next-line camelcase
 // const calculateOrderAmount = (unit_price, quantity) => {
@@ -77,18 +78,24 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 // };
 
 app.post("/pay", async (req, res) => {
-  const { totalAmount } = req.body;
+  const { totalAmount, quantity } = req.body;
+
+  console.info("totalAmount-->", totalAmount);
+
+  const result = await tables.payment.create(totalAmount, quantity);
+  console.info("result-->", result);
+  console.info("quantity-->", quantity);
 
   // Create a PaymentIntent with the order amount and currency
   const paymentIntent = await stripe.paymentIntents.create({
-    amount: totalAmount,
+    amount: totalAmount * 100,
     currency: "eur",
     // In the latest version of the API, specifying the `automatic_payment_methods` parameter is optional because Stripe enables its functionality by default.
     automatic_payment_methods: {
       enabled: true,
     },
   });
-  console.info(paymentIntent);
+  console.info("payment intent -->", paymentIntent);
   console.info("totalAmount -->", totalAmount);
 
   res.json({
