@@ -15,20 +15,18 @@ const browse = async (req, res, next) => {
   }
 };
 
-const create = async (req, res) => {
+const createPayment = async (req, res) => {
   try {
     // eslint-disable-next-line camelcase
-    const { total_price, quantity } = req.body;
+    const { totalPrice, quantity } = req.body;
 
-    console.info(req.body);
-
-    if (!total_price || !quantity) {
+    if (!totalPrice || !quantity) {
       res
         .status(400)
         .send("Veuillez fournir toutes les informations nécessaires.");
       return;
     }
-    const result = await tables.payment.create(total_price, quantity);
+    const result = await tables.payment.create(totalPrice, quantity);
 
     if (result.affectedRows) {
       res.status(201).json(`Payment ok with id : ${result.insertId} `);
@@ -58,6 +56,6 @@ const deletePaymentAndBooking = async (req, res) => {
 
 module.exports = {
   browse,
-  create,
+  createPayment,
   deletePaymentAndBooking,
 };

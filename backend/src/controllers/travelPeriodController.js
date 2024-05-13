@@ -23,15 +23,14 @@ const choosePeriod = async (req, res) => {
 const getPeriodsByIdTravel = async (req, res) => {
   try {
     const { id } = req.params;
-    // console.info(id);
+
     const [periods] = await tables.travel_period.getPeriodsByIdTravel(
       parseInt(id, 10)
     );
-    console.info(periods);
+
     if (periods.length) {
       res.status(200).json(periods);
     } else {
-      console.info(id);
       res.status(401).json("erreur");
     }
   } catch (error) {

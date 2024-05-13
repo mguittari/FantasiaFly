@@ -87,7 +87,6 @@ const updateTravelPicture = async (req, res) => {
     const [travel] = await tables.travel.read(id);
 
     if (travel.length) {
-      console.info("je suis dans if");
       fs.unlinkSync(travel[0].img_url);
       await tables.travel.editTravelPicture(id, img_url);
       res.send("Image mise à jour avec succès");

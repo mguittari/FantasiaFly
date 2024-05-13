@@ -1,12 +1,13 @@
 /* eslint-disable react/prop-types */
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Success from "../../assets/success.svg";
+import { UserContext } from "../../context/userContext";
 
 export default function CheckoutForm({
   clientSecret,
-  setClientSecret,
+
   quantity,
   totalPrice,
 }) {
@@ -15,7 +16,7 @@ export default function CheckoutForm({
   const [loading, setLoading] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
-
+  const { token } = useContext(UserContext);
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -31,25 +32,28 @@ export default function CheckoutForm({
         },
       }
     );
-    console.info("quantity(checkout form)-->", quantity);
-    console.info("total_price(checkout form)-->", totalPrice);
+
     if (error) {
-      console.error("Payment Confirmation Error:", error);
       setMessage("echec");
       setLoading(false);
     } else {
       setLoading(false);
       setMessage(paymentIntent.status);
+
       fetch("http://localhost:3310/api/payments", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(totalPrice, quantity),
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ totalPrice: totalPrice[0], quantity }),
       })
         .then((res) => res.json())
-        .then((data) => setClientSecret(data.clientSecret));
-      setTimeout(() => {
-        navigate("/");
-      }, 2000);
+        .then((data) => {
+          console.info("data", data);
+          navigate("/");
+        })
+        .catch((err) => console.info(err));
     }
   };
 

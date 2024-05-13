@@ -9,6 +9,7 @@ import { UserContext } from "../../context/userContext";
 export default function LoginPage() {
   const navigate = useNavigate();
   const { updateToken } = useContext(UserContext);
+  const [message, setMessage] = useState("");
   const [dataForm, setDataForm] = useState({
     email: "",
     password: "",
@@ -30,7 +31,15 @@ export default function LoginPage() {
     })
       .then((res) => res.json())
       .then((res) => {
-        updateToken(res);
+        console.info("status res", res);
+        if (res.status === 401) {
+          console.error(
+            `Failed to fetch user data. HTTP status: ${res.status}`
+          );
+          setMessage(res.message);
+          return;
+        }
+        updateToken(res.token);
         navigate("/");
       })
       .catch((err) => console.info("err :>>", err));
@@ -44,22 +53,28 @@ export default function LoginPage() {
           onSubmit={handlSubmit}
         >
           <h1 className=" mt-8 font-jacques text-xl">Se connecter</h1>
-          <input
-            className="border-2 pl-2 h-12 "
-            type="email"
-            name="email"
-            value={dataForm.email}
-            onChange={handlChange}
-            placeholder="Eamil"
-          />
-          <input
-            className="border-2 pl-2 h-12"
-            type="password"
-            name="password"
-            value={dataForm.password}
-            onChange={handlChange}
-            placeholder="Password"
-          />
+          <div className="relative flex flex-col gap-3 pb-10">
+            <input
+              className="border-2 pl-2 h-12 "
+              type="email"
+              name="email"
+              value={dataForm.email}
+              onChange={handlChange}
+              placeholder="Eamil"
+            />
+            <input
+              className="border-2 pl-2 h-12"
+              type="password"
+              name="password"
+              value={dataForm.password}
+              onChange={handlChange}
+              placeholder="Password"
+            />
+            {message && (
+              <p className="absolute bottom-0 text-red-600">{message}</p>
+            )}
+          </div>
+
           <button
             type="submit"
             className=" bg-vert text-white h-12 hover:border-2 hover:border-slate-700 hover:bg-white hover:text-slate-700 transition-all duration-500"

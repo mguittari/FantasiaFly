@@ -63,7 +63,7 @@ class userManager extends AbstractManager {
       `select *, DATE_FORMAT(birth_date, '%d-%m-%Y') AS birth_date from ${this.table} where id = ?`,
       [id]
     );
-    console.info(rows);
+
     // Return the first row of the result, which represents the user
     return rows[0];
   }
