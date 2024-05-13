@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+
 import Google from "../../assets/Google.png";
 import INS from "../../assets/INS.png";
 import Apple from "../../assets/apple.png";
@@ -7,6 +8,10 @@ import fb from "../../assets/facebook.png";
 
 export default function InscriptionForm() {
   const navigate = useNavigate();
+
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
 
   const [formData, setFormData] = useState({
     firstname: "",
@@ -29,7 +34,17 @@ export default function InscriptionForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setErrorMessage("");
 
+    // Valider le mot de passe
+    if (!passwordRegex.test(formData.password)) {
+      // eslint-disable-next-line no-alert
+      setErrorMessage(
+        "Le mot de passe doit contenir au moins 8 caractères, une lettre majuscule, une lettre minuscule et un chiffre."
+      );
+      return;
+    }
+    // Si le mot de passe est valide, soumettre les données
     fetch("http://localhost:3310/api/users", {
       method: "POST",
       headers: {
@@ -160,10 +175,11 @@ export default function InscriptionForm() {
               placeholder="Email"
             />
           </div>
+
           <div className="md:w-96">
             <h2>Mot de passe</h2>
             <input
-              className="shadow appearance-none border rounded w-full  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="shadow appearance-none border rounded w-full  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline relative"
               type="password"
               name="password"
               value={formData.password}
@@ -171,7 +187,11 @@ export default function InscriptionForm() {
               placeholder="Mot de passe"
             />
           </div>
+
           <div className="flex flex-col gap-2">
+            {errorMessage && (
+              <p className="text-red-500 md:w-96 ">{errorMessage}</p>
+            )}
             <button
               type="submit"
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 md:w-96 rounded focus:outline-none focus:shadow-outline"
