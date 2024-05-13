@@ -38,34 +38,50 @@ export default function LoginPage() {
 
   return (
     <main className="min-h-[calc(100vh-160px)] bg-cream">
-      <div>
+      <div className="flex flex-col  items-center py-24">
         <form
-          className=" w-96 m-auto flex flex-col justify-center gap-4 "
+          className="space-y-4 p-4 items-center  flex flex-col justify-center shadow-2xl bg-white w-1/2 "
           onSubmit={handlSubmit}
         >
-          <h1 className=" mt-8 font-jacques text-xl">Se connecter</h1>
-          <input
-            className="border-2 pl-2 h-12 "
-            type="email"
-            name="email"
-            value={dataForm.email}
-            onChange={handlChange}
-            placeholder="Eamil"
-          />
-          <input
-            className="border-2 pl-2 h-12"
-            type="password"
-            name="password"
-            value={dataForm.password}
-            onChange={handlChange}
-            placeholder="Password"
-          />
-          <button
-            type="submit"
-            className=" bg-vert text-white h-12 hover:border-2 hover:border-slate-700 hover:bg-white hover:text-slate-700 transition-all duration-500"
-          >
-            Se connecter
-          </button>
+          <h1 className="   font-jacques  text-xl">Se connecter</h1>
+          <div>
+            <h2>Email</h2>
+            <input
+              className="shadow appearance-none border rounded  md:w-96  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              type="email"
+              name="email"
+              value={dataForm.email}
+              onChange={handlChange}
+              placeholder="Email"
+            />
+          </div>
+          <div>
+            <h2>Mot de passe</h2>
+            <input
+              className="shadow appearance-none border rounded md:w-96  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              type="password"
+              name="password"
+              value={dataForm.password}
+              onChange={handlChange}
+              placeholder="Password"
+            />
+          </div>
+          <div className="flex flex-col gap-2">
+            <button
+              type="submit"
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 md:w-96 rounded focus:outline-none focus:shadow-outline"
+            >
+              Se connecter
+            </button>
+            <Link to="/inscription">
+              <button
+                type="button"
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 md:w-96 rounded focus:outline-none focus:shadow-outline"
+              >
+                Créer un compte
+              </button>
+            </Link>
+          </div>
           <p className=" font-itim text-center">ou identifiez-vous autrement</p>
           <div className=" flex flex-row justify-center gap-8 ">
             <Link to="/">
