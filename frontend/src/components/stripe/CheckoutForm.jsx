@@ -4,7 +4,12 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Success from "../../assets/success.svg";
 
-export default function CheckoutForm({ clientSecret }) {
+export default function CheckoutForm({
+  clientSecret,
+  setClientSecret,
+  quantity,
+  totalPrice,
+}) {
   const navigate = useNavigate();
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
@@ -26,8 +31,8 @@ export default function CheckoutForm({ clientSecret }) {
         },
       }
     );
-    console.info("Payment Intent:", paymentIntent);
-    console.info("error", error);
+    console.info("quantity(checkout form)-->", quantity);
+    console.info("total_price(checkout form)-->", totalPrice);
     if (error) {
       console.error("Payment Confirmation Error:", error);
       setMessage("echec");
@@ -35,6 +40,13 @@ export default function CheckoutForm({ clientSecret }) {
     } else {
       setLoading(false);
       setMessage(paymentIntent.status);
+      fetch("http://localhost:3310/api/payments", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(totalPrice, quantity),
+      })
+        .then((res) => res.json())
+        .then((data) => setClientSecret(data.clientSecret));
       setTimeout(() => {
         navigate("/");
       }, 2000);

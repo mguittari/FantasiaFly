@@ -57,7 +57,6 @@ export default function ReservationPage() {
     console.info(dataForm);
   };
   const [travel, setTravel] = useState([]);
-  console.info("travel :>> ", travel);
   const { id } = useParams();
   useEffect(() => {
     fetch(`http://localhost:3310/api/travels/${id}`)
@@ -65,12 +64,6 @@ export default function ReservationPage() {
       .then((data) => setTravel(data))
       .catch((error) => console.info(error));
   }, []);
-
-  console.info("id?", id);
-  console.info("user id", user.user.id);
-  console.info("/me", user);
-  console.info(travel);
-  console.info("dataForm -->", dataForm);
 
   return (
     <div className=" flex flex-col">

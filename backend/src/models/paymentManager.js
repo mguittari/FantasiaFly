@@ -24,7 +24,6 @@ class PaymentManager extends AbstractManager {
       // eslint-disable-next-line camelcase
       [total_price, quantity]
     );
-    console.info("result in manager -->", result);
     return result;
   }
 

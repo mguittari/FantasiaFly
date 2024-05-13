@@ -19,7 +19,6 @@ const read = async (req, res, next) => {
   try {
     // Fetch a specific travel from the database based on the provided ID
     const [travel] = await tables.travel.read(req.params.id);
-    console.info(travel);
 
     // If the travel is not found, respond with HTTP 404 (Not Found)
     // Otherwise, respond with the travel in JSON format
@@ -47,7 +46,7 @@ const createByAdmin = async (req, res) => {
       nb_of_total_seats,
       img_url
     );
-    console.info(req.file);
+
     if (result.affectedRows) {
       res.status(201).send("created");
     } else {
@@ -81,13 +80,11 @@ const updateByAdmin = async (req, res) => {
 };
 const updateTravelPicture = async (req, res) => {
   try {
-    console.info("try?");
     const { id } = req.params;
-    console.info("id:", id);
+
     const img_url = req.file.path;
-    console.info("img_url:", img_url);
+
     const [travel] = await tables.travel.read(id);
-    console.info("travel:", travel);
 
     if (travel.length) {
       console.info("je suis dans if");

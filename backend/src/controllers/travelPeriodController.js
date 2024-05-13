@@ -45,7 +45,7 @@ const getTravelByIdPeriod = async (req, res) => {
     const [travel] = await tables.travel_period.getTravelByIdPeriod(
       parseInt(id, 10)
     );
-    console.info("travel in controller getTravelByIdPeriod-->", travel);
+
     if (travel.length) {
       res.status(200).json(travel);
     } else {
