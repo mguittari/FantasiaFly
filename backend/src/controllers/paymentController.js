@@ -15,21 +15,21 @@ const browse = async (req, res, next) => {
   }
 };
 
-const create = async (req, res) => {
+const createPayment = async (req, res) => {
   try {
     // eslint-disable-next-line camelcase
-    const { quantity, total_price } = req.body;
+    const { totalPrice, quantity } = req.body;
 
-    if (!quantity || !total_price === undefined) {
+    if (!totalPrice || !quantity) {
       res
         .status(400)
         .send("Veuillez fournir toutes les informations nécessaires.");
       return;
     }
+    const result = await tables.payment.create(totalPrice, quantity);
 
-    const result = await tables.payment.create(quantity, total_price);
     if (result.affectedRows) {
-      res.status(201).json(`Payment ok with id : ${result.insertId} `);
+      res.status(201).json(result.insertId);
     } else {
       res.status(401).json("erreur lors de l'enregistrement");
     }
@@ -54,4 +54,8 @@ const deletePaymentAndBooking = async (req, res) => {
   }
 };
 
-module.exports = { browse, create, deletePaymentAndBooking };
+module.exports = {
+  browse,
+  createPayment,
+  deletePaymentAndBooking,
+};

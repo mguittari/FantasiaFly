@@ -1,16 +1,30 @@
 /* eslint-disable react/prop-types */
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import Success from "../../assets/success.svg";
+import { UserContext } from "../../context/userContext";
 
-export default function CheckoutForm({ clientSecret }) {
+export default function CheckoutForm({
+  clientSecret,
+  quantity,
+  totalPrice,
+  idPeriod,
+  idTravel,
+}) {
   const navigate = useNavigate();
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
+  const [paymentId, setPaymentId] = useState("");
   const stripe = useStripe();
   const elements = useElements();
-
+  const { user, token } = useContext(UserContext);
+  const params = useParams();
+  console.info("params", params.id);
+  console.info("id periode", idPeriod);
+  console.info("id travel", idTravel);
+  console.info("id user", user.user.id);
+  console.info("id payment", paymentId);
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -26,18 +40,42 @@ export default function CheckoutForm({ clientSecret }) {
         },
       }
     );
-    console.info("Payment Intent:", paymentIntent);
-    console.info("error", error);
+
     if (error) {
-      console.error("Payment Confirmation Error:", error);
       setMessage("echec");
       setLoading(false);
     } else {
       setLoading(false);
       setMessage(paymentIntent.status);
-      setTimeout(() => {
-        navigate("/");
-      }, 2000);
+
+      fetch("http://localhost:3310/api/payments", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ totalPrice: totalPrice[0], quantity }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.info("data", data);
+          setPaymentId(data);
+          fetch("http://localhost:3310/api/bookings", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({
+              id_payment: data,
+              id_travel: idTravel,
+              id_period: idPeriod,
+              id_user: user.user.id,
+            }),
+          });
+          navigate("/");
+        })
+        .catch((err) => console.info(err));
     }
   };
 

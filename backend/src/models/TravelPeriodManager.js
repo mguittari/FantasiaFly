@@ -28,7 +28,7 @@ class TravelPeriodManager extends AbstractManager {
 
   async getTravelByIdPeriod(id) {
     const travel = await this.database.query(
-      `select * from ${this.table} join travel on travel.id = ${this.table}.id_travel join period on period.id = ${this.table}.id_period WHERE id_period = ?`,
+      `select *, DATE_FORMAT(date_departure, '%d-%m-%Y') AS date_departure, DATE_FORMAT(date_return, '%d-%m-%Y') AS date_return from ${this.table} join travel on travel.id = ${this.table}.id_travel join period on period.id = ${this.table}.id_period WHERE id_period = ?`,
       [id]
     );
     return travel;

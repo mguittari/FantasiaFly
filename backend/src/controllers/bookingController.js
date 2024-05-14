@@ -56,10 +56,9 @@ const read = async (req, res, next) => {
 const create = async (req, res) => {
   try {
     // eslint-disable-next-line camelcase
-    const { booking_date, id_user, id_travel, id_payment, id_period } =
-      req.body;
+    const { id_user, id_travel, id_payment, id_period } = req.body;
+    console.info(req.body);
     const result = await tables.booking.create(
-      booking_date,
       id_user,
       id_travel,
       id_payment,

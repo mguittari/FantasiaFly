@@ -59,32 +59,9 @@ app.use(express.json());
 // eslint-disable-next-line consistent-return
 
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
-const tables = require("./tables");
-
-// eslint-disable-next-line camelcase
-// const calculateOrderAmount = (unit_price, quantity) => {
-//   // Replace this constant with a calculation of the order's amount
-//   // Calculate the order total on the server to prevent
-//   // people from directly manipulating the amount on the client
-//   // eslint-disable-next-line camelcase
-//   if (typeof unit_price !== "number" || typeof quantity !== "number") {
-//     throw new Error("Les arguments doivent être des nombres");
-//   }
-//   // Calculer le montant total
-//   // eslint-disable-next-line camelcase
-// const totalAmount = unit_price * quantity;
-//   // Retourner le montant total
-//   return totalAmount;
-// };
 
 app.post("/pay", async (req, res) => {
-  const { totalAmount, quantity } = req.body;
-
-  console.info("totalAmount-->", totalAmount);
-
-  const result = await tables.payment.create(totalAmount, quantity);
-  console.info("result-->", result);
-  console.info("quantity-->", quantity);
+  const { totalAmount } = req.body;
 
   // Create a PaymentIntent with the order amount and currency
   const paymentIntent = await stripe.paymentIntents.create({
@@ -95,32 +72,11 @@ app.post("/pay", async (req, res) => {
       enabled: true,
     },
   });
-  console.info("payment intent -->", paymentIntent);
-  console.info("totalAmount -->", totalAmount);
 
   res.json({
     clientSecret: paymentIntent.client_secret,
   });
 });
-
-// app.post("/pay", async (req, res) => {
-//   try {
-//     const { price } = req.body;
-//     if (!price)
-//       return res.status(400).json({ message: "Please enter a price" });
-//     const paymentIntent = await stripe.paymentIntent.create({
-//       amount: Math.round(25 * 100),
-//       currency: "INR",
-//       payment_method_types: ["card"],
-//       metadata: { price },
-//     });
-//     const clientSecret = paymentIntent.client_secret;
-//     res.json({ message: "Payment initiated", clientSecret });
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ error: error.message });
-//   }
-// });
 
 /* ************************************************************************* */
 

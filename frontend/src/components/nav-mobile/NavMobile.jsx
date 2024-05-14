@@ -1,6 +1,6 @@
-import { Link, useNavigate } from "react-router-dom";
-import { IoMdClose } from "react-icons/io";
 import { useContext, useState } from "react";
+import { RxCross1 } from "react-icons/rx";
+import { Link, useNavigate } from "react-router-dom";
 import img from "../../assets/image 10.png";
 import { UserContext } from "../../context/userContext";
 import ModalLogOut from "../modal/ModalLogOut";
@@ -34,69 +34,69 @@ export default function NavMobile({ showMenu, active }) {
 
   return (
     <>
-      <div className=" absolute z-20">
-        <ModalLogOut
-          show={showModal}
-          handleClick={handleClick}
-          handleCancel={handleCancel}
-        />
-      </div>
-      <div
+      <ModalLogOut
+        show={showModal}
+        handleClick={handleClick}
+        handleCancel={handleCancel}
+      />
+
+      <ul
         className={
           active
-            ? "flex-col flex  items-center fixed inset-0 text-2xl font-itim bg-mm backedrop-blur-lg gap-10  md:hidden transform -translate-x-40 -translate-y-72 "
+            ? "fixed left-0 top-0 w-screen h-screen flex flex-col justify-center items-center gap-10 pt-5 text-2xl font-itim bg-mm md:hidden "
             : "hidden "
         }
       >
-        <ul className="bg-mm text-white fixed inset-0  flex-col flex items-center justify-center mt-60  gap-8 left-32 ">
-          <IoMdClose onClick={showMenu} className=" cursor-pointer " />
-          <li>
-            <Link to="/travels" onClick={() => showMenu(false)}>
-              Nos destinations
-            </Link>
-          </li>
+        <RxCross1
+          onClick={showMenu}
+          className=" cursor-pointer absolute top-4 right-4"
+        />
+        <li>
+          <Link to="/travels" onClick={showMenu}>
+            Nos destinations
+          </Link>
+        </li>
 
-          <li>
-            <Link to="/concept" onClick={() => showMenu(false)}>
-              Concept
-            </Link>
-          </li>
-          {user.message === "isLogged" ? (
-            <>
-              <li>
-                <Link to="/myProfile" onClick={() => showMenu(false)}>
-                  Mon profil
-                </Link>
-              </li>
-              <li>
-                <button
-                  className="bg-transparent border-none flex gap-8 items-center"
-                  type="button"
-                  onClick={() => {
-                    showMenu(false);
-                    setShowModal(true);
-                  }}
-                >
-                  Se déconnecter
-                </button>
-              </li>
-            </>
-          ) : (
-            <>
-              <li>
-                <Link to="/connexion" onClick={() => showMenu(false)}>
-                  Connexion
-                </Link>
-              </li>
-              <li>
-                <Link to="/inscription" onClick={() => showMenu(false)}>
-                  Inscription
-                </Link>
-              </li>
-            </>
-          )}
-        </ul>
-      </div>
+        <li>
+          <Link to="/concept" onClick={showMenu}>
+            Concept
+          </Link>
+        </li>
+        {user.message === "isLogged" ? (
+          <>
+            <li>
+              <Link to="/myProfile" onClick={showMenu}>
+                Mon profil
+              </Link>
+            </li>
+            <li>
+              <button
+                className="bg-transparent border-none flex gap-8 items-center"
+                type="button"
+                onClick={() => {
+                  showMenu();
+                  setShowModal(true);
+                }}
+              >
+                Se déconnecter
+              </button>
+            </li>
+          </>
+        ) : (
+          <>
+            <li>
+              <Link to="/connexion" onClick={showMenu}>
+                Connexion
+              </Link>
+            </li>
+            <li>
+              <Link to="/inscription" onClick={showMenu}>
+                Inscription
+              </Link>
+            </li>
+          </>
+        )}
+      </ul>
       <div>
         <Link to="/">
           <img

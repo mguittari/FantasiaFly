@@ -4,7 +4,7 @@ import Button from "../button/button";
 export default function ModalLogOut({ show, handleClick, handleCancel }) {
   return (
     <div
-      className={` ${
+      className={` absolute z-20 ${
         show
           ? "absolute top-0 right-0 left-0 bottom-0 w-full h-[100vh] bg-black bg-opacity-50"
           : ""

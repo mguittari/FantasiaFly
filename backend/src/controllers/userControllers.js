@@ -5,12 +5,11 @@ const fs = require("fs");
 const jwt = require("jsonwebtoken");
 const tables = require("../tables");
 
-console.info(process.env.SECRET_KEY_JWT);
 // The B of BREAD - Browse (Read All) operation
 const browse = async (req, res, next) => {
   try {
     const [user] = req.user;
-    console.info(user);
+
     if (user.role === "admin") {
       // Fetch all users from the database
       const users = await tables.user.readAll();
@@ -62,7 +61,7 @@ const readByEmail = async (req, res) => {
     const { email, password } = req.body;
 
     if (!email || !password) {
-      res.status(401).json({ message: "remplir vos champs !" });
+      res.status(401).json({ status: 401, message: "remplir vos champs !" });
     } else {
       const [user] = await tables.user.getUserByEmail(email);
       if (user.length) {
@@ -78,12 +77,16 @@ const readByEmail = async (req, res) => {
             }
           );
 
-          res.status(200).json(token);
+          res.status(200).json({ status: 200, token });
         } else {
-          res.status(401).json("verifier vos données");
+          res
+            .status(401)
+            .json({ status: 401, message: "Vérifier vos données !" });
         }
       } else {
-        res.status(401).json("addresse mail n'existe pas");
+        res
+          .status(401)
+          .json({ status: 401, message: "Addresse mail n'existe pas !" });
       }
     }
   } catch (error) {
@@ -94,8 +97,6 @@ const getAllBookingsByUser = async (req, res) => {
   try {
     const { id } = req.params;
     const [bookings] = await tables.user.getAllBookingsByUser(id);
-    console.info(id);
-    console.info(bookings);
 
     if (bookings) {
       res.json(bookings);
@@ -136,8 +137,6 @@ const create = async (req, res) => {
       country,
       role,
     } = req.body;
-    console.info("controller create user:", req.body);
-    console.info("role?:", req.body.role);
 
     let img_url = "";
     if (req.file) {
@@ -186,7 +185,6 @@ const edit = async (req, res) => {
       city,
       country,
     } = req.body;
-    console.info(req.body);
 
     const [result] = await tables.user.editUserWithoutPassword(
       id,
@@ -198,7 +196,7 @@ const edit = async (req, res) => {
       city,
       country
     );
-    console.info("result-->", result);
+
     if (result.affectedRows) {
       res.status(200).json({ message: "Account updated !" });
     } else {
@@ -213,8 +211,7 @@ const editPassword = async (req, res) => {
   try {
     const id = req.payload;
     const { hashPassword } = req.body;
-    console.info(id);
-    console.info(hashPassword);
+
     const [result] = await tables.user.editUserOnlyPassword(id, hashPassword);
 
     if (result.affectedRows) {
@@ -230,15 +227,12 @@ const editPassword = async (req, res) => {
 const editOnlyPicture = async (req, res) => {
   try {
     const id = req.payload;
-    console.info("id:", id);
-    console.info(req.file);
+
     const img_url = req.file.path;
-    console.info("img_url:", img_url);
+
     const [user] = await tables.user.getUserById(id);
-    console.info("user:", user);
 
     if (user.length) {
-      console.info("je suis dans if");
       await tables.user.editProfilPicture(img_url);
       res.json("Image mise à jour avec succès");
     } else {

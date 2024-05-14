@@ -9,6 +9,7 @@ import { UserContext } from "../../context/userContext";
 export default function LoginPage() {
   const navigate = useNavigate();
   const { updateToken } = useContext(UserContext);
+  const [message, setMessage] = useState("");
   const [dataForm, setDataForm] = useState({
     email: "",
     password: "",
@@ -30,7 +31,15 @@ export default function LoginPage() {
     })
       .then((res) => res.json())
       .then((res) => {
-        updateToken(res);
+        console.info("status res", res);
+        if (res.status === 401) {
+          console.error(
+            `Failed to fetch user data. HTTP status: ${res.status}`
+          );
+          setMessage(res.message);
+          return;
+        }
+        updateToken(res.token);
         navigate("/");
       })
       .catch((err) => console.info("err :>>", err));
@@ -43,45 +52,37 @@ export default function LoginPage() {
           className="space-y-4 p-4 items-center  flex flex-col justify-center shadow-2xl bg-white w-1/2 "
           onSubmit={handlSubmit}
         >
-          <h1 className="   font-jacques  text-xl">Se connecter</h1>
-          <div>
-            <h2>Email</h2>
+          <h1 className=" mt-8 font-jacques text-xl">Se connecter</h1>
+          <div className="relative flex flex-col gap-3 pb-10">
             <input
-              className="shadow appearance-none border rounded  md:w-96  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="border-2 pl-2 h-12 "
               type="email"
               name="email"
               value={dataForm.email}
               onChange={handlChange}
-              placeholder="Email"
+
+              placeholder="Eamil"
             />
-          </div>
-          <div>
-            <h2>Mot de passe</h2>
             <input
-              className="shadow appearance-none border rounded md:w-96  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="border-2 pl-2 h-12"
               type="password"
               name="password"
               value={dataForm.password}
               onChange={handlChange}
               placeholder="Password"
             />
+
+            {message && (
+              <p className="absolute bottom-0 text-red-600">{message}</p>
+            )}
           </div>
-          <div className="flex flex-col gap-2">
-            <button
-              type="submit"
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 md:w-96 rounded focus:outline-none focus:shadow-outline"
-            >
-              Se connecter
-            </button>
-            <Link to="/inscription">
-              <button
-                type="button"
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 md:w-96 rounded focus:outline-none focus:shadow-outline"
-              >
-                Créer un compte
-              </button>
-            </Link>
-          </div>
+
+          <button
+            type="submit"
+            className=" bg-vert text-white h-12 hover:border-2 hover:border-slate-700 hover:bg-white hover:text-slate-700 transition-all duration-500"
+          >
+            Se connecter
+          </button>
           <p className=" font-itim text-center">ou identifiez-vous autrement</p>
           <div className=" flex flex-row justify-center gap-8 ">
             <Link to="/">

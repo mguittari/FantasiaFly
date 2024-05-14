@@ -16,10 +16,10 @@ const browse = async (req, res, next) => {
 
 const readById = async (req, res) => {
   try {
-    const { id }= req.params;
-     
+    const { id } = req.params;
+
     const [period] = await tables.period.getPeriodById(parseInt(id, 10));
-    console.info(period);
+
     if (period.length) {
       res.status(200).json(period);
     } else {
@@ -31,6 +31,3 @@ const readById = async (req, res) => {
 };
 
 module.exports = { browse, readById };
-
-
-

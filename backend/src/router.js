@@ -49,7 +49,7 @@ router.patch(
   hashEditPassword,
   userControllers.editPassword
 );
-router.post("/payments", paymentController.create);
+router.post("/payments", paymentController.createPayment);
 router.post("/bookings", bookingController.create);
 router.delete("/payments/:id", paymentController.deletePaymentAndBooking);
 
