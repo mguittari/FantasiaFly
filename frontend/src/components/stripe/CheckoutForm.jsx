@@ -7,9 +7,10 @@ import { UserContext } from "../../context/userContext";
 
 export default function CheckoutForm({
   clientSecret,
-
   quantity,
   totalPrice,
+  idPeriod,
+  idTravel,
 }) {
   const navigate = useNavigate();
   const [message, setMessage] = useState("");
@@ -19,7 +20,11 @@ export default function CheckoutForm({
   const elements = useElements();
   const { user, token } = useContext(UserContext);
   const params = useParams();
-  console.info(params);
+  console.info("params", params.id);
+  console.info("id periode", idPeriod);
+  console.info("id travel", idTravel);
+  console.info("id user", user.user.id);
+  console.info("id payment", paymentId);
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -62,9 +67,9 @@ export default function CheckoutForm({
               Authorization: `Bearer ${token}`,
             },
             body: JSON.stringify({
-              id_payment: paymentId,
-              // id_travel,
-              // id_period,
+              id_payment: data,
+              id_travel: idTravel,
+              id_period: idPeriod,
               id_user: user.user.id,
             }),
           });

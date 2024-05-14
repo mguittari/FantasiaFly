@@ -16,6 +16,11 @@ export default function Participants() {
   const [period, setPeriod] = useState([]);
   console.info("period", period);
 
+  const idPeriod = period[0]?.id_period;
+  const idTravel = period[0]?.id_travel;
+  console.info(idPeriod);
+  console.info(idTravel);
+
   useEffect(() => {
     fetch(`http://localhost:3310/api/period/${id}/travel`, {
       headers: {
@@ -55,7 +60,7 @@ export default function Participants() {
           className=" absolute top-0 left-0 min-w-full min-h-full z-0 pointer-events-none"
         />
       </div>
-      <div className="z-10 flex flex-col justify-center items-center relative ">
+      <div className="z-10 flex flex-col justify-center items-center relative py-20">
         <div className=" flex justify-center py-10 ">
           {steps?.map((step, i) => (
             <div
@@ -155,7 +160,12 @@ export default function Participants() {
         {currentStep === 3 && (
           <div>
             {/* Affichez ici les éléments spécifiques à l'étape 3 */}
-            <Payment totalPrice={totalPrice} quantity={nbPlace} />
+            <Payment
+              totalPrice={totalPrice}
+              quantity={nbPlace}
+              idPeriod={idPeriod}
+              idTravel={idTravel}
+            />
           </div>
         )}
         <div className=" flex justify-center gap-16 py-8">

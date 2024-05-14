@@ -100,24 +100,34 @@ class userManager extends AbstractManager {
 
   getAllBookingsByUser(id) {
     return this.database.query(
-      `select u.id, u.firstname, u.lastname, u.email,
-            JSON_ARRAYAGG(
-                JSON_OBJECT(
-            'destination', t.destination_name,
-            'n°réservation', b.id,
-            'date de la réservation', b.created_at,
+      `SELECT 
+    u.id AS user_id,
+    u.firstname,
+    u.lastname,
+    u.email,
+    JSON_ARRAYAGG(
+        JSON_OBJECT(
+            'booking_id', b.id,
+            'booking_date', b.created_at,
+            'destination_name', t.destination_name,
             'quantity', p.quantity,
             'date_departure', pr.date_departure,
             'date_return', pr.date_return,
             'total_price', FORMAT(p.quantity * pr.unit_price, 2)
-                            ))
-                    as bookings from user as u 
-                    join booking as b on u.id = b.id_user
-                    join payment as p on p.id = b.id_payment
-                    join travel as t on t.id = b.id_travel
-                    join period as pr on pr.id = b.id_period
-        WHERE 
-            u.id = ${id}`
+        )
+    ) AS bookings
+FROM 
+    user AS u
+JOIN 
+    booking AS b ON u.id = b.id_user
+JOIN 
+    payment AS p ON p.id = b.id_payment
+JOIN 
+    travel AS t ON t.id = b.id_travel
+JOIN 
+    period AS pr ON pr.id = b.id_period
+WHERE 
+    u.id = ${id}`
     );
   }
 

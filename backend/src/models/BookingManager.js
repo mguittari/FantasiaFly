@@ -29,11 +29,11 @@ class BookingManager extends AbstractManager {
   }
 
   // eslint-disable-next-line camelcase
-  async create(booking_date, id_user, id_travel, id_payment, id_period) {
+  async create(id_user, id_travel, id_payment, id_period) {
     const [result] = await this.database.query(
-      `insert into ${this.table} (booking_date, id_user, id_travel, id_payment, id_period) values (?, ?, ?, ?, ?)`,
+      `insert into ${this.table} (id_user, id_travel, id_payment, id_period) values (?, ?, ?, ?)`,
       // eslint-disable-next-line camelcase
-      [booking_date, id_user, id_travel, id_payment, id_period]
+      [id_user, id_travel, id_payment, id_period]
     );
     return result;
   }
