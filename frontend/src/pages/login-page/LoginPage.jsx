@@ -47,9 +47,9 @@ export default function LoginPage() {
 
   return (
     <main className="min-h-[calc(100vh-160px)] bg-cream">
-      <div>
+      <div className="flex flex-col  items-center py-24">
         <form
-          className=" w-96 m-auto flex flex-col justify-center gap-4 "
+          className="space-y-4 p-4 items-center  flex flex-col justify-center shadow-2xl bg-white w-1/2 "
           onSubmit={handlSubmit}
         >
           <h1 className=" mt-8 font-jacques text-xl">Se connecter</h1>
@@ -60,6 +60,7 @@ export default function LoginPage() {
               name="email"
               value={dataForm.email}
               onChange={handlChange}
+
               placeholder="Eamil"
             />
             <input
@@ -70,6 +71,7 @@ export default function LoginPage() {
               onChange={handlChange}
               placeholder="Password"
             />
+
             {message && (
               <p className="absolute bottom-0 text-red-600">{message}</p>
             )}

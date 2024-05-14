@@ -1,11 +1,16 @@
+/* eslint-disable react/button-has-type */
 /* eslint-disable no-shadow */
 /* eslint-disable camelcase */
 // import PropTypes from "prop-types";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import travelData from "../../data/travelDatas.json";
+import ButtonReserver from "../buttonReserver/ButtonReserver";
+import { UserContext } from "../../context/userContext";
 
 export default function Tab() {
+  const { user } = useContext(UserContext);
+
   const [periods, setPeriods] = useState([]);
   const [toggleState, setToggleState] = useState(1);
   const toggleTab = (index) => {
@@ -71,14 +76,21 @@ export default function Tab() {
                     <td className="p-2">{duration_stay} jours</td>
                     <td className="p-2">{unit_price} €</td>
                     <td className="p-2">
-                      <Link to={`/Reservations/period/${id_period}`}>
-                        <button
-                          type="button"
-                          className="bg-green-500 border border-white text-white py-1 px-2 rounded-md hover:bg-green-600 focus:outline-none focus:ring focus:ring-green-300"
-                        >
-                          Réserver
-                        </button>
-                      </Link>
+                      {user.message === "isLogged" ? (
+                        <Link to={`/Reservations/period/${id_period}`}>
+                          <button
+                            type="submit"
+                            className="bg-green-500 border border-white text-white py-1 px-2 rounded-md hover:bg-green-600 focus:outline-none focus:ring focus:ring-green-300"
+                          >
+                            Reserver
+                          </button>
+                        </Link>
+                      ) : (
+                        // eslint-disable-next-line jsx-a11y/control-has-associated-label
+                        <div className="bg-green-500 border border-white text-white w-20 py-1 px-2 rounded-md hover:bg-green-600 focus:outline-none focus:ring focus:ring-green-300">
+                          <ButtonReserver />
+                        </div>
+                      )}
                     </td>
                   </tr>
                 </tbody>
